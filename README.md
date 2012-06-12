@@ -2,13 +2,14 @@ best_boy
 ========
 
 A simple event driven logging for ActiveRecord models.
-This gem is not tested for now. I add testing asap.
------------------------------------------
+This gem is not tested for now. I will add testing asap.
+
 
 What does this gem do?
 ----------------------
 
 best_boy logs create and delete events in its first iteration. It uses an own polimorphic database table to log each event.
+At the moment, best_boy only provides support for ActiveRecord models.
 
 
 Installation
@@ -24,11 +25,29 @@ Install it with Bundler
 
 Generate the BestBoyEvent table migration
 
-    rails g best_boy:install
+    rails g best_boy
 
 Run the migration
 
     rake db:migrate
+
+
+Usage
+-----
+
+In model context:
+    
+    has_a_best_boy
+
+This will log create and delete event for each instance.
+
+In controller context:
+
+    best_boy_event object, event
+
+This will log custom events for a object and a event phrase.
+If no Object is givin, it will raise an exception as well as if no event is provided.
+
 
 BestBoyEvent table
 ------------------
