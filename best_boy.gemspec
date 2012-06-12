@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "best_boy"
   s.version     = BestBoy::VERSION
   s.platform    = Gem::Platform::RUBY
+  s.license     = ['MIT']
   s.authors     = ["Christoph Seydel"]
   s.email       = ["christoph.seydel@me.com"]
   s.homepage    = "https://github.com/cseydel/best_boy"
