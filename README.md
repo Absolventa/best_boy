@@ -1,7 +1,4 @@
 best_boy
-<<<<<<< HEAD
-========
-=======
 ========
 
 A simple event driven logging for ActiveRecord models.
@@ -52,4 +49,3 @@ Famous last words
 It's my first gem, be gentle ;)
 
 Copyright (c) 2012 Christoph Seydel. See LICENSE.txt for further details.
->>>>>>> initial import
