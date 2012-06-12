@@ -8,7 +8,7 @@ This gem is not tested for now. I will add testing asap.
 What does this gem do?
 ----------------------
 
-best_boy logs create and delete events in its first iteration. It uses an own polimorphic database table to log each event.
+best_boy logs "create" and "delete" events as well as custom events triggered in controller actions. It uses an own polimorphic database table to log each event.
 At the moment, best_boy only provides support for ActiveRecord models.
 
 
@@ -63,9 +63,15 @@ Getting BestBoyEvents
 
 The table is namespaced, so you can access for statistics maybe with BestBoy::BestBoyEvent.where...
 
+Thanks
+------
+
+Big thanks to each contributor on Impressionist. This gem helped me a long way to get here in modelling and creating a gem.
 
 Famous last words
 -----------------
 It's my first gem, be gentle ;)
+
+
 
 Copyright (c) 2012 Christoph Seydel. See LICENSE.txt for further details.
