@@ -6,9 +6,9 @@ module BestBoy
   def has_a_best_boy
     include InstanceMethods
     has_many :best_boy_events, :as => :owner
-    after_create self.create_best_boy_event("create")
-    before_destroy self.create_best_boy_event("destroy")
+    after_create self.create_best_boy_events("create")
+    before_destroy self.create_best_boy_events("destroy")
   end
 end
 
-ActiveRecord::Base.send :include, BestBoy
+ActiveRecord::Base.send :extend, BestBoy

@@ -18,7 +18,6 @@ module BestBoy
 
       def copy_migrations
         migration_template "create_best_boy_events.rb", "db/migrate/create_best_boy_events.rb"
-        migration_template "create_best_boy_events.rb", "db/migrate/create_best_boy_events.rb"
       end
     end
   end
