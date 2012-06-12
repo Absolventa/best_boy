@@ -1,5 +1,4 @@
-module BestBoy
-  class BestBoyEvent < ActiveRecord::Base
+class BestBoyEvent < ActiveRecord::Base
     # associations
     #
     #
@@ -16,4 +15,3 @@ module BestBoy
     attr_accessible :owner_id, :owner_type, :event
   
   end
-end

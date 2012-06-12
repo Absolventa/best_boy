@@ -1,4 +1,4 @@
-class CreateBestBoyEvents < ActiveRecord::Migration
+class CreateBestBoyEventsTable < ActiveRecord::Migration
   def self.up
     create_table :best_boy_events, :force => true do |t|
       t.integer :owner_id

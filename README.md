@@ -2,6 +2,7 @@ best_boy
 ========
 
 A simple event driven logging for ActiveRecord models.
+This gem is not tested for now. I add testing asap.
 -----------------------------------------
 
 What does this gem do?
