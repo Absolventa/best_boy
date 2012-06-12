@@ -1,6 +1,7 @@
-require "active_record"
-require "best_boy/best_boy_model.rb"
+require "best_boy/engine.rb"
 
 module BestBoy
-  
+  def self.setup
+    yield self
+  end
 end

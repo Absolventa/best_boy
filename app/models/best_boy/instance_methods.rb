@@ -1,6 +1,3 @@
-require "best_boy/instance_methods.rb"
-require "best_boy/best_boy_event.rb"
-
 module BestBoy
   module InstanceMethods
     def trigger_create_event
