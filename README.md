@@ -1,5 +1,6 @@
 best_boy
 ========
+[![Build Status](https://secure.travis-ci.org/cseydel/best_boy.png?branch=master)](https://secure.travis-ci.org/cseydel/best_boy)
 
 A simple event driven logging for ActiveRecord models.
 
