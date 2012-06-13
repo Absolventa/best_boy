@@ -39,14 +39,14 @@ In model context:
     
     has_a_best_boy
 
-This will log create and delete event for each instance.
+This will log "create" and "delete" event for each instance.
 
 In controller context:
 
     best_boy_event object, event
 
 This will log custom events for a object and a event phrase.
-If no Object is givin, it will raise an exception as well as if no event is provided.
+If no Object is given, it will raise an exception as well as if no event is provided.
 
 
 BestBoyEvent table
