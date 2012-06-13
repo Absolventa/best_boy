@@ -17,7 +17,11 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   s.add_development_dependency("bundler", ">= 1.0.0")
-  s.add_development_dependency("rspec", "~> 2.0.1")
+  s.add_development_dependency('activerecord', '>= 3.0.0')
+  s.add_development_dependency('activesupport', '>= 3.0.0')
+  s.add_development_dependency('sqlite3', '>= 1.3.4')
+  s.add_development_dependency("rake")  
+  s.add_development_dependency("rspec")
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
