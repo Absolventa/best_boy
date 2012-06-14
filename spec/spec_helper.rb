@@ -13,7 +13,7 @@ ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3", 
   :database => "#{root}/db/bestboy.db"
 )
-ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'users'")
+ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'examples'")
 ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'best_boy_events'")
 ActiveRecord::Schema.define do
   self.verbose = false
@@ -29,10 +29,9 @@ ActiveRecord::Schema.define do
   add_index :best_boy_events, [:owner_id, :owner_type]
   add_index :best_boy_events, :event
 
-  create_table :users, :force => true do |t|
+  create_table :examples, :force => true do |t|
     t.timestamps
   end
-
 end
 
 ActiveRecord::Base.send(:include, BestBoy::Eventable)
@@ -41,7 +40,7 @@ RSpec.configure do |config|
   config.include BestBoyController::InstanceMethods
 end
 
-class User < ActiveRecord::Base
+class Example < ActiveRecord::Base
   has_a_best_boy
 end
 
