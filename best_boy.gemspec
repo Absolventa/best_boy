@@ -16,10 +16,12 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "best_boy"
   s.required_rubygems_version = ">= 1.3.6"
 
-  s.add_development_dependency("bundler", ">= 1.0.0")
-  s.add_development_dependency('activerecord', '>= 3.0.0')
-  s.add_development_dependency('activesupport', '>= 3.0.0')
-  s.add_development_dependency('sqlite3', '>= 1.3.4')
+  #s.add_dependency()
+
+  s.add_development_dependency("bundler")
+  s.add_development_dependency('activerecord')
+  s.add_development_dependency('activesupport')
+  s.add_development_dependency('sqlite3')
   s.add_development_dependency("rake")  
   s.add_development_dependency("rspec")
 

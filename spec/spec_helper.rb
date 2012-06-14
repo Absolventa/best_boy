@@ -4,8 +4,7 @@ require 'active_record'
 require 'active_support'
 require "best_boy/models/active_record/best_boy_event.rb"
 require "best_boy/models/active_record/best_boy/eventable.rb"
-require "./app/models/best_boy/eventable.rb"
-require "./app/controllers/best_boy_controller.rb"
+require "best_boy/controllers/best_boy_controller.rb"
 require 'rspec'
 require 'rspec/autorun'
 

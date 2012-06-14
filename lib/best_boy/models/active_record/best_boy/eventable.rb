@@ -2,6 +2,10 @@ module BestBoy
   module Eventable
     extend ActiveSupport::Concern
 
+    def eventable?
+      true
+    end
+
     module ClassMethods
       def has_a_best_boy
         # meta programming
