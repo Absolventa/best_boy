@@ -1,0 +1,37 @@
+%ul.nav.nav-tabs
+  - available_owner_types.each do |owner_type|
+    %li{:class => (current_owner_type == owner_type) ? 'active' : nil}
+      = link_to owner_type, best_boy_admin_path(:owner_type => owner_type)
+
+%h3 Statistics
+%table.table.table-striped.well
+  %thead
+    %tr
+      %th Event
+      %th over all
+      %th year
+      %th month
+      %th week
+      %th day
+  %tbody
+    - statistics.each do |best_boy_event|
+      %tr
+        - (0..5).each do |key|
+          %td= best_boy_event[key]
+
+%h3 
+  Statistics for
+  = Time.zone.now.year
+  per month 
+%table.table.table-striped.well
+  %thead
+    %tr
+      %th Event
+      - %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
+        %th= month
+  %tbody
+    - available_events.each do |event|
+      %tr
+        %td= event
+        - %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
+          %td= stats_by_event_and_month event, month
