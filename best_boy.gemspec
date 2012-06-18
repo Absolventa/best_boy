@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "best_boy"
   s.required_rubygems_version = ">= 1.3.6"
 
-  s.add_dependency('haml')
+  s.add_dependency('kaminari')
 
   s.add_development_dependency('bundler', '~> 1.1.0')
   s.add_development_dependency('activerecord')

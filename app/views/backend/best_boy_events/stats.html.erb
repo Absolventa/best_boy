@@ -1,0 +1,60 @@
+<%= render "navigation", :referrer => "stats" %>
+
+<div class="span12">
+  <div class="well">
+    <h3>Statistics</h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>overall</th>
+          <th>year</th>
+          <th>month</th>
+          <th>week</th>
+          <th>day</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% statistics.each do |best_boy_event| %>
+          <tr>
+            <% (0..5).each do |key| %>
+              <td><%= best_boy_event[key] %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="span12">
+  <div class="well">
+    <h3 class="pull-left">Statistics for <%= current_year %> per month</h3>
+    
+    <div class="pull-right">
+      <%= form_tag best_boy_admin_stats_path, :method => :get do %>
+        <%= select_tag :year, options_for_select(available_years, :selected => current_year), :onchange => "submit();" %>
+      <% end %>
+    </div>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <% %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec).each do |month| %>
+            <th><%= month %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% available_events.each do |event| %>
+          <tr>
+            <td><%= event %></td>
+            <% %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month| %>
+              <td><%= stats_by_event_and_month event, month %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -8,7 +8,10 @@ module BestBoy
         template 'best_boy.rb', 'config/initializers/best_boy.rb'
         template 'bootstrap/glyphicons-halflings-white.png', 'public/images/bootstrap/glyphicons-halflings-white.png'
         template 'bootstrap/glyphicons-halflings.png', 'public/images/bootstrap/glyphicons-halflings.png'
-        template 'bootstrap/bootstrap.css', 'public/stylesheets/bootstrap.css'  
+        template 'bootstrap/bootstrap.css', 'public/stylesheets/bootstrap.css'
+        #datepicker
+        template 'bootstrap/bootstrap_datepicker.css', 'public/stylesheets/bootstrap_datepicker.css' 
+        template 'bootstrap/bootstrap_datepicker.js', 'public/javascripts/bootstrap_datepicker.js'
       end
     end
   end

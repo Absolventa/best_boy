@@ -21,9 +21,5 @@ module BestBoy
       end
     end
 
-    initializer "best_boy.load_static_assets" do |app|
-      app.middleware.use ::ActionDispatch::Static, "#{root}/public"
-    end
-
   end
 end
