@@ -12,7 +12,8 @@
     <title>BBAA - BestBoy Administration Area</title>
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag("bootstrap", :media => "all") %>
-
+    <%= yield :stylesheets %>
+    <%= yield :javascripts %>
     <style>
       /* FIX for kaminari gem */
       nav.pagination {
@@ -56,5 +57,6 @@
         <%= yield %>
       </div>
     </div>
+    <%= yield :javascripts %>
   </body>
 </html>

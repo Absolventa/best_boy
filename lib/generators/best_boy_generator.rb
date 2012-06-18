@@ -9,7 +9,7 @@ module BestBoy
         template 'bootstrap/glyphicons-halflings-white.png', 'public/images/bootstrap/glyphicons-halflings-white.png'
         template 'bootstrap/glyphicons-halflings.png', 'public/images/bootstrap/glyphicons-halflings.png'
         template 'bootstrap/bootstrap.css', 'public/stylesheets/bootstrap.css'
-        #datepicker
+        #datepicker by Stefan Petre (http://www.eyecon.ro/bootstrap-datepicker)
         template 'bootstrap/bootstrap_datepicker.css', 'public/stylesheets/bootstrap_datepicker.css' 
         template 'bootstrap/bootstrap_datepicker.js', 'public/javascripts/bootstrap_datepicker.js'
       end
