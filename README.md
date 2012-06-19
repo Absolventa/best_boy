@@ -28,10 +28,15 @@ Generate the BestBoyEvent table migration
     rails g best_boy
 
 This will install following files into your application
+    
     config/initializers/best_boy.rb
+    
     db_migrate/create_best_boy_events_table.rb
+    
     public/javascripts/bootstrap_datepicker.js
+    
     public/stylesheets/bootstrap.css
+    
     public/stylesheets/bootstrap_datepicker.css
 
 See usage section for version information.
@@ -55,6 +60,7 @@ In controller context:
     best_boy_event object, event
 
 This will log custom events for a object and a event phrase.
+
 If no Object is given, it will raise an exception as well as if no event is provided.
 
 
@@ -71,6 +77,7 @@ Getting BestBoyEvents
 ---------------------
 
 BestBoy comes with an admin interface, largely configurable to fit right into your existing application.
+
 Following configurations can be done:
 
     config.orm                  "symbole"                   # default: :active_record               # for now only active_record is supported
@@ -79,9 +86,14 @@ Following configurations can be done:
     config.skip_before_filter   "comma separated symbols"   # default: nil                          # declare skip_before_filter to skip inherited before_filters in admin section
     config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
 
+After installation you can access it through:
+    /bast_boy_admin
+
+
 Used gems and resource
 ----------------------
 [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
+
 [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
 
 Thanks
