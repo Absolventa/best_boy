@@ -7,6 +7,7 @@ require "best_boy/models/active_record/best_boy/eventable.rb"
 require "best_boy/controllers/best_boy_controller.rb"
 require 'rspec'
 require 'rspec/autorun'
+require 'shoulda'
 
 root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 ActiveRecord::Base.establish_connection(
@@ -37,12 +38,13 @@ end
 ActiveRecord::Base.send(:include, BestBoy::Eventable)
 
 RSpec.configure do |config|
+  config.mock_with :rspec
   config.include BestBoyController::InstanceMethods
+end
+
+class Dummy
 end
 
 class Example < ActiveRecord::Base
   has_a_best_boy
-end
-
-class Dummy
 end

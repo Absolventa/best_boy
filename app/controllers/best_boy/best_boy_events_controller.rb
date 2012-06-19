@@ -1,5 +1,5 @@
-module BestBoyBackend
-  class Backend::BestBoyEventsController < BestBoy.base_controller.constantize
+module BestBoy
+  class BestBoyEventsController < BestBoy.base_controller.constantize
 
     before_filter BestBoy.before_filter if BestBoy.before_filter.present?
     skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
