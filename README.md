@@ -87,7 +87,8 @@ Following configurations can be done:
     config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
 
 After installation you can access it through:
-    /best_boy_admin
+    
+    <your application path>/best_boy_admin
 
 
 Used gems and resource
