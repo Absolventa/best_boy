@@ -22,6 +22,6 @@ class BestBoyEvent < ActiveRecord::Base
   # attributes
   #
   #
-  attr_accessible :owner_id, :owner_type, :event, :updated_at, :created_at
+  attr_accessible :event
   
 end

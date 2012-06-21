@@ -2,10 +2,6 @@ module BestBoy
   module Eventable
     extend ActiveSupport::Concern
 
-    def eventable?
-      true
-    end
-
     module ClassMethods
       def has_a_best_boy
         # meta programming
@@ -22,24 +18,31 @@ module BestBoy
         #
         #
         after_create :trigger_create_event
-        before_destroy :trigger_destroy_event
+        after_destroy :trigger_destroy_event
       end
     end
 
     module InstanceMethods
+      def eventable?
+        true
+      end
+
       def trigger_create_event
         create_best_boy_event_with_type "create"
       end
 
       def trigger_destroy_event
+        # best_boy_event = BestBoyEvent.new(:event => "destroy")
+        # best_boy_event.owner_type = self.class.name.to_s
+        # best_boy_event.save
         create_best_boy_event_with_type "destroy"
       end
 
-      def trigger_custom_event type
-        create_best_boy_event_with_type(type) if type.present? 
+      def trigger_custom_event(type)
+        create_best_boy_event_with_type(type.to_s) if type.present? 
       end
 
-      def create_best_boy_event_with_type type
+      def create_best_boy_event_with_type(type)
         best_boy_event = BestBoyEvent.new(:event => type)
         best_boy_event.owner = self
         best_boy_event.save

@@ -22,7 +22,8 @@ describe BestBoyEvent, 'with scopes' do
     ActiveRecord::Base.connection.execute("DELETE FROM 'best_boy_events'")
     example = Example.create
     (1..times).each do
-      BestBoyEvent.create(:owner_id => example.id, :owner_type => example.class.name.to_s, :event => "year_test", :created_at => created_at)
+      example.trigger_custom_event("year_test")
+      example.best_boy_events.last.update_attribute(:created_at, created_at)
     end
   end
 

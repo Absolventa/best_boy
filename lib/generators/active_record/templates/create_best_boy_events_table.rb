@@ -6,7 +6,6 @@ class CreateBestBoyEventsTable < ActiveRecord::Migration
       t.string :event
       t.timestamps
     end
-    add_index :best_boy_events, :owner_id
     add_index :best_boy_events, :owner_type
     add_index :best_boy_events, [:owner_id, :owner_type]
     add_index :best_boy_events, :event
