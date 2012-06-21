@@ -39,7 +39,7 @@ This will install following files into your application
     
     public/stylesheets/bootstrap_datepicker.css
 
-See usage section for version information.
+See usage section for version information. At the moment this gem does not support the rails 3.1 asset pipeline. It is planned in further versions.
 
 Run the migration
 
