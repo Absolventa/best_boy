@@ -1,5 +1,6 @@
 require "best_boy"
 require "rails"
+require "google_visualr"
 
 module BestBoy
   class Engine < Rails::Engine

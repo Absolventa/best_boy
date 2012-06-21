@@ -6,9 +6,46 @@ module BestBoy
 
     layout 'best_boy_backend'
 
-    helper_method :available_owner_types, :available_events, :available_years, :current_owner_type, :current_event, :current_year, :collection, :statistics, :stats_by_event_and_month
+    helper_method :available_owner_types, :available_events, :available_years, :current_owner_type, :current_event, :current_year, :collection, :statistics, :stats_by_event_and_month, :render_chart
+
+    def charts
+      build_chart available_owner_types
+      
+      (0..11).each do |month|
+        row = [(month + 1).to_s]
+        available_owner_types.each do |owner_type|
+          row.push(data_count_for_event_and_owner_type "create", owner_type, "month", Time.zone.now.beginning_of_year + month.month)
+        end
+        data_table.add_row(row)
+      end
+
+      draw_chart { width: 900, height: 240, title: '"Create" Events over model' }
+
+      option = { width: 900, height: 240, title: '"Create" Events over model' }
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+    end
 
     private
+
+    def build_chart chart_rows
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('string', 'time')
+      chart_rows.each do |row|
+        data_table.new_column('number', row.to_s)
+      end
+    end
+
+    def draw_chart data_table, options
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, options)
+    end
+
+    def data_count_for_event_and_owner_type event, owner_type, scope, time
+      BestBoyEvent.where("best_boy_events.event = ? AND best_boy_events.owner_type = ?", event, owner_type).send("per_#{scope}", time).count
+    end
+
+    def render_chart(chart, dom)
+        chart.to_js(dom).html_safe
+      end
 
     def current_owner_type
       @current_owner_type ||= available_owner_types.include?(params[:owner_type]) ? params[:owner_type] : available_owner_types.first
@@ -61,5 +98,6 @@ module BestBoy
       date = "1-#{month}-#{current_year}".to_time
       BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ?", current_owner_type, event).per_month(date).count
     end
+
   end
 end

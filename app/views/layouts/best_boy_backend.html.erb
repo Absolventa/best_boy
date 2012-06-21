@@ -39,6 +39,7 @@
           <ul class="nav">
             <li><%= link_to "Statistics", best_boy_admin_stats_path %></li>
             <li><%= link_to "List & Logs", best_boy_admin_lists_path %></li>
+            <li><%= link_to "Charts", best_boy_admin_charts_path %></li>
           </ul>
           <% if BestBoy.custom_redirect.present? %>
             <p class="navbar-text pull-right"><%= link_to("back", Rails.application.routes.recognize_path(BestBoy.custom_redirect)) %></p>

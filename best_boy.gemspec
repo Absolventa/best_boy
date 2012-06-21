@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.license     = ['MIT']
   s.authors     = ["Christoph Seydel"]
   s.email       = ["christoph.seydel@me.com"]
-  s.homepage    = "https://github.com/cseydel/best_boy"
+  s.homepage    = "https://github.com/absolventa/best_boy"
   s.summary     = %q{a simple event driven logging for models}
   s.description = %q{Hybrid action logging, consisting of standard and custom logging.}
 
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   s.add_dependency('kaminari')
+  s.add_dependency('google_visualr')
 
   s.add_development_dependency('bundler', '~> 1.1.0')
   s.add_development_dependency('activerecord')
