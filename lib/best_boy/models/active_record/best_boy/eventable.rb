@@ -3,11 +3,14 @@ module BestBoy
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def has_a_best_boy
-        # meta programming
+      attr_accessor :disable_callbacks
+      @best_boy_callback = nil
+      
+      def has_a_best_boy(options={})
+        # constants
         #
         #
-        include InstanceMethods
+        @best_boy_callback = options[:disable_callbacks]
         
         # associations
         #
@@ -20,33 +23,35 @@ module BestBoy
         after_create :trigger_create_event
         after_destroy :trigger_destroy_event
       end
+
+      def best_boy_callback
+        @best_boy_callback
+      end
     end
 
-    module InstanceMethods
-      def eventable?
-        true
-      end
+    def eventable?
+      true
+    end
 
-      def trigger_create_event
-        create_best_boy_event_with_type "create"
-      end
+    def trigger_create_event
+      return if self.class.best_boy_callback
+      create_best_boy_event_with_type "create"
+    end
 
-      def trigger_destroy_event
-        # best_boy_event = BestBoyEvent.new(:event => "destroy")
-        # best_boy_event.owner_type = self.class.name.to_s
-        # best_boy_event.save
-        create_best_boy_event_with_type "destroy"
-      end
+    def trigger_destroy_event
+      return if self.class.best_boy_callback
+      create_best_boy_event_with_type "destroy"
+    end
 
-      def trigger_custom_event(type)
-        create_best_boy_event_with_type(type.to_s) if type.present? 
-      end
+    def trigger_best_boy_event type, source = nil
+      create_best_boy_event_with_type(type)
+    end
 
-      def create_best_boy_event_with_type(type)
-        best_boy_event = BestBoyEvent.new(:event => type)
-        best_boy_event.owner = self
-        best_boy_event.save
-      end
+    def create_best_boy_event_with_type type, source = nil
+      raise "nil event is not allowed" if type.blank?
+      best_boy_event = BestBoyEvent.new(:event => type, :event_source => source)
+      best_boy_event.owner = self
+      best_boy_event.save
     end
   end
 end

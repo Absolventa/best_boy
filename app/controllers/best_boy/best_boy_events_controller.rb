@@ -9,8 +9,7 @@ module BestBoy
     helper_method :available_owner_types, :available_events, :available_years, :current_owner_type, :current_event, :current_year, :collection, :statistics, :stats_by_event_and_month, :render_chart
 
     def charts
-      build_chart available_owner_types
-      
+      data_table = build_chart available_owner_types
       (0..11).each do |month|
         row = [(month + 1).to_s]
         available_owner_types.each do |owner_type|
@@ -18,11 +17,7 @@ module BestBoy
         end
         data_table.add_row(row)
       end
-
-      draw_chart { width: 900, height: 240, title: '"Create" Events over model' }
-
-      option = { width: 900, height: 240, title: '"Create" Events over model' }
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+      @chart = draw_chart data_table, { width: 900, height: 240, title: '"Create" Events over model' }
     end
 
     private
@@ -33,10 +28,11 @@ module BestBoy
       chart_rows.each do |row|
         data_table.new_column('number', row.to_s)
       end
+      data_table
     end
 
     def draw_chart data_table, options
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, options)
+      GoogleVisualr::Interactive::AreaChart.new(data_table, options)
     end
 
     def data_count_for_event_and_owner_type event, owner_type, scope, time
