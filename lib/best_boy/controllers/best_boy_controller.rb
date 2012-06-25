@@ -1,8 +1,8 @@
 module BestBoyController
   module InstanceMethods
-    def best_boy_event(obj, event)
+    def best_boy_event(obj, event, source)
       if obj.respond_to?("eventable?")
-        obj.trigger_custom_event(event)
+        obj.trigger_best_boy_event(event, source)
       else
         raise "#{obj.class.to_s} is not a best_boy eventable!"
       end

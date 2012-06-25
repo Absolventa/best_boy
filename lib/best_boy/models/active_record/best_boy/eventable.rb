@@ -4,13 +4,13 @@ module BestBoy
 
     module ClassMethods
       attr_accessor :disable_callbacks
-      @best_boy_callback = nil
+      @disable_callbacks = nil
       
       def has_a_best_boy(options={})
         # constants
         #
         #
-        @best_boy_callback = options[:disable_callbacks]
+        @disable_callbacks = options[:disable_callbacks]
         
         # associations
         #
@@ -24,8 +24,8 @@ module BestBoy
         after_destroy :trigger_destroy_event
       end
 
-      def best_boy_callback
-        @best_boy_callback
+      def best_boy_disable_callbacks
+        @disable_callbacks
       end
     end
 
@@ -34,17 +34,17 @@ module BestBoy
     end
 
     def trigger_create_event
-      return if self.class.best_boy_callback
+      return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
     end
 
     def trigger_destroy_event
-      return if self.class.best_boy_callback
+      return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "destroy"
     end
 
     def trigger_best_boy_event type, source = nil
-      create_best_boy_event_with_type(type)
+      create_best_boy_event_with_type(type, source)
     end
 
     def create_best_boy_event_with_type type, source = nil

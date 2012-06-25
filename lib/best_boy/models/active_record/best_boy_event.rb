@@ -22,6 +22,6 @@ class BestBoyEvent < ActiveRecord::Base
   # attributes
   #
   #
-  attr_accessible :event
+  attr_accessible :event, :event_source
   
 end
