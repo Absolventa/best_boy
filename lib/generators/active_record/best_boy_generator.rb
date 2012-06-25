@@ -15,6 +15,7 @@ module ActiveRecord
 
       def create_migration_file
         migration_template 'create_best_boy_events_table.rb', 'db/migrate/create_best_boy_events_table.rb'
+        migration_template 'add_event_source_to_best_boy_events_table.rb', 'db/migrate/add_event_source_to_best_boy_events_table.rb'
       end
     end
   end

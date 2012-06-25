@@ -3,7 +3,9 @@ require "spec_helper"
 describe BestBoyEvent, 'with creating' do
   it "should have valid model" do
     example = Example.create
-    BestBoyEvent.create(:owner_id => example.id, :owner_type => example.class.name.to_s, :event => "create").should be_valid
+    best_boy_event = BestBoyEvent.create(:event => "create")
+    best_boy_event.owner = example
+    best_boy_event.should be_valid
   end
 end
 
@@ -22,7 +24,7 @@ describe BestBoyEvent, 'with scopes' do
     ActiveRecord::Base.connection.execute("DELETE FROM 'best_boy_events'")
     example = Example.create
     (1..times).each do
-      example.trigger_custom_event("year_test")
+      example.trigger_best_boy_event("year_test")
       example.best_boy_events.last.update_attribute(:created_at, created_at)
     end
   end

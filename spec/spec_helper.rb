@@ -23,6 +23,7 @@ ActiveRecord::Schema.define do
     t.integer :owner_id
     t.string :owner_type
     t.string :event
+    t.string :event_source
     t.timestamps
   end
   add_index :best_boy_events, :owner_id
