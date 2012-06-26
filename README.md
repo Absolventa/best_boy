@@ -3,6 +3,7 @@ best_boy
 [![Build Status](https://secure.travis-ci.org/cseydel/best_boy.png?branch=master)](https://secure.travis-ci.org/cseydel/best_boy)
 
 A simple event driven logging for ActiveRecord models.
+This gem moved from cseydel/best_boy to absolventa/best_boy
 
 
 What does this gem do?
@@ -46,6 +47,18 @@ Run the migration
     rake db:migrate
 
 
+Update from version 0.1.0
+-------------------------
+
+Rerun the generator to get needed migrations
+
+    rails g best_boy
+
+Run the migration
+
+    rake db:migrate
+
+
 Usage
 -----
 
@@ -57,9 +70,9 @@ This will log "create" and "delete" event for each instance.
 
 In controller context:
 
-    best_boy_event object, event
+    best_boy_event object, event, event_source = nil
 
-This will log custom events for a object and a event phrase.
+This will log custom events for a object and a event phrase. You can specify this event with a event_source parameter to log maybe seperate create actions.
 
 If no Object is given, it will raise an exception as well as if no event is provided.
 
@@ -70,6 +83,7 @@ BestBoyEvent table
     t.integer   "owner_id"      # owner model id
     t.string    "owner_type"    # owner model class type
     t.string    "event"         # event (create, delete)
+    t.string    "event_source"  # event_source parameter for specific action tracking
     t.datetime  "updated_at"    # last update timestamp
     t.datetime  "created_at"    # creation timestamp
 
@@ -96,6 +110,8 @@ Used gems and resource
 [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
 
 [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
+
+[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visulr in its version 2.1.2
 
 Thanks
 ------
