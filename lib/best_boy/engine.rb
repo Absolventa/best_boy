@@ -21,6 +21,5 @@ module BestBoy
         include BestBoyController::InstanceMethods
       end
     end
-
   end
 end

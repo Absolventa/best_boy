@@ -1,12 +1,16 @@
-<%= render "navigation", :referrer => "stats" %>
+<div class="span12">
+  <div class="well">
+    <%= link_to "<< back to stats", best_boy_admin_stats_path(:owner_type => current_owner_type) %>
+  </div>
+</div>
 
 <div class="span12">
   <div class="well">
-    <h3>Statistics</h3>
+    <h3>Detailed Statistics</h3>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>Event</th>
+          <th>Source</th>
           <th>overall</th>
           <th>year</th>
           <th>month</th>
@@ -15,11 +19,10 @@
         </tr>
       </thead>
       <tbody>
-        <% statistics.each do |best_boy_event| %>
+        <% event_source_details.each do |best_boy_event_source| %>
           <tr>
-            <td><%= link_to best_boy_event[0], best_boy_admin_details_path(:event => best_boy_event[0], :owner_type => current_owner_type) %>
-            <% (1..5).each do |key| %>
-              <td><%= best_boy_event[key] %></td>
+            <% (0..5).each do |key| %>
+              <td><%= best_boy_event_source[key] %></td>
             <% end %>
           </tr>
         <% end %>
@@ -30,11 +33,12 @@
 
 <div class="span12">
   <div class="well">
-    <h3 class="pull-left">Statistics for <%= current_year %> per month</h3>
+    <h3 class="pull-left">Detailed Statistics for <%= current_year %> per month</h3>
     
     <div class="pull-right">
-      <%= form_tag best_boy_admin_stats_path, :method => :get do %>
+      <%= form_tag best_boy_admin_details_path, :method => :get do %>
         <%= hidden_field_tag :owner_type, current_owner_type %>
+        <%= hidden_field_tag :event, current_event %>
         <%= select_tag :year, options_for_select(available_years, :selected => current_year), :onchange => "submit();" %>
       <% end %>
     </div>
@@ -48,11 +52,11 @@
         </tr>
       </thead>
       <tbody>
-        <% available_events.each do |event| %>
+        <% available_event_sources.each do |source| %>
           <tr>
-            <td><%= event %></td>
+            <td><%= source %></td>
             <% %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month| %>
-              <td><%= stats_by_event_and_month event, month %></td>
+              <td><%= stats_by_event_source_and_month source, month %></td>
             <% end %>
           </tr>
         <% end %>

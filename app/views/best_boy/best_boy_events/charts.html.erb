@@ -2,6 +2,22 @@
   <script src='http://www.google.com/jsapi'></script>
 <% end %>
 
+
+<%= form_tag best_boy_admin_charts_path, :method => :get, :id => "chart-form" do %>
+  <div class="span3">
+    <%= select_tag :owner_type, options_for_select([["Owner", nil]] + available_owner_types, :selected => params[:owner_type]), :onchange => "submit();" %>
+  </div>
+  <div class="span3">
+    <%= select_tag :event, options_for_select([["Event", nil]] + available_events, :selected => params[:event]), :onchange => "submit();" %>
+  </div>
+  <div class="span3">
+    <%= select_tag :event_source, options_for_select([["Event Source", nil]] + available_event_sources, :selected => params[:event_source]), :onchange => "submit();" %>
+  </div>
+  <div class="span3">
+    <%= select_tag :time_interval, options_for_select([["Time Interval", nil], ["yearly", "year"], ["monthly", "month"], ["weekly", "week"]], :selected => params[:time_interval]), :onchange => "submit();" %>
+  </div>
+<% end %>
+
 <div class="span12">
   <div class="well">
     <div id='chart'></div>
