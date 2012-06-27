@@ -68,6 +68,10 @@ In model context:
 
 This will log "create" and "delete" event for each instance.
 
+If you do not want to selflog create and delete events, maybe because you will sort it semantically with a create source, just deactivate the callback logging by setting the parameter :disable_callbacks to true.
+
+    has_a_best_boy :disable_callbacks => true
+
 In controller context:
 
     best_boy_event object, event, event_source = nil
