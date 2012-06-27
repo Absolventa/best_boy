@@ -118,10 +118,4 @@ Thanks
 
 Big thanks to each contributor on Impressionist. This gem helped me a long way to get here in modelling and creating a gem.
 
-Famous last words
------------------
-It's my first gem, be gentle ;)
-
-
-
 Copyright (c) 2012 Christoph Seydel. See LICENSE.txt for further details.
