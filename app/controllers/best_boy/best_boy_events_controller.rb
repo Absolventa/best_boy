@@ -2,6 +2,7 @@ module BestBoy
   class BestBoyEventsController < BestBoy.base_controller.constantize
 
     before_filter BestBoy.before_filter if BestBoy.before_filter.present?
+    before_filter :prepare_chart, :only => [:charts]
     skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
 
     layout 'best_boy_backend'
@@ -10,28 +11,10 @@ module BestBoy
                   :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month, 
                   :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array
 
-    def charts
-      data_table = GoogleVisualr::DataTable.new
-      data_table.new_column('string', 'time')
-      data_table.new_column('number', current_owner_type.to_s)
-      time_periode_range.each do |periode|
-        data_table.add_row([chart_legend_time_name(periode), custom_data_count(calculated_point_in_time(periode))])
-      end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
-    end
-
     private
 
     def render_chart(chart, dom)
       chart.to_js(dom).html_safe
-    end
-
-    def custom_data_count(time)
-      scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
-      scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
-      scope = scope.where("best_boy_events.event_source = ?", current_event_source) if current_event_source.present?
-      scope = scope.send("per_#{ current_time_interval == "year" ? "month" : "day" }", time)
-      scope.count
     end
 
     def week_name_array
@@ -40,6 +23,14 @@ module BestBoy
 
     def month_name_array
       %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+    end
+
+    def custom_data_count(time)
+      scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
+      scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
+      scope = scope.where("best_boy_events.event_source = ?", current_event_source) if current_event_source.present?
+      scope = scope.send("per_#{ current_time_interval == "year" ? "month" : "day" }", time)
+      scope.count
     end
 
     def time_periode_range
@@ -159,6 +150,16 @@ module BestBoy
         @event_source_details.push([source, scope.count] + %w(year month week day).map{ |delimiter| scope.send("per_#{delimiter}", Time.zone.now).count })
       end
       @event_source_details
+    end
+
+    def prepare_chart
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('string', 'time')
+      data_table.new_column('number', current_owner_type.to_s)
+      time_periode_range.each do |periode|
+        data_table.add_row([chart_legend_time_name(periode), custom_data_count(calculated_point_in_time(periode))])
+      end
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
   end
 end
