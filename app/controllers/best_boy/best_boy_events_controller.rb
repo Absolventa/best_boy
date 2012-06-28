@@ -126,7 +126,8 @@ module BestBoy
 
     def collection
       @best_boy_events ||= (
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
+        scope = BestBoyEvent
+        scope = scope.where("best_boy_events.owner_type = ?", params[:owner_type]) if params[:owner_type].present?
         scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
         scope = scope.per_day(current_date) if current_date.present?
         scope = scope.order("best_boy_events.created_at DESC, best_boy_events.event ASC")

@@ -26,6 +26,7 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
+          <th>Owner Type</th>
           <th>Event</th>
           <th>Event source</th>
           <th>created_at</th>
@@ -34,6 +35,7 @@
       <tbody>
         <% collection.each do |best_boy_event| %>
           <tr>
+            <td><%= best_boy_event.owner_type %></td>
             <td><%= best_boy_event.event %></td>
             <td><%= best_boy_event.event_source %></td>
             <td><%= best_boy_event.created_at %></td>
