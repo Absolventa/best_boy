@@ -27,6 +27,7 @@
       <thead>
         <tr>
           <th>Event</th>
+          <th>Event source</th>
           <th>created_at</th>
         </tr>
       </thead>
@@ -34,6 +35,7 @@
         <% collection.each do |best_boy_event| %>
           <tr>
             <td><%= best_boy_event.event %></td>
+            <td><%= best_boy_event.event_source %></td>
             <td><%= best_boy_event.created_at %></td>
           </tr>
         <% end %>

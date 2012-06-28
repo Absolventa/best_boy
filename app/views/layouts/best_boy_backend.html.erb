@@ -37,12 +37,12 @@
         <div class="container">
           <%= link_to "BBAC", best_boy_admin_path, :class => "brand" %>
           <ul class="nav">
-            <li><%= link_to "Statistics", best_boy_admin_stats_path %></li>
-            <li><%= link_to "List & Logs", best_boy_admin_lists_path %></li>
-            <li><%= link_to "Charts", best_boy_admin_charts_path %></li>
+            <li class="<%= action_name == 'stats' ? 'active' : nil %>"><%= link_to "Statistics", best_boy_admin_stats_path %></li>
+            <li class="<%= action_name == 'lists' ? 'active' : nil %>"><%= link_to "List & Logs", best_boy_admin_lists_path %></li>
+            <li class="<%= action_name == 'charts' ? 'active' : nil %>"><%= link_to "Charts", best_boy_admin_charts_path %></li>
           </ul>
           <% if BestBoy.custom_redirect.present? %>
-            <p class="navbar-text pull-right"><%= link_to("back", Rails.application.routes.recognize_path(BestBoy.custom_redirect)) %></p>
+            <p class="navbar-text pull-right"><%= link_to("back to application", Rails.application.routes.recognize_path(BestBoy.custom_redirect)) %></p>
           <% end %>
         </div>
       </div>

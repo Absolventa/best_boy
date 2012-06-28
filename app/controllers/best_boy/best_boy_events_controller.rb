@@ -117,7 +117,7 @@ module BestBoy
     end
 
     def available_years
-      @available_years = (BestBoyEvent.order("best_boy_events.created_at ASC").first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
+      @available_years = (BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type).order("best_boy_events.created_at ASC").first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
     end
 
     def available_owner_types
