@@ -2,7 +2,6 @@
   <script src='https://www.google.com/jsapi'></script>
 <% end %>
 
-
 <%= form_tag best_boy_admin_charts_path, :method => :get, :id => "chart-form" do %>
   <div class="span3">
     <%= select_tag :owner_type, options_for_select([["Owner", nil]] + available_owner_types, :selected => params[:owner_type]), :onchange => "submit();" %>
