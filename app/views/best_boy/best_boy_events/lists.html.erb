@@ -20,6 +20,7 @@
           <input name="date" class="span2" size="16" type="text" value="<%= params[:date] %>" readonly="readonly">
           <span class="add-on"><i class="icon-th"></i></span>
         </div>
+        <%= hidden_field_tag :owner_type, current_owner_type %>
         <%= select_tag :event, options_for_select([["all Events", nil]] + available_events, :selected => current_event), :onchange => "submit();", :class => "span4" %>
       <% end %>
     </div>
