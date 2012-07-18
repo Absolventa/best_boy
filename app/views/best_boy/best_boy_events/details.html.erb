@@ -11,18 +11,21 @@
       <thead>
         <tr>
           <th>Source</th>
-          <th>overall</th>
-          <th>year</th>
-          <th>month</th>
-          <th>week</th>
-          <th>day</th>
+          <th colspan="2">overall</th>
+          <th colspan="2">year</th>
+          <th colspan="2">month</th>
+          <th colspan="2">week</th>
+          <th colspan="2">day</th>
         </tr>
       </thead>
       <tbody>
         <% event_source_details.each do |best_boy_event_source| %>
           <tr>
             <% (0..5).each do |key| %>
-              <td><%= best_boy_event_source[key] %></td>
+              <td><%= best_boy_event_source[key].present? ? best_boy_event_source[key] : "n.a." %></td>
+              <% if key != 0 %>
+                <td><%= number_with_precision((best_boy_event_source[key].to_f / detail_count) * 100, :precision => 2) %> %</td>
+              <% end %>
             <% end %>
           </tr>
         <% end %>
@@ -53,7 +56,7 @@
       <tbody>
         <% available_event_sources.each do |source| %>
           <tr>
-            <td><%= source %></td>
+            <td><%= source.present? ? source : "n.a." %></td>
             <% %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month| %>
               <td><%= stats_by_event_source_and_month source, month %></td>
             <% end %>

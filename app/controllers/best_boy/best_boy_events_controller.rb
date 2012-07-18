@@ -9,7 +9,7 @@ module BestBoy
 
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type, 
                   :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month, 
-                  :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array
+                  :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count
 
     private
 
@@ -73,7 +73,12 @@ module BestBoy
 
     def stats_by_event_source_and_month(source, month)
       date = "1-#{month}-#{current_year}".to_time
-      BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source = ?", current_owner_type, current_event, source).per_month(date).count
+      if source.present?
+        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source = ?", current_owner_type, current_event, source)
+      else
+        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source IS NULL", current_owner_type, current_event)
+      end
+      scope.per_month(date).count
     end
 
     def current_date
@@ -122,6 +127,10 @@ module BestBoy
 
     def available_owner_types
       @available_owner_types ||= BestBoyEvent.select("DISTINCT best_boy_events.owner_type").order("best_boy_events.owner_type ASC").map(&:owner_type)
+    end
+
+    def detail_count
+      @detail_count ||= current_scope({:owner_type => params[:owner_type], :event => params[:event]}).count
     end
 
     def current_scope(options = {})
