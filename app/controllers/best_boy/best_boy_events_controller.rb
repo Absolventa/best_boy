@@ -124,12 +124,17 @@ module BestBoy
       @available_owner_types ||= BestBoyEvent.select("DISTINCT best_boy_events.owner_type").order("best_boy_events.owner_type ASC").map(&:owner_type)
     end
 
+    def current_scope(owner_type = nil, event = nil, source = nil, date = nil)
+      scope = BestBoyEvent
+      scope = scope.where("best_boy_events.owner_type = ?", owner_type) if owner_type.present?
+      scope = scope.where("best_boy_events.event = ?", event) if event.present?
+      scope = scope.where("best_boy_events.event_source = ?", source) if source.present?
+      scope = scope.per_day(date) if date.present?
+    end
+
     def collection
       @best_boy_events ||= (
-        scope = BestBoyEvent
-        scope = scope.where("best_boy_events.owner_type = ?", params[:owner_type]) if params[:owner_type].present?
-        scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
-        scope = scope.per_day(current_date) if current_date.present?
+        scope = current_scope params[:owner_type], current_event, nil, current_date
         scope = scope.order("best_boy_events.created_at DESC, best_boy_events.event ASC")
         scope.page(params[:page]).per(50)
       )
@@ -138,7 +143,7 @@ module BestBoy
     def statistics
       @statistics = Array.new
       available_events.each do |event|
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ?", current_owner_type, event)
+        scope = current_scope current_owner_type, event
         @statistics.push([event, scope.count] + %w(year month week day).map{ |delimiter| scope.send("per_#{delimiter}", Time.zone.now).count })
       end
       @statistics
