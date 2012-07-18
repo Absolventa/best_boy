@@ -1,3 +1,7 @@
+## 0.x.x
+* rails 3.2 compatibility
+* refactored BestBoyEventsController
+
 ## 0.2.1
 * added some styling gimmicks (active navigation highlighting, wording)
 * moved google charts javascript to ssl for better backend integration
