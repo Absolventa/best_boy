@@ -9,12 +9,37 @@ module BestBoy
 
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type, 
                   :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month, 
-                  :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count
+                  :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count,
+                  :current_month, :stats_by_event_source_and_day
+
+    def monthly_details
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('string', 'time')
+      available_event_sources.each do |source|
+        data_table.new_column('number', source.to_s)
+      end
+
+      (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |periode|
+        time = "#{periode}-#{current_month}-#{current_year}".to_time
+        data_table.add_row( [ periode.to_s] + available_event_sources.map{ |source| custom_data_count(source, time)})
+      end
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })                
+    end              
 
     private
 
     def render_chart(chart, dom)
       chart.to_js(dom).html_safe
+    end
+
+    def prepare_chart
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('string', 'time')
+      data_table.new_column('number', current_owner_type.to_s)
+      time_periode_range.each do |periode|
+        data_table.add_row([chart_legend_time_name(periode), custom_data_count(calculated_point_in_time(current_event_source, periode))])
+      end
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
 
     def week_name_array
@@ -25,10 +50,10 @@ module BestBoy
       %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
     end
 
-    def custom_data_count(time)
+    def custom_data_count(source, time)
       scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
       scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
-      scope = scope.where("best_boy_events.event_source = ?", current_event_source) if current_event_source.present?
+      scope = scope.where("best_boy_events.event_source = ?", source) if source.present?
       scope = scope.send("per_#{ current_time_interval == "year" ? "month" : "day" }", time)
       scope.count
     end
@@ -71,14 +96,24 @@ module BestBoy
       BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ?", current_owner_type, event).per_month(date).count
     end
 
-    def stats_by_event_source_and_month(source, month)
-      date = "1-#{month}-#{current_year}".to_time
+    def stats_by_owner_and_event_and_event_source(source)
       if source.present?
         scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source = ?", current_owner_type, current_event, source)
       else
         scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source IS NULL", current_owner_type, current_event)
       end
+    end
+
+    def stats_by_event_source_and_month(source, month)
+      date = "1-#{month}-#{current_year}".to_time
+      scope = stats_by_owner_and_event_and_event_source(source)
       scope.per_month(date).count
+    end
+
+    def stats_by_event_source_and_day(source, day)
+      date = "#{day}-#{current_month}-#{current_year}".to_time
+      scope = stats_by_owner_and_event_and_event_source(source)
+      scope.per_day(date).count
     end
 
     def current_date
@@ -103,6 +138,10 @@ module BestBoy
 
     def current_year
       @current_year ||= available_years.include?(params[:year]) ? params[:year] : Time.zone.now.year
+    end
+
+    def current_month
+      @current_month ||= month_name_array.include?(params[:month]) ? params[:month] : Time.zone.now.month
     end
 
     def available_events
@@ -172,14 +211,5 @@ module BestBoy
       @event_source_details = prepare_details(available_event_sources, "event_source", {:owner_type => current_owner_type, :event => current_event})
     end
 
-    def prepare_chart
-      data_table = GoogleVisualr::DataTable.new
-      data_table.new_column('string', 'time')
-      data_table.new_column('number', current_owner_type.to_s)
-      time_periode_range.each do |periode|
-        data_table.add_row([chart_legend_time_name(periode), custom_data_count(calculated_point_in_time(periode))])
-      end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
-    end
   end
 end

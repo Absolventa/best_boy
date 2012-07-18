@@ -49,7 +49,7 @@
         <tr>
           <th>Event</th>
           <% month_name_array.each do |month| %>
-            <th><%= month %></th>
+            <th><%= link_to month, best_boy_admin_monthly_details_path(:owner_type => current_owner_type, :event => current_event, :month => month, :year => current_year, :time_interval => "month") %></th>
           <% end %>
         </tr>
       </thead>

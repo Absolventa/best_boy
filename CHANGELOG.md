@@ -1,6 +1,8 @@
 ## 0.x.x
 * rails 3.2 compatibility
 * refactored BestBoyEventsController
+* fixed view for empty event_source column
+* added percentage values for source view
 
 ## 0.2.1
 * added some styling gimmicks (active navigation highlighting, wording)
