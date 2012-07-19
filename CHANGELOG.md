@@ -3,6 +3,7 @@
 * refactored BestBoyEventsController
 * fixed view for empty event_source column
 * added percentage values for source view
+* added custom monthly statistic for detailed view
 
 ## 0.2.1
 * added some styling gimmicks (active navigation highlighting, wording)

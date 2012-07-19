@@ -37,7 +37,7 @@ module BestBoy
       data_table.new_column('string', 'time')
       data_table.new_column('number', current_owner_type.to_s)
       time_periode_range.each do |periode|
-        data_table.add_row([chart_legend_time_name(periode), custom_data_count(calculated_point_in_time(current_event_source, periode))])
+        data_table.add_row([chart_legend_time_name(periode), custom_data_count(current_event_source, calculated_point_in_time(periode))])
       end
       @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
