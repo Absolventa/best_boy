@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get "best_boy_admin/lists" => "best_boy/best_boy_events#lists", :as => :best_boy_admin_lists
   get "best_boy_admin/charts" => "best_boy/best_boy_events#charts", :as => :best_boy_admin_charts
   get "best_boy_admin/details" => "best_boy/best_boy_events#details", :as => :best_boy_admin_details
+  get "best_boy_admin/monthly_details" => "best_boy/best_boy_events#monthly_details", :as => :best_boy_admin_monthly_details
 end

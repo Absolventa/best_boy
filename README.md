@@ -25,7 +25,7 @@ Install it with Bundler
 
     bundle install
 
-Generate the BestBoyEvent table migration
+If you do NOT want to use the asset-pipeline, run the generator as followed
 
     rails g best_boy
 
@@ -41,11 +41,21 @@ This will install following files into your application
     
     public/stylesheets/bootstrap_datepicker.css
 
-See usage section for version information. At the moment this gem does not support the rails 3.1 asset pipeline. It is planned in further versions.
+In case you want the gem be compatible with the asset-pipeline, add a flag to the generator call:
+
+    rails g best_boy --asset
+
+See usage section for version information.
 
 Run the migration
 
     rake db:migrate
+
+
+Update to fit the asset-pipeline
+--------------------------------
+
+If you were using the gem without asset-pipeline and want to update your project to fit new rails versions, simply delete all best_boy files in your public folder.
 
 
 Update from version 0.1.0
