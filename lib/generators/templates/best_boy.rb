@@ -1,4 +1,3 @@
-# Use this hook to configure impressionist parameters
 BestBoy.setup do |config|
   # Define ORM. Could be :active_record (default). Actually no other mapper is supported
   #config.orm = :active_record
