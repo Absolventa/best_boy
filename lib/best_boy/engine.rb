@@ -4,12 +4,12 @@ require "google_visualr"
 
 module BestBoy
   class Engine < Rails::Engine
-    initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
-    require initializer_path if File.exist? initializer_path
+    isolate_namespace BestBoy
+    engine_name 'best_boy'
 
-    initializer 'best_boy.asset_addition', :group => :all do |app|
+    initializer 'best_boy.assets' do |app|
       if BestBoy.precompile_assets?
-        Rails.application.config.assets.precompile += %w(best_boy.css best_boy.js)
+        app.config.assets.precompile += %w(best_boy.css best_boy.js)
       end
     end
 
