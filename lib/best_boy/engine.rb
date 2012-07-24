@@ -8,9 +8,9 @@ module BestBoy
     engine_name 'best_boy'
 
     initializer 'best_boy.assets' do |app|
-      if BestBoy.precompile_assets?
-        app.config.assets.precompile += %w(best_boy.css best_boy.js)
-      end
+      #if BestBoy.precompile_assets?
+      Rails.application.config.assets.precompile += ['best_boy/best_boy.css', 'best_boy/best_boy.js']
+      #end
     end
 
     initializer 'best_boy.model' do |app|
