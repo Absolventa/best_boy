@@ -4,6 +4,14 @@ require "google_visualr"
 
 module BestBoy
   class Engine < Rails::Engine
+    initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
+    require initializer_path if File.exist? initializer_path
+
+    initializer 'best_boy.asset_addition', :group => :all do |app|
+      if BestBoy.precompile_assets?
+        Rails.application.config.assets.precompile += %w(best_boy.css best_boy.js)
+      end
+    end
 
     initializer 'best_boy.model' do |app|
       if BestBoy.orm == :active_record
@@ -13,7 +21,7 @@ module BestBoy
       else
         raise "Sorry, best_boy actually only supports ActiveRecord ORM."
       end
-      Rails.application.config.assets.precompile += %w(best_boy.css best_boy.js) if BestBoy.precompile_assets
+      
     end
 
     initializer 'best_boy.controller' do
