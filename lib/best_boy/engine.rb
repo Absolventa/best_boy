@@ -10,6 +10,7 @@ module BestBoy
         require "best_boy/models/active_record/best_boy_event.rb"
         require "best_boy/models/active_record/best_boy/eventable.rb"
         ActiveRecord::Base.send(:include, BestBoy::Eventable)
+        app.config.assets.precompile += %w(best_boy.css best_boy.js) if BestBoy.precompile_assets
       else
         raise "Sorry, best_boy actually only supports ActiveRecord ORM."
       end

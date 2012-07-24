@@ -3,7 +3,6 @@
 <% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" %>
-  <%= javascript_include_tag "bootstrap_datepicker" %>
   <script type="text/javascript">
     $(function(){$('#dp1').datepicker().on('changeDate', function(){$('#list-form').submit();})});
   </script>
