@@ -57,6 +57,10 @@ Update to fit the asset-pipeline
 
 If you were using the gem without asset-pipeline and want to update your project to fit new rails versions, simply delete all best_boy files in your public folder.
 
+If you need to precompile assets, maybe for deployment on heroku cedar stack, please add the following flag to your best_boy initializer.
+
+    config.precompile_assets = true
+
 
 Update from version 0.1.0
 -------------------------
@@ -109,6 +113,7 @@ BestBoy comes with an admin interface, largely configurable to fit right into yo
 
 Following configurations can be done:
 
+    config.precompile_assets    "boolean"                   # default: false                        # if you need best_boy to precompile its assets for the asset-pipeline
     config.orm                  "symbole"                   # default: :active_record               # for now only active_record is supported
     config.base_controller      "String"                    # default: "ApplicationController"      # declare with Controller should be inherited
     config.before_filter        "comma separated symbols"   # default: nil                          # declare before_filter to use inherited before_filters in admin section

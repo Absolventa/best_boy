@@ -1,3 +1,3 @@
 module BestBoy
-  VERSION = "0.3.1beta"
+  VERSION = "0.3.1"
 end

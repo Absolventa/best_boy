@@ -1,3 +1,7 @@
+## 0.3.1
+* added precompilation flag to initializer. see Readme for update
+* fixed compatibility with asset-pipeline precompilation
+
 ## 0.3.0
 * rails 3.2.x compatibility
 * refactored BestBoyEventsController
