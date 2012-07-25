@@ -7,16 +7,18 @@
     <title>BBAC - BestBoy Administration Center</title>
     <%= csrf_meta_tag %>
 
+    <%= yield :stylesheets %>
+    <%= yield :javascripts %>
+
     <% if BestBoy.precompile_assets %>
       <%= stylesheet_link_tag("best_boy/best_boy", :media => "all") %>
       <%= javascript_include_tag "best_boy/best_boy" %>
     <% else %>
       <%= stylesheet_link_tag("bootstrap", :media => "all") %>
+      <%= stylesheet_link_tag("bootstrap_datepicker", :media => "all") %>
       <%= javascript_include_tag "bootstrap_datepicker" %>
     <% end %>
 
-    <%= yield :stylesheets %>
-    <%= yield :javascripts %>
     <style>
       .small-font {
         font-size: 9px;
