@@ -7,11 +7,13 @@ module BestBoy
     isolate_namespace BestBoy
     engine_name 'best_boy'
 
-    initializer 'best_boy.assets' do |app|
-      #if BestBoy.precompile_assets?
-      Rails.application.config.assets.precompile += ['best_boy/best_boy.css', 'best_boy/best_boy.js']
-      #end
-      raise Rails.application.config.assets.precompile.inspect
+    initializer 'best_boy.assets', :group => :all do |app|
+      initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
+      require initializer_path if File.exist? initializer_path
+
+      if BestBoy.precompile_assets == true
+        Rails.application.config.assets.precompile += ['best_boy/best_boy.css', 'best_boy/best_boy.js']
+      end
     end
 
     initializer 'best_boy.model' do |app|
