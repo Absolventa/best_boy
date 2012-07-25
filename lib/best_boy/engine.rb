@@ -11,6 +11,7 @@ module BestBoy
       #if BestBoy.precompile_assets?
       Rails.application.config.assets.precompile += ['best_boy/best_boy.css', 'best_boy/best_boy.js']
       #end
+      raise Rails.application.config.assets.precompile.inspect
     end
 
     initializer 'best_boy.model' do |app|
