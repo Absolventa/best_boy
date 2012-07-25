@@ -1,5 +1,5 @@
 <% content_for :javascripts do %>
-  <script src='https://www.google.com/jsapi'></script>
+  <%= javascript_include_tag "https://www.google.com/jsapi" %>
 <% end %>
 
 <%= form_tag best_boy_admin_charts_path, :method => :get, :id => "chart-form" do %>
