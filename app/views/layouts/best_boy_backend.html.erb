@@ -8,8 +8,8 @@
     <%= csrf_meta_tag %>
 
     <% if BestBoy.precompile_assets %>
-      <%= stylesheet_link_tag("best_boy", :media => "all") %>
-      <%= javascript_include_tag "best_boy" %>
+      <%= stylesheet_link_tag("best_boy/best_boy", :media => "all") %>
+      <%= javascript_include_tag "best_boy/best_boy" %>
     <% else %>
       <%= stylesheet_link_tag("bootstrap", :media => "all") %>
       <%= javascript_include_tag "bootstrap_datepicker" %>
