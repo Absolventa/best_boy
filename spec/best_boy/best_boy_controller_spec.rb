@@ -11,11 +11,11 @@ describe BestBoyController do
   end
 
   it "should raise error on empty event_phrase" do
-    expect {best_boy_event(@example, "")}.should raise_error
+    expect {best_boy_event(@example, "")}.to raise_error
   end
 
   it "should raise error on class not beeing a eventable" do
     klass = Dummy.new
-    expect {best_boy_event(klass, "testing")}.should raise_error
+    expect {best_boy_event(klass, "testing")}.to raise_error
   end
 end
