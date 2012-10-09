@@ -30,15 +30,15 @@ If you do NOT want to use the asset-pipeline, run the generator as followed
     rails g best_boy
 
 This will install following files into your application
-    
+
     config/initializers/best_boy.rb
-    
+
     db_migrate/create_best_boy_events_table.rb
-    
+
     public/javascripts/bootstrap_datepicker.js
-    
+
     public/stylesheets/bootstrap.css
-    
+
     public/stylesheets/bootstrap_datepicker.css
 
 In case you want the gem be compatible with the asset-pipeline, add a flag to the generator call:
@@ -78,7 +78,7 @@ Usage
 -----
 
 In model context:
-    
+
     has_a_best_boy
 
 This will log "create" and "delete" event for each instance.
@@ -121,7 +121,7 @@ Following configurations can be done:
     config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
 
 After installation you can access it through:
-    
+
     <your application path>/best_boy_admin
 
 
