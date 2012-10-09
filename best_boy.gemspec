@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency('kaminari')
   s.add_dependency('google_visualr')
+  s.add_dependency('bundler', '~> 1.2.1')
 
-  s.add_development_dependency('bundler', '~> 1.2.1')
+  #s.add_development_dependency('bundler', '~> 1.2.1')
   s.add_development_dependency('activerecord')
   s.add_development_dependency('activesupport')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
