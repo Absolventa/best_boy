@@ -1,5 +1,5 @@
 class BestBoyEvent < ActiveRecord::Base
-  
+
   # associations
   #
   #
@@ -23,5 +23,5 @@ class BestBoyEvent < ActiveRecord::Base
   #
   #
   attr_accessible :event, :event_source
-  
+
 end

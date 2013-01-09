@@ -5,18 +5,18 @@ module BestBoy
     module ClassMethods
       attr_accessor :disable_callbacks
       @disable_callbacks = nil
-      
+
       def has_a_best_boy(options={})
         # constants
         #
         #
         @disable_callbacks = options[:disable_callbacks]
-        
+
         # associations
         #
         #
         has_many :best_boy_events, :as => :owner, :dependent => :nullify
-        
+
         # callbacks
         #
         #
