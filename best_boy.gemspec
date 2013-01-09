@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency('activerecord')
   s.add_development_dependency('activesupport')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
-  s.add_development_dependency('rake', '~> 0.9.2.2')
-  s.add_development_dependency('rspec', '~> 2.11.0')
+  s.add_development_dependency('rake', '~> 10.0.3')
+  s.add_development_dependency('rspec', '~> 2.12.0')
   s.add_development_dependency('shoulda', '~> 3.3.0')
 
   s.files         = `git ls-files`.split("\n")
