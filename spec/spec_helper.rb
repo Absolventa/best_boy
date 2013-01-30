@@ -11,7 +11,7 @@ require 'shoulda'
 
 root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3", 
+  :adapter => "sqlite3",
   :database => "#{root}/db/bestboy.db"
 )
 ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'examples'")
