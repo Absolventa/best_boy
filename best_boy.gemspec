@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency('activesupport')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
   s.add_development_dependency('rake', '~> 10.0.3')
-  s.add_development_dependency('rspec', '~> 2.12.0')
-  s.add_development_dependency('shoulda', '~> 3.3.0')
+  s.add_development_dependency('rspec', '~> 2.13.0')
+  s.add_development_dependency('shoulda', '~> 3.4.0')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
