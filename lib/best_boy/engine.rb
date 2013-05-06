@@ -1,10 +1,11 @@
 require "best_boy"
 require "rails"
 require "google_visualr"
+require "kaminari"
 
 module BestBoy
   class Engine < Rails::Engine
-    
+
     initializer 'best_boy.assets', :group => :all do |app|
       initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
       require initializer_path if File.exist? initializer_path
@@ -22,7 +23,7 @@ module BestBoy
       else
         raise "Sorry, best_boy actually only supports ActiveRecord ORM."
       end
-      
+
     end
 
     initializer 'best_boy.controller' do
