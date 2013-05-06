@@ -17,9 +17,3 @@ BestBoy.setup do |config|
   # Define custom redirect path as string p.e. "/admin" (default = nil)
   #config.custom_redirect = nil
 end
-
-# if you are using will_paginate in your project, you will need this uncommended
-
-# Kaminari.configure do |config|
-#   config.page_method_name = :per_page_kaminari
-# end
