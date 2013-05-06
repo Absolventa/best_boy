@@ -1,10 +1,14 @@
 require "best_boy"
 require "rails"
 require "google_visualr"
-require "kaminari"
 
 module BestBoy
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
+
+    initializer "third-party.some_init_task", :before=> :load_config_initializers do |app|
+      app.config = Kaminari.new
+      app.config.page_method_name = :kaminari_page
+    end
 
     initializer 'best_boy.assets', :group => :all do |app|
       initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
