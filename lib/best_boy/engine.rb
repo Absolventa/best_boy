@@ -6,7 +6,7 @@ module BestBoy
   class Engine < ::Rails::Engine
 
     initializer "Kaminari.configure", :before=> :load_config_initializers do |app|
-      app.config.page_method_name = :kaminari_page
+      app.page_method_name = :kaminari_page
     end
 
     initializer 'best_boy.assets', :group => :all do |app|
