@@ -5,8 +5,7 @@ require "google_visualr"
 module BestBoy
   class Engine < ::Rails::Engine
 
-    initializer "third-party.some_init_task", :before=> :load_config_initializers do |app|
-      app.config = Kaminari.new
+    initializer "Kaminari.configure", :before=> :load_config_initializers do |app|
       app.config.page_method_name = :kaminari_page
     end
 
