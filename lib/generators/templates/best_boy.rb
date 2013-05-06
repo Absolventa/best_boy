@@ -1,7 +1,7 @@
 BestBoy.setup do |config|
   # if you want to use the asset-pipeline, set precompile_assets to true (default: false)
   # config.precompile_assets = true
-  
+
   # Define ORM. Could be :active_record (default). Actually no other mapper is supported
   #config.orm = :active_record
 
@@ -12,8 +12,14 @@ BestBoy.setup do |config|
   #config.before_filter = nil
 
   # Define skip_before_filter for skipping before_filters (default = nil)
-  #config.skip_before_filter = nil  
+  #config.skip_before_filter = nil
 
   # Define custom redirect path as string p.e. "/admin" (default = nil)
   #config.custom_redirect = nil
 end
+
+# if you are using will_paginate in your project, you will need this uncommended
+
+# Kaminari.configure do |config|
+#   config.page_method_name = :per_page_kaminari
+# end

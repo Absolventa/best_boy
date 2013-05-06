@@ -7,8 +7,8 @@ module BestBoy
 
     layout 'best_boy_backend'
 
-    helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type, 
-                  :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month, 
+    helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type,
+                  :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month,
                   :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count,
                   :current_month, :stats_by_event_source_and_day
 
@@ -23,8 +23,8 @@ module BestBoy
         time = "#{periode}-#{current_month}-#{current_year}".to_time
         data_table.add_row( [ periode.to_s] + available_event_sources.map{ |source| custom_data_count(source, time)})
       end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })                
-    end              
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
+    end
 
     private
 
@@ -173,8 +173,8 @@ module BestBoy
     end
 
     def current_scope(options = {})
-      options.each do |key, value| 
-        instance_var = "@#{key}" 
+      options.each do |key, value|
+        instance_var = "@#{key}"
         instance_variable_set(instance_var, value)
       end
 
