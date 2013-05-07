@@ -199,7 +199,7 @@ module BestBoy
       @best_boy_events ||= (
         scope = current_scope({:owner_type => params[:owner_type], :event_source => current_event, :date =>  current_date})
         scope = scope.order("best_boy_events.created_at DESC, best_boy_events.event ASC")
-        scope.kaminari_page(params[:page]).per(50)
+        scope.page(params[:page]).per(50)
       )
     end
 

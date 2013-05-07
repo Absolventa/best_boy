@@ -17,3 +17,23 @@ BestBoy.setup do |config|
   # Define custom redirect path as string p.e. "/admin" (default = nil)
   #config.custom_redirect = nil
 end
+
+# if you are using will_paginate in your app project, you will need this uncommended
+# this is a temporary fix that forces will_paginate to behave like kaminari
+
+# module WillPaginate
+#   # make will paginate behave like kaminari
+#   module ActiveRecord
+#     module RelationMethods
+#       def per(value = nil)
+#         per_page(value)
+#       end
+#     end
+#   end
+
+#   module ActionView
+#     def paginate(collection = nil, options = {})
+#       will_paginate(collection, options)
+#     end
+#   end
+# end
