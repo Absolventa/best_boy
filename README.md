@@ -126,28 +126,6 @@ After installation you can access it through:
     <your application path>/best_boy_admin
 
 
-Problems with projects that include will_paginate
--------------------------------------------------
-If your projedct uses will_paginate for pagination you will facing problems within the best_boy
-admin views. We included a temporary fix for that with version 1.0.2.
-Just rerun the best_boy generator and uncommend the additional fixes in the will_paginate section or include this code:
-
-    if defined?(WillPaginate)
-      ActiveSupport.on_load :active_record do
-        module WillPaginate
-          module ActiveRecord
-            module RelationMethods
-              alias_method :per, :per_page
-            end
-          end
-          module ActionView
-            alias_method :paginate, :will_paginate
-          end
-        end
-      end
-    end
-
-
 Used gems and resource
 ----------------------
 [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
