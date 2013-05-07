@@ -21,19 +21,17 @@ end
 # if you are using will_paginate in your app project, you will need this uncommended
 # this is a temporary fix that forces will_paginate to behave like kaminari
 
-# module WillPaginate
-#   # make will paginate behave like kaminari
-#   module ActiveRecord
-#     module RelationMethods
-#       def per(value = nil)
-#         per_page(value)
-#       end
-#     end
-#   end
-
-#   module ActionView
-#     def paginate(collection = nil, options = {})
-#       will_paginate(collection, options)
-#     end
-#   end
+# if defined?(WillPaginate)
+#   ActiveSupport.on_load :active_record do
+#     module WillPaginate
+#       module ActiveRecord
+#         module RelationMethods
+#           alias_method :per, :per_page
+#         end
+#       end
+#       module ActionView
+#         alias_method :paginate, :will_paginate
+#       end
+#     end
+#   end
 # end
