@@ -19,7 +19,7 @@ BestBoy.setup do |config|
 end
 
 # if you are using will_paginate in your app project, you will need this uncommended
-# this is a temporary fix that forces will_paginate to behave like kaminari
+# this is a temporary fix that aliases kaminari to  will_paginate
 
 # if defined?(WillPaginate)
 #   ActiveSupport.on_load :active_record do
