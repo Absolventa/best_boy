@@ -30,7 +30,7 @@
 
 <div class="span12">
   <div class="well">
-    <h3 class="pull-left">Statistics for <%= current_year %> per month</h3> 
+    <h3 class="pull-left">Statistics for <%= current_year %> per month</h3>
     <div class="pull-right">
       <%= form_tag best_boy_admin_stats_path, :method => :get do %>
         <%= hidden_field_tag :owner_type, current_owner_type %>
@@ -47,11 +47,11 @@
         </tr>
       </thead>
       <tbody>
-        <% available_events.each do |event| %>
+        <% @result_hash.each do |event_string, month_hash| %>
           <tr>
-            <td><%= event %></td>
-            <% %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month| %>
-              <td><%= stats_by_event_and_month event, month %></td>
+            <td><%= event_string %></td>
+            <% month_hash.each do |month, counter| %>
+              <td><%= counter %></td>
             <% end %>
           </tr>
         <% end %>

@@ -26,6 +26,27 @@ module BestBoy
       @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
 
+    # custom hash to improve calculation speed for for stats per month
+    # we fire 12 database queries, one for each month, to keep it database acnostic.
+    # Before we had 12 * n events queries
+    def stats
+      @result_hash = {}
+      %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
+        started_at = "1-#{month}-#{current_year}".to_time.beginning_of_month
+        ended_at = "1-#{month}-#{current_year}".to_time.end_of_month
+
+        month_hash = BestBoyEvent.select("COUNT(*) as counter, event").where(owner_type: current_owner_type, created_at: started_at..ended_at).group('event').inject({}) do |hash, element|
+          hash[element.event] = element.counter
+          hash
+        end
+
+        available_events.each do |event|
+          @result_hash[event] ||= {}
+          @result_hash[event][month] = month_hash.has_key?(event) ? month_hash[event] : 0
+        end
+      end
+    end
+
     private
 
     def render_chart(chart, dom)
@@ -108,6 +129,10 @@ module BestBoy
     def stats_by_event_source_and_day(source, day)
       date = "#{day}-#{current_month}-#{current_year}".to_time
       stats_by_owner_and_event_and_event_source(source).per_day(date).count
+    end
+
+    def method_name
+
     end
 
     def current_date
