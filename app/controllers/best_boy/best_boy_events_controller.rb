@@ -175,11 +175,13 @@ module BestBoy
     end
 
     def prepare_details(base_collection, key, options = {})
+      # TODO
       # This would trim down the queries to four:
       # BestBoyEvent.select("COUNT(*) as overall, event").where(:owner_type => "User").group('event')
       # BestBoyEvent.select("COUNT(*) as yearly, event").where(owner_type: "User", created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).group('event')
       # same for month
       # same for day
+      # now push results in the custom array
 
       array = Array.new
       base_collection.each do |item|
