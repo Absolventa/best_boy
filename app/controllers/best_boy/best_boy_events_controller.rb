@@ -26,26 +26,46 @@ module BestBoy
       @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
 
-    # custom hash to improve calculation speed for for stats per month
-    # we fire 12 database queries, one for each month, to keep it database acnostic.
-    # Before we had 12 * n events queries
+
     def stats
-      @result_hash = {}
+      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event").where(:owner_type => current_owner_type).group('event')
+
+      # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
+      # We fire 4 database queries, one for each group, to keep it database acnostic.
+      # Before we had 4 * n events queries
+      @event_counts_per_group = {}
+      overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+      current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+      current_month_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+      current_week_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+      current_day_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+
+      available_events.each do |event|
+        @event_counts_per_group[event] ||= {}
+        @event_counts_per_group[event]['overall'] = overall_hash.has_key?(event) ? overall_hash[event] : 0
+        @event_counts_per_group[event]['year'] = current_year_hash.has_key?(event) ? current_year_hash[event] : 0
+        @event_counts_per_group[event]['month'] = current_month_hash.has_key?(event) ? current_month_hash[event] : 0
+        @event_counts_per_group[event]['week'] = current_week_hash.has_key?(event) ? current_week_hash[event] : 0
+        @event_counts_per_group[event]['day'] = current_day_hash.has_key?(event) ? current_day_hash[event] : 0
+      end
+
+      # Custom hash for current event stats per month (with given current_owner_type)
+      # We fire 12 database queries, one for each month, to keep it database acnostic.
+      # Before we had 12 * n events queries
+      @event_counts_per_month = {}
       %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
         started_at = "1-#{month}-#{current_year}".to_time.beginning_of_month
         ended_at = "1-#{month}-#{current_year}".to_time.end_of_month
 
-        month_hash = BestBoyEvent.select("COUNT(*) as counter, event").where(owner_type: current_owner_type, created_at: started_at..ended_at).group('event').inject({}) do |hash, element|
-          hash[element.event] = element.counter
-          hash
-        end
+        month_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
 
         available_events.each do |event|
-          @result_hash[event] ||= {}
-          @result_hash[event][month] = month_hash.has_key?(event) ? month_hash[event] : 0
+          @event_counts_per_month[event] ||= {}
+          @event_counts_per_month[event][month] = month_hash.has_key?(event) ? month_hash[event] : 0
         end
       end
     end
+
 
     private
 
@@ -200,14 +220,6 @@ module BestBoy
     end
 
     def prepare_details(base_collection, key, options = {})
-      # TODO
-      # This would trim down the queries to four:
-      # BestBoyEvent.select("COUNT(*) as overall, event").where(:owner_type => "User").group('event')
-      # BestBoyEvent.select("COUNT(*) as yearly, event").where(owner_type: "User", created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).group('event')
-      # same for month
-      # same for day
-      # now push results in the custom array
-
       array = Array.new
       base_collection.each do |item|
         scope = current_scope(options.to_a + [[key.to_sym, item]])

@@ -15,11 +15,11 @@
         </tr>
       </thead>
       <tbody>
-        <% statistics.each do |best_boy_event| %>
+        <% @event_counts_per_group.each do |event_string, group_hash| %>
           <tr>
-            <td><%= link_to best_boy_event[0], best_boy_admin_details_path(:event => best_boy_event[0], :owner_type => current_owner_type) %>
-            <% (1..5).each do |key| %>
-              <td><%= best_boy_event[key] %></td>
+            <td><%= event_string %></td>
+            <% group_hash.each do |group, counter| %>
+              <td><%= counter %></td>
             <% end %>
           </tr>
         <% end %>
@@ -47,7 +47,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @result_hash.each do |event_string, month_hash| %>
+        <% @event_counts_per_month.each do |event_string, month_hash| %>
           <tr>
             <td><%= event_string %></td>
             <% month_hash.each do |month, counter| %>
