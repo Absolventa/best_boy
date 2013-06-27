@@ -51,9 +51,9 @@ module BestBoy
     end
 
     def custom_data_count(source, time)
-      scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
-      scope = scope.where("best_boy_events.event = ?", current_event) if current_event.present?
-      scope = scope.where("best_boy_events.event_source = ?", source) if source.present?
+      scope = BestBoyEvent.where(owner_type: current_owner_type)
+      scope = scope.where(event: current_event) if current_event.present?
+      scope = scope.where(event_source: source) if source.present?
       scope = scope.send("per_#{ current_time_interval == "year" ? "month" : "day" }", time)
       scope.count
     end
@@ -93,27 +93,21 @@ module BestBoy
 
     def stats_by_event_and_month(event, month)
       date = "1-#{month}-#{current_year}".to_time
-      BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ?", current_owner_type, event).per_month(date).count
+      BestBoyEvent.where(owner_type: current_owner_type, event: event).per_month(date).count
     end
 
     def stats_by_owner_and_event_and_event_source(source)
-      if source.present?
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source = ?", current_owner_type, current_event, source)
-      else
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ? AND best_boy_events.event_source IS NULL", current_owner_type, current_event)
-      end
+      BestBoyEvent.where(owner_type: current_owner_type, event: current_event, event_source: (source.present? ? source : nil))
     end
 
     def stats_by_event_source_and_month(source, month)
       date = "1-#{month}-#{current_year}".to_time
-      scope = stats_by_owner_and_event_and_event_source(source)
-      scope.per_month(date).count
+      stats_by_owner_and_event_and_event_source(source).per_month(date).count
     end
 
     def stats_by_event_source_and_day(source, day)
       date = "#{day}-#{current_month}-#{current_year}".to_time
-      scope = stats_by_owner_and_event_and_event_source(source)
-      scope.per_day(date).count
+      stats_by_owner_and_event_and_event_source(source).per_day(date).count
     end
 
     def current_date
@@ -145,27 +139,21 @@ module BestBoy
     end
 
     def available_events
-      @available_events ||= (
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type)
-        scope = scope.select("best_boy_events.event").order("best_boy_events.event ASC")
-        scope = scope.group("best_boy_events.event").map(&:event)
-      )
+      @available_events ||= BestBoyEvent.select('DISTINCT event').where(owner_type: current_owner_type).order(:event).map(&:event)
     end
 
     def available_event_sources
       @available_event_sources ||= (
-        scope = BestBoyEvent.where("best_boy_events.owner_type = ? AND best_boy_events.event = ?", current_owner_type, current_event)
-        scope = scope.select("best_boy_events.event_source").order("best_boy_events.event_source ASC")
-        scope = scope.group("best_boy_events.event_source").map(&:event_source)
+        BestBoyEvent.select("DISTINCT event_source").where(owner_type: current_owner_type, event: current_event).order(:event_source).map(&:event_source)
       )
     end
 
     def available_years
-      @available_years = (BestBoyEvent.where("best_boy_events.owner_type = ?", current_owner_type).order("best_boy_events.created_at ASC").first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
+      @available_years = (BestBoyEvent.where(owner_type: current_owner_type).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
     end
 
     def available_owner_types
-      @available_owner_types ||= BestBoyEvent.select("DISTINCT best_boy_events.owner_type").order("best_boy_events.owner_type ASC").map(&:owner_type)
+      @available_owner_types ||= BestBoyEvent.select("DISTINCT owner_type").order(:owner_type).map(&:owner_type)
     end
 
     def detail_count
@@ -179,14 +167,20 @@ module BestBoy
       end
 
       scope = BestBoyEvent
-      scope = scope.where("best_boy_events.owner_type = ?", @owner_type) if @owner_type.present?
-      scope = scope.where("best_boy_events.event = ?", @event) if @event.present?
-      scope = scope.where("best_boy_events.event_source = ?", @event_source) if @event_source.present?
+      scope = scope.where(owner_type: @owner_type) if @owner_type.present?
+      scope = scope.where(event: @event) if @event.present?
+      scope = scope.where(event_source: @event_source) if @event_source.present?
       scope = scope.per_day(@date) if @date.present?
       scope
     end
 
     def prepare_details(base_collection, key, options = {})
+      # This would trim down the queries to four:
+      # BestBoyEvent.select("COUNT(*) as overall, event").where(:owner_type => "User").group('event')
+      # BestBoyEvent.select("COUNT(*) as yearly, event").where(owner_type: "User", created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).group('event')
+      # same for month
+      # same for day
+
       array = Array.new
       base_collection.each do |item|
         scope = current_scope(options.to_a + [[key.to_sym, item]])
@@ -197,9 +191,8 @@ module BestBoy
 
     def collection
       @best_boy_events ||= (
-        scope = current_scope({:owner_type => params[:owner_type], :event_source => current_event, :date =>  current_date})
-        scope = scope.order("best_boy_events.created_at DESC, best_boy_events.event ASC")
-        scope.page(params[:page]).per(50)
+        scope = current_scope({owner_type: params[:owner_type], event_source: current_event, date: current_date})
+        scope.order("created_at DESC, event ASC").page(params[:page]).per(50)
       )
     end
 
