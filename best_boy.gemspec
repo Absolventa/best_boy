@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency('kaminari')
   s.add_dependency('google_visualr')
 
-  s.add_development_dependency('activerecord')
-  s.add_development_dependency('activesupport')
+  s.add_development_dependency('activerecord', '~> 3.2.13')
+  s.add_development_dependency('activesupport', '~> 3.2.13')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
   s.add_development_dependency('rake', '~> 10.0.3')
   s.add_development_dependency('rspec', '~> 2.13.0')
