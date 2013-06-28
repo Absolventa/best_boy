@@ -19,17 +19,31 @@
         </tr>
       </thead>
       <tbody>
-        <% event_source_details.each do |best_boy_event_source| %>
+        <% @event_source_counts_per_group.each do |event_source_string, group_hash| %>
           <tr>
-            <% (0..5).each do |key| %>
-              <td><%= best_boy_event_source[key].present? ? best_boy_event_source[key] : "n.a." %></td>
-              <% if key != 0 %>
-                <td><%= number_with_precision((best_boy_event_source[key].to_f / detail_count) * 100, :precision => 2) %> %</td>
-              <% end %>
+            <td><%= event_source_string %></td>
+            <% group_hash.each do |group, counter| %>
+              <td><%= counter %></td>
+              <td><%= number_to_percentage(counter.to_f / detail_count * 100, :precision => 2) %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['overall'].to_i; sum} %></th>
+          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['year'].to_i; sum} %></th>
+          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['month'].to_i; sum} %></th>
+          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['week'].to_i; sum} %></th>
+          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['day'].to_i; sum} %></th>
+          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

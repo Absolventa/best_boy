@@ -67,6 +67,30 @@ module BestBoy
     end
 
 
+    def details
+      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
+
+      # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
+      # We fire 4 database queries, one for each group, to keep it database acnostic.
+      # Before we had 4 * n events queries
+      @event_source_counts_per_group = {}
+      overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_month_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_week_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_day_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+
+      available_event_sources.each do |event_source|
+        @event_source_counts_per_group[event_source] ||= {}
+        @event_source_counts_per_group[event_source]['overall'] = overall_hash.has_key?(event_source) ? overall_hash[event_source] : 0
+        @event_source_counts_per_group[event_source]['year'] = current_year_hash.has_key?(event_source) ? current_year_hash[event_source] : 0
+        @event_source_counts_per_group[event_source]['month'] = current_month_hash.has_key?(event_source) ? current_month_hash[event_source] : 0
+        @event_source_counts_per_group[event_source]['week'] = current_week_hash.has_key?(event_source) ? current_week_hash[event_source] : 0
+        @event_source_counts_per_group[event_source]['day'] = current_day_hash.has_key?(event_source) ? current_day_hash[event_source] : 0
+      end
+    end
+
+
     private
 
     def render_chart(chart, dom)
