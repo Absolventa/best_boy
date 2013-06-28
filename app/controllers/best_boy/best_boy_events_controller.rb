@@ -9,7 +9,7 @@ module BestBoy
 
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type,
                   :current_event, :current_event_source, :current_year, :collection, :stats_by_event_and_month,
-                  :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count,
+                  :stats_by_event_source_and_month, :render_chart, :month_name_array, :detail_count,
                   :current_month, :stats_by_event_source_and_day
 
     def monthly_details
@@ -259,24 +259,11 @@ module BestBoy
       scope
     end
 
-    def prepare_details(base_collection, key, options = {})
-      array = Array.new
-      base_collection.each do |item|
-        scope = current_scope(options.to_a + [[key.to_sym, item]])
-        array.push([item, scope.count] + %w(year month week day).map{ |delimiter| scope.send("per_#{delimiter}", Time.zone.now).count })
-      end
-      array
-    end
-
     def collection
       @best_boy_events ||= (
         scope = current_scope({owner_type: params[:owner_type], event_source: current_event, date: current_date})
         scope.order("created_at DESC, event ASC").page(params[:page]).per(50)
       )
-    end
-
-    def event_source_details
-      @event_source_details = prepare_details(available_event_sources, "event_source", {:owner_type => current_owner_type, :event => current_event})
     end
 
   end
