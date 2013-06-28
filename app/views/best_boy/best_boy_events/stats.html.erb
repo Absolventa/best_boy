@@ -24,6 +24,16 @@
           </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['overall'].to_i; sum} %></th>
+          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['year'].to_i; sum} %></th>
+          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['month'].to_i; sum} %></th>
+          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['week'].to_i; sum} %></th>
+          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['day'].to_i; sum} %></th>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
@@ -56,6 +66,14 @@
           </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <% (1..12).to_a.map(&:to_s).each do |month_no| %>
+            <th><%= @event_counts_per_month.values.inject(0){|sum, hash| sum += hash[month_no].to_i; sum} %></th>
+          <% end %>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
