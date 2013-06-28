@@ -20,10 +20,10 @@ module BestBoy
       # Before we had 5 * n events queries
       @event_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event] = element.counter; hash}
-      current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
-      current_month_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
-      current_week_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
-      current_day_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+      current_year_hash = counter_scope.per_year(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
+      current_month_hash = counter_scope.per_month(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
+      current_week_hash = counter_scope.per_week(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
+      current_day_hash = counter_scope.per_day(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
 
       available_events.each do |event|
         @event_counts_per_group[event] ||= {}
@@ -39,10 +39,7 @@ module BestBoy
       # Before we had 12 * n events queries
       @event_counts_per_month = {}
       %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
-        started_at = "1-#{month}-#{current_year}".to_time.beginning_of_month
-        ended_at = "1-#{month}-#{current_year}".to_time.end_of_month
-
-        month_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+        month_hash = counter_scope.per_month("1-#{month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
 
         available_events.each do |event|
           @event_counts_per_month[event] ||= {}
@@ -60,10 +57,10 @@ module BestBoy
       # Before we had 5 * n event_sources queries
       @event_source_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_month_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_week_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_day_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_year_hash = counter_scope.per_year(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_month_hash = counter_scope.per_month(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_week_hash = counter_scope.per_week(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+      current_day_hash = counter_scope.per_day(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
 
       available_event_sources.each do |event_source|
         @event_source_counts_per_group[event_source] ||= {}
@@ -79,10 +76,7 @@ module BestBoy
       # Before we had 12 * n event_sources queries
       @event_sources_counts_per_month = {}
       %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
-        started_at = "1-#{month}-#{current_year}".to_time.beginning_of_month
-        ended_at = "1-#{month}-#{current_year}".to_time.end_of_month
-
-        month_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+        month_hash = counter_scope.per_month("1-#{month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
 
         available_event_sources.each do |event_source|
           @event_sources_counts_per_month[event_source] ||= {}
@@ -100,10 +94,7 @@ module BestBoy
       # Before we had 31 * n event_sources queries
       @event_sources_counts_per_day = {}
       days.each do |day|
-        started_at = "#{day}-#{current_month}-#{current_year}".to_time.beginning_of_day
-        ended_at = "#{day}-#{current_month}-#{current_year}".to_time.end_of_day
-
-        day_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+        day_hash = counter_scope.per_day("#{day}-#{current_month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
 
         available_event_sources.each do |event_source|
           @event_sources_counts_per_day[event_source] ||= {}
