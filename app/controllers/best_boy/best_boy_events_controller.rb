@@ -31,8 +31,8 @@ module BestBoy
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event").where(:owner_type => current_owner_type).group('event')
 
       # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
-      # We fire 4 database queries, one for each group, to keep it database acnostic.
-      # Before we had 4 * n events queries
+      # We fire 5 database queries, one for each group, to keep it database acnostic.
+      # Before we had 5 * n events queries
       @event_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event] = element.counter; hash}
       current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
@@ -71,8 +71,8 @@ module BestBoy
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
 
       # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
-      # We fire 4 database queries, one for each group, to keep it database acnostic.
-      # Before we had 4 * n events queries
+      # We fire 5 database queries, one for each group, to keep it database acnostic.
+      # Before we had 5 * n events queries
       @event_source_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
       current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
