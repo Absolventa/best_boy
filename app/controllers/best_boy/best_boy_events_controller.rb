@@ -27,11 +27,11 @@ module BestBoy
 
       available_events.each do |event|
         @event_counts_per_group[event] ||= {}
-        @event_counts_per_group[event]['overall'] = overall_hash.has_key?(event) ? overall_hash[event] : 0
-        @event_counts_per_group[event]['year'] = current_year_hash.has_key?(event) ? current_year_hash[event] : 0
-        @event_counts_per_group[event]['month'] = current_month_hash.has_key?(event) ? current_month_hash[event] : 0
-        @event_counts_per_group[event]['week'] = current_week_hash.has_key?(event) ? current_week_hash[event] : 0
-        @event_counts_per_group[event]['day'] = current_day_hash.has_key?(event) ? current_day_hash[event] : 0
+        @event_counts_per_group[event]['overall'] = overall_hash[event] || 0
+        @event_counts_per_group[event]['year'] = current_year_hash[event] || 0
+        @event_counts_per_group[event]['month'] = current_month_hash[event] || 0
+        @event_counts_per_group[event]['week'] = current_week_hash[event] || 0
+        @event_counts_per_group[event]['day'] = current_day_hash[event] || 0
       end
 
       # Custom hash for current event stats per month (with given current_owner_type)
@@ -46,7 +46,7 @@ module BestBoy
 
         available_events.each do |event|
           @event_counts_per_month[event] ||= {}
-          @event_counts_per_month[event][month] = month_hash.has_key?(event) ? month_hash[event] : 0
+          @event_counts_per_month[event][month] = month_hash[event] || 0
         end
       end
     end
@@ -67,11 +67,11 @@ module BestBoy
 
       available_event_sources.each do |event_source|
         @event_source_counts_per_group[event_source] ||= {}
-        @event_source_counts_per_group[event_source]['overall'] = overall_hash.has_key?(event_source) ? overall_hash[event_source] : 0
-        @event_source_counts_per_group[event_source]['year'] = current_year_hash.has_key?(event_source) ? current_year_hash[event_source] : 0
-        @event_source_counts_per_group[event_source]['month'] = current_month_hash.has_key?(event_source) ? current_month_hash[event_source] : 0
-        @event_source_counts_per_group[event_source]['week'] = current_week_hash.has_key?(event_source) ? current_week_hash[event_source] : 0
-        @event_source_counts_per_group[event_source]['day'] = current_day_hash.has_key?(event_source) ? current_day_hash[event_source] : 0
+        @event_source_counts_per_group[event_source]['overall'] = overall_hash[event_source] || 0
+        @event_source_counts_per_group[event_source]['year'] = current_year_hash[event_source] || 0
+        @event_source_counts_per_group[event_source]['month'] = current_month_hash[event_source] || 0
+        @event_source_counts_per_group[event_source]['week'] = current_week_hash[event_source] || 0
+        @event_source_counts_per_group[event_source]['day'] = current_day_hash[event_source] || 0
       end
 
       # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
@@ -86,7 +86,7 @@ module BestBoy
 
         available_event_sources.each do |event_source|
           @event_sources_counts_per_month[event_source] ||= {}
-          @event_sources_counts_per_month[event_source][month] = month_hash.has_key?(event_source) ? month_hash[event_source] : 0
+          @event_sources_counts_per_month[event_source][month] = month_hash[event_source] || 0
         end
       end
     end
@@ -107,7 +107,7 @@ module BestBoy
 
         available_event_sources.each do |event_source|
           @event_sources_counts_per_day[event_source] ||= {}
-          @event_sources_counts_per_day[event_source][day] = day_hash.has_key?(event_source) ? day_hash[event_source] : 0
+          @event_sources_counts_per_day[event_source][day] = day_hash[event_source] || 0
         end
       end
 
