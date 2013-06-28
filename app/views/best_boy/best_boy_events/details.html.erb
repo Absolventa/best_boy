@@ -61,18 +61,18 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>Event</th>
+          <th>Event Source</th>
           <% month_name_array.each do |month| %>
             <th><%= link_to month, best_boy_admin_monthly_details_path(:owner_type => current_owner_type, :event => current_event, :month => month, :year => current_year, :time_interval => "month") %></th>
           <% end %>
         </tr>
       </thead>
       <tbody>
-        <% available_event_sources.each do |source| %>
+        <% @event_sources_counts_per_month.each do |event_source_string, month_hash| %>
           <tr>
-            <td><%= source.present? ? source : "n.a." %></td>
-            <% %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month| %>
-              <td><%= stats_by_event_source_and_month source, month %></td>
+            <td><%= event_source_string %></td>
+            <% month_hash.each do |month, counter| %>
+              <td><%= counter %></td>
             <% end %>
           </tr>
         <% end %>

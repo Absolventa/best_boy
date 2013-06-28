@@ -70,9 +70,9 @@ module BestBoy
     def details
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
 
-      # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
+      # Custom hash for current event_source stats - current_year, current_month, current_week, current_day (with given current_owner_type)
       # We fire 5 database queries, one for each group, to keep it database acnostic.
-      # Before we had 5 * n events queries
+      # Before we had 5 * n event_sources queries
       @event_source_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
       current_year_hash = counter_scope.where(created_at: Time.zone.now.beginning_of_year..Time.zone.now.end_of_year).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
@@ -87,6 +87,22 @@ module BestBoy
         @event_source_counts_per_group[event_source]['month'] = current_month_hash.has_key?(event_source) ? current_month_hash[event_source] : 0
         @event_source_counts_per_group[event_source]['week'] = current_week_hash.has_key?(event_source) ? current_week_hash[event_source] : 0
         @event_source_counts_per_group[event_source]['day'] = current_day_hash.has_key?(event_source) ? current_day_hash[event_source] : 0
+      end
+
+      # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
+      # We fire 12 database queries, one for each month, to keep it database acnostic.
+      # Before we had 12 * n event_sources queries
+      @event_sources_counts_per_month = {}
+      %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
+        started_at = "1-#{month}-#{current_year}".to_time.beginning_of_month
+        ended_at = "1-#{month}-#{current_year}".to_time.end_of_month
+
+        month_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+
+        available_event_sources.each do |event_source|
+          @event_sources_counts_per_month[event_source] ||= {}
+          @event_sources_counts_per_month[event_source][month] = month_hash.has_key?(event_source) ? month_hash[event_source] : 0
+        end
       end
     end
 
