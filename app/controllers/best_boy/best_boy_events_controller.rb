@@ -9,7 +9,6 @@ module BestBoy
 
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years,
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
-                  :stats_by_event_and_month, :stats_by_event_source_and_month, :stats_by_event_source_and_day,
                   :render_chart, :month_name_array, :detail_count
 
 
@@ -189,29 +188,6 @@ module BestBoy
       else
         (periode + 1).to_s
       end
-    end
-
-    def stats_by_event_and_month(event, month)
-      date = "1-#{month}-#{current_year}".to_time
-      BestBoyEvent.where(owner_type: current_owner_type, event: event).per_month(date).count
-    end
-
-    def stats_by_owner_and_event_and_event_source(source)
-      BestBoyEvent.where(owner_type: current_owner_type, event: current_event, event_source: (source.present? ? source : nil))
-    end
-
-    def stats_by_event_source_and_month(source, month)
-      date = "1-#{month}-#{current_year}".to_time
-      stats_by_owner_and_event_and_event_source(source).per_month(date).count
-    end
-
-    def stats_by_event_source_and_day(source, day)
-      date = "#{day}-#{current_month}-#{current_year}".to_time
-      stats_by_owner_and_event_and_event_source(source).per_day(date).count
-    end
-
-    def method_name
-
     end
 
     def current_date
