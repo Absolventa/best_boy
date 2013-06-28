@@ -8,7 +8,7 @@ module BestBoy
     layout 'best_boy_backend'
 
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type,
-                  :current_event, :current_event_source, :current_year, :collection, :statistics, :stats_by_event_and_month,
+                  :current_event, :current_event_source, :current_year, :collection, :stats_by_event_and_month,
                   :stats_by_event_source_and_month, :render_chart, :event_source_details, :month_name_array, :detail_count,
                   :current_month, :stats_by_event_source_and_day
 
@@ -233,10 +233,6 @@ module BestBoy
         scope = current_scope({owner_type: params[:owner_type], event_source: current_event, date: current_date})
         scope.order("created_at DESC, event ASC").page(params[:page]).per(50)
       )
-    end
-
-    def statistics
-      @statistics = prepare_details(available_events, "event", {:owner_type => current_owner_type})
     end
 
     def event_source_details
