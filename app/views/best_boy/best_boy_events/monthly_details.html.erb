@@ -23,18 +23,18 @@
     <table class="table table-striped table-bordered small-font">
       <thead>
         <tr>
-          <th>Event</th>
+          <th>Event Source</th>
           <% (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |day| %>
             <td><%= day %></td>
           <% end %>
         </tr>
       </thead>
       <tbody>
-        <% available_event_sources.each do |source| %>
+        <% @event_sources_counts_per_day.each do |event_source_string, day_hash| %>
           <tr>
-            <td><%= source.present? ? source : "n.a." %></td>
-            <% (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |day| %>
-              <td><%= stats_by_event_source_and_day source, day %></td>
+            <td><%= event_source_string %></td>
+            <% day_hash.each do |day, counter| %>
+              <td><%= counter %></td>
             <% end %>
           </tr>
         <% end %>

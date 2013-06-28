@@ -7,24 +7,10 @@ module BestBoy
 
     layout 'best_boy_backend'
 
-    helper_method :available_owner_types, :available_events, :available_event_sources, :available_years, :current_owner_type,
-                  :current_event, :current_event_source, :current_year, :collection, :stats_by_event_and_month,
-                  :stats_by_event_source_and_month, :render_chart, :month_name_array, :detail_count,
-                  :current_month, :stats_by_event_source_and_day
-
-    def monthly_details
-      data_table = GoogleVisualr::DataTable.new
-      data_table.new_column('string', 'time')
-      available_event_sources.each do |source|
-        data_table.new_column('number', source.to_s)
-      end
-
-      (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |periode|
-        time = "#{periode}-#{current_month}-#{current_year}".to_time
-        data_table.add_row( [ periode.to_s] + available_event_sources.map{ |source| custom_data_count(source, time)})
-      end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
-    end
+    helper_method :available_owner_types, :available_events, :available_event_sources, :available_years,
+                  :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
+                  :stats_by_event_and_month, :stats_by_event_source_and_month, :stats_by_event_source_and_day,
+                  :render_chart, :month_name_array, :detail_count
 
 
     def stats
@@ -104,6 +90,39 @@ module BestBoy
           @event_sources_counts_per_month[event_source][month] = month_hash.has_key?(event_source) ? month_hash[event_source] : 0
         end
       end
+    end
+
+
+    def monthly_details
+      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
+      days = 1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))
+      # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
+      # We fire a max of 31 database queries, one for each day, to keep it database acnostic.
+      # Before we had 31 * n event_sources queries
+      @event_sources_counts_per_day = {}
+      days.each do |day|
+        started_at = "#{day}-#{current_month}-#{current_year}".to_time.beginning_of_day
+        ended_at = "#{day}-#{current_month}-#{current_year}".to_time.end_of_day
+
+        day_hash = counter_scope.where(created_at: started_at..ended_at).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
+
+        available_event_sources.each do |event_source|
+          @event_sources_counts_per_day[event_source] ||= {}
+          @event_sources_counts_per_day[event_source][day] = day_hash.has_key?(event_source) ? day_hash[event_source] : 0
+        end
+      end
+
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('string', 'time')
+      available_event_sources.each do |source|
+        data_table.new_column('number', source.to_s)
+      end
+
+      days.each do |day|
+        time = "#{day}-#{current_month}-#{current_year}".to_time
+        data_table.add_row( [ day.to_s] + available_event_sources.map{ |event_source| @event_sources_counts_per_day[event_source][day].to_i })
+      end
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
     end
 
 
