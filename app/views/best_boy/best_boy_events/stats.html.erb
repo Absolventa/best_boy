@@ -17,7 +17,7 @@
       <tbody>
         <% @event_counts_per_group.each do |event_string, group_hash| %>
           <tr>
-            <td><%= event_string %></td>
+            <td><%= link_to event_string, best_boy_admin_details_path(:event => event_string, :owner_type => current_owner_type) %></td>
             <% group_hash.each do |group, counter| %>
               <td><%= counter %></td>
             <% end %>
