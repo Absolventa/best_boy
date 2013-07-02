@@ -19,12 +19,17 @@ Gem::Specification.new do |s|
   s.add_dependency('kaminari')
   s.add_dependency('google_visualr')
 
-  s.add_development_dependency('activerecord', '~> 4.0.0')
-  s.add_development_dependency('activesupport', '~> 4.0.0')
+  s.add_development_dependency('rails', '~> 4.0.0')
+  s.add_development_dependency('foreman', '~> 0.63.0')
+  s.add_development_dependency('thin', '~> 1.5.1')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
   s.add_development_dependency('rake', '~> 10.0.3')
   s.add_development_dependency('rspec', '~> 2.13.0')
   s.add_development_dependency('shoulda', '~> 3.4.0')
+  s.add_development_dependency "haml"
+  s.add_development_dependency 'kaminari', "~> 0.14.1"
+  s.add_development_dependency 'sass-rails', '~> 4.0.0'
+  s.add_development_dependency "bootstrap-sass", "~> 2.1.0.1"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
