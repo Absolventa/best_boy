@@ -19,9 +19,5 @@ class BestBoyEvent < ActiveRecord::Base
   scope :per_month, lambda { |date| where("best_boy_events.created_at BETWEEN ? AND ?", date.beginning_of_month, date.end_of_month) }
   scope :per_year, lambda { |date| where("best_boy_events.created_at BETWEEN ? AND ?", date.beginning_of_year, date.end_of_year) }
 
-  # attributes
-  #
-  #
-  attr_accessible :event, :event_source
 
 end
