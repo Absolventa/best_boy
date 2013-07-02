@@ -1,0 +1,3 @@
+Rails.application.routes.draw do
+  resources :test_events
+end

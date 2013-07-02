@@ -1,0 +1,2024 @@
+Connecting to database specified by database.yml
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 12:40:25 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 66ms (Views: 65.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-01 12:40:25 +0200
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-01 12:40:25 +0200
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-01 12:40:26 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=056bc41acaee398dc0&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQQiM1-xQ0z8G5zwE_kAohazZWeWCRurSxe8cX9hkvccItkbgY3HjoAN2H5hvEHgNth5DgppgcIaNea13DTVsgWlXlNsQAGCDhEaeW_qS2bZSAY-bzE&state=056bc41acaee398dc0" for 127.0.0.1 at 2013-07-01 12:40:36 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQQiM1-xQ0z8G5zwE_kAohazZWeWCRurSxe8cX9hkvccItkbgY3HjoAN2H5hvEHgNth5DgppgcIaNea13DTVsgWlXlNsQAGCDhEaeW_qS2bZSAY-bzE", "state"=>"056bc41acaee398dc0"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 4099ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-01 13:36:10 +0200
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  railties (3.2.13) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  thin (1.5.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.5.1) lib/thin/runner.rb:187:in `run_command'
+  thin (1.5.1) lib/thin/runner.rb:152:in `run!'
+  thin (1.5.1) bin/thin:6:in `<top (required)>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `load'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `<main>'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (22.5ms)
+
+
+Started GET "/social_connect/import" for 127.0.0.1 at 2013-07-01 13:36:33 +0200
+
+ActionController::RoutingError (No route matches [GET] "/social_connect/import"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  railties (3.2.13) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  thin (1.5.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.5.1) lib/thin/runner.rb:187:in `run_command'
+  thin (1.5.1) lib/thin/runner.rb:152:in `run!'
+  thin (1.5.1) bin/thin:6:in `<top (required)>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `load'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `<main>'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:36:52 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 14ms (Views: 13.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-01 13:36:52 +0200
+Served asset /application.css - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-01 13:36:52 +0200
+Served asset /application.js - 200 OK (2ms)
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-01 13:36:54 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=bada7bef4ed1184308&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/import/social_connect" for 127.0.0.1 at 2013-07-01 13:38:52 +0200
+
+ActionController::RoutingError (No route matches [GET] "/import/social_connect"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  railties (3.2.13) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  thin (1.5.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.5.1) lib/thin/runner.rb:187:in `run_command'
+  thin (1.5.1) lib/thin/runner.rb:152:in `run!'
+  thin (1.5.1) bin/thin:6:in `<top (required)>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `load'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23:in `<main>'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (20.7ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:39:06 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-01 13:39:06 +0200
+Served asset /application.css - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-01 13:39:06 +0200
+Served asset /application.js - 200 OK (1ms)
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-01 13:39:08 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=dbafe3a21383001e51&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQQWA-PxaKEg_jlY1Usi7XAwratqptj39vVaVWSYM9OVIZMbu6L7jZ_-v5COxQ_akoY6yY42zbLw709YkExDGPawLDv2PQt65Fz_Znn1uV7KSDc0cPI&state=dbafe3a21383001e51" for 127.0.0.1 at 2013-07-01 13:39:15 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQQWA-PxaKEg_jlY1Usi7XAwratqptj39vVaVWSYM9OVIZMbu6L7jZ_-v5COxQ_akoY6yY42zbLw709YkExDGPawLDv2PQt65Fz_Znn1uV7KSDc0cPI", "state"=>"dbafe3a21383001e51"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 2541ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:41:14 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 56ms (Views: 55.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-01 13:41:14 +0200
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-01 13:41:14 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-01 13:41:20 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=6ca2a78e40b973d9ad&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQThCEY9vYVO2WJZ3ZMFidOVWv6RIDUCf2Wk9C7UKJe8yf_g2GQqMJ3UCp-QJ7XC0jlr8KJR2xJ_71PhmHpHoRX6l2W97cFwH0TBRLZww462O5cnHUM&state=6ca2a78e40b973d9ad" for 127.0.0.1 at 2013-07-01 13:41:26 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQThCEY9vYVO2WJZ3ZMFidOVWv6RIDUCf2Wk9C7UKJe8yf_g2GQqMJ3UCp-QJ7XC0jlr8KJR2xJ_71PhmHpHoRX6l2W97cFwH0TBRLZww462O5cnHUM", "state"=>"6ca2a78e40b973d9ad"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 2455ms (Views: 3.9ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:48:26 +0200
+Processing by TestController#import as HTML
+Redirected to https://localhost:3000/import/social_import
+Filter chain halted as #<Proc:0x007ff32bf1af88@/Users/christophseydel/Development/gems/my_gems/social_connect/spec/dummy/config/initializers/social_connect.rb:19> rendered or redirected
+Completed 301 Moved Permanently in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:48:34 +0200
+Processing by TestController#import as HTML
+Redirected to https://localhost:3000/import/social_import
+Filter chain halted as #<Proc:0x007ff32bf1af88@/Users/christophseydel/Development/gems/my_gems/social_connect/spec/dummy/config/initializers/social_connect.rb:19> rendered or redirected
+Completed 301 Moved Permanently in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-01 13:48:39 +0200
+Processing by TestController#import as HTML
+Redirected to https://localhost:3000/import/social_import
+Filter chain halted as #<Proc:0x007ff32bf1af88@/Users/christophseydel/Development/gems/my_gems/social_connect/spec/dummy/config/initializers/social_connect.rb:19> rendered or redirected
+Completed 301 Moved Permanently in 1ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+  [1m[36m (1.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:06:21 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 43ms (Views: 42.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:06:22 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:06:22 +0200
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-02 10:08:14 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=c18e2c0c3d9ac16526&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 14ms (ActiveRecord: 0.0ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:09:13 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 24ms (Views: 23.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:09:13 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:09:13 +0200
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-02 10:09:16 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=f0db25c7490485d091&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQTjBIl0RosrPLvUu8e-kNWqGStkmavVMDWsRGQmuVdjWJMo2ZNQdrRIllzlnH-c2iLKUAvM0DMZF_eCPr3ACl4hOpx9jfPAZnlujr6pnnIWnd6PEg8&state=f0db25c7490485d091" for 127.0.0.1 at 2013-07-02 10:09:21 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQTjBIl0RosrPLvUu8e-kNWqGStkmavVMDWsRGQmuVdjWJMo2ZNQdrRIllzlnH-c2iLKUAvM0DMZF_eCPr3ACl4hOpx9jfPAZnlujr6pnnIWnd6PEg8", "state"=>"f0db25c7490485d091"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 4252ms (Views: 3.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:09:37 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:09:37 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:09:37 +0200
+
+
+Started GET "/test/xing_authentication" for 127.0.0.1 at 2013-07-02 10:09:39 +0200
+Processing by TestController#xing_authentication as HTML
+Redirected to https://api.xing.com/v1/authorize?oauth_callback=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Fxing_authentication&oauth_token=9437f610f52fdabd1c5c
+Completed 302 Found in 1495ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/xing_authentication?oauth_token=9437f610f52fdabd1c5c&oauth_verifier=7023" for 127.0.0.1 at 2013-07-02 10:09:49 +0200
+Processing by TestController#xing_authentication as HTML
+  Parameters: {"oauth_token"=>"9437f610f52fdabd1c5c", "oauth_verifier"=>"7023"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 602ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:26:11 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 32ms (Views: 31.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:26:12 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:26:12 +0200
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p374@social_connect/bin/thin:23)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:27:30 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 27ms (Views: 26.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:27:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:27:30 +0200
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:27:36 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:27:36 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:27:36 +0200
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-02 10:27:40 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=e8c44e431d37c9fa8e&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQRKnu3JymxtjDlMtAWMefi1sFUyy1ouPj1XYFc5ojEe9dnmbUzsstNZDPgYeCAtzGJPycK7g67jpU_VRyJ-hKMbucL6CoMq_01zNOnBHVDrArPgYaY&state=e8c44e431d37c9fa8e" for 127.0.0.1 at 2013-07-02 10:27:47 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQRKnu3JymxtjDlMtAWMefi1sFUyy1ouPj1XYFc5ojEe9dnmbUzsstNZDPgYeCAtzGJPycK7g67jpU_VRyJ-hKMbucL6CoMq_01zNOnBHVDrArPgYaY", "state"=>"e8c44e431d37c9fa8e"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 2609ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('0')
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-2.0.0-p247@social_connect/bin/thin:23)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:34:36 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 25ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:34:36 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:34:36 +0200
+
+
+Started GET "/test/xing_authentication" for 127.0.0.1 at 2013-07-02 10:34:38 +0200
+Processing by TestController#xing_authentication as HTML
+Redirected to https://api.xing.com/v1/authorize?oauth_callback=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Fxing_authentication&oauth_token=b3eedaf382be7d59e567
+Completed 302 Found in 377ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/xing_authentication?oauth_token=b3eedaf382be7d59e567&oauth_verifier=1174" for 127.0.0.1 at 2013-07-02 10:34:38 +0200
+Processing by TestController#xing_authentication as HTML
+  Parameters: {"oauth_token"=>"b3eedaf382be7d59e567", "oauth_verifier"=>"1174"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 573ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/import/social_import" for 127.0.0.1 at 2013-07-02 10:34:46 +0200
+Processing by TestController#import as HTML
+  Rendered test/import.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 10:34:46 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 10:34:46 +0200
+
+
+Started GET "/test/linkedin_authentication" for 127.0.0.1 at 2013-07-02 10:34:47 +0200
+Processing by TestController#linkedin_authentication as HTML
+Redirected to https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=wcxpwvcjbtak&scope=r_fullprofile+r_emailaddress+r_contactinfo&state=44fb84b00b960b89bf&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Ftest%2Flinkedin_authentication
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/test/linkedin_authentication?code=AQQ7Jdz83wNrFzJMEIvaNyUwIP9WPFuByFjnrFGtHWT6os0JYo8KONM4ywRKSmJ4g67sGeRajHH7wrq5pyiMNlF413CVHCgFf35S6Ncfn-BPB3ULiRA&state=44fb84b00b960b89bf" for 127.0.0.1 at 2013-07-02 10:34:53 +0200
+Processing by TestController#linkedin_authentication as HTML
+  Parameters: {"code"=>"AQQ7Jdz83wNrFzJMEIvaNyUwIP9WPFuByFjnrFGtHWT6os0JYo8KONM4ywRKSmJ4g67sGeRajHH7wrq5pyiMNlF413CVHCgFf35S6Ncfn-BPB3ULiRA", "state"=>"44fb84b00b960b89bf"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 2338ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTests (20130702102348)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130702102348"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBestBoyEventsTable (20130702102713)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "best_boy_events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "owner_type" varchar(255), "event" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_best_boy_events_on_owner_type" ON "best_boy_events" ("owner_type")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_owner_id_and_owner_type" ON "best_boy_events" ("owner_id", "owner_type")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_best_boy_events_on_event" ON "best_boy_events" ("event")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130702102713"]]
+  [1m[35m (3.4ms)[0m  commit transaction
+Migrating to AddEventSourceToBestBoyEventsTable (20130702102714)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "best_boy_events" ADD "event_source" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_event_source" ON "best_boy_events" ("event_source")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130702102714"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "best_boy_events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "owner_type" varchar(255), "event" varchar(255), "created_at" datetime, "updated_at" datetime, "event_source" varchar(255)) 
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_event" ON "best_boy_events" ("event")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_best_boy_events_on_event_source" ON "best_boy_events" ("event_source")
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_owner_id_and_owner_type" ON "best_boy_events" ("owner_id", "owner_type")[0m
+  [1m[35m (1.2ms)[0m  CREATE INDEX "index_best_boy_events_on_owner_type" ON "best_boy_events" ("owner_type")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130702102714')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130702102348')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130702102713')[0m
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-02 12:36:40 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (4.6ms)
+Completed 200 OK in 29ms (Views: 28.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 12:36:58 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+Redirected to https://localhost/best_boy_admin
+Filter chain halted as #<Proc:0x007fdfe2b29278@/Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_controller/metal/force_ssl.rb:65> rendered or redirected
+Completed 301 Moved Permanently in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 12:37:08 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+Redirected to https://localhost/best_boy_admin
+Filter chain halted as #<Proc:0x007fdfe2b29278@/Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_controller/metal/force_ssl.rb:65> rendered or redirected
+Completed 301 Moved Permanently in 1ms (ActiveRecord: 0.0ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19)
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 12:37:40 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/index.html.erb within layouts/best_boy_backend (2.4ms)
+Completed 500 Internal Server Error in 52ms
+
+ActionView::Template::Error (cannot load such file -- sass
+  (in /Users/christophseydel/Development/gems/my_gems/best_boy/app/assets/stylesheets/best_boy/bootstrap.scss)):
+    11:     <%= yield :javascripts %>
+    12: 
+    13:     <% if BestBoy.precompile_assets %>
+    14:       <%= stylesheet_link_tag("best_boy/best_boy", :media => "all") %>
+    15:       <%= javascript_include_tag "best_boy/best_boy" %>
+    16:     <% else %>
+    17:       <%= stylesheet_link_tag("bootstrap", :media => "all") %>
+  activesupport (4.0.0) lib/active_support/dependencies.rb:228:in `require'
+  activesupport (4.0.0) lib/active_support/dependencies.rb:228:in `block in require'
+  activesupport (4.0.0) lib/active_support/dependencies.rb:213:in `load_dependency'
+  activesupport (4.0.0) lib/active_support/dependencies.rb:228:in `require'
+  tilt (1.4.1) lib/tilt/template.rb:144:in `require_template_library'
+  sprockets (2.10.0) lib/sprockets/sass_template.rb:20:in `initialize_engine'
+  tilt (1.4.1) lib/tilt/template.rb:56:in `initialize'
+  sprockets (2.10.0) lib/sprockets/context.rb:196:in `new'
+  sprockets (2.10.0) lib/sprockets/context.rb:196:in `block in evaluate'
+  sprockets (2.10.0) lib/sprockets/context.rb:194:in `each'
+  sprockets (2.10.0) lib/sprockets/context.rb:194:in `evaluate'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.10.0) lib/sprockets/base.rb:374:in `new'
+  sprockets (2.10.0) lib/sprockets/base.rb:374:in `block in build_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:395:in `circular_call_protection'
+  sprockets (2.10.0) lib/sprockets/base.rb:373:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:94:in `block in build_asset'
+  sprockets (2.10.0) lib/sprockets/caching.rb:58:in `cache_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:93:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:287:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:61:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:111:in `block in resolve_dependencies'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:105:in `each'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:105:in `resolve_dependencies'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:97:in `build_required_assets'
+  sprockets (2.10.0) lib/sprockets/processed_asset.rb:16:in `initialize'
+  sprockets (2.10.0) lib/sprockets/base.rb:374:in `new'
+  sprockets (2.10.0) lib/sprockets/base.rb:374:in `block in build_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:395:in `circular_call_protection'
+  sprockets (2.10.0) lib/sprockets/base.rb:373:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:94:in `block in build_asset'
+  sprockets (2.10.0) lib/sprockets/caching.rb:58:in `cache_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:93:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:287:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:61:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.10.0) lib/sprockets/base.rb:377:in `new'
+  sprockets (2.10.0) lib/sprockets/base.rb:377:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:94:in `block in build_asset'
+  sprockets (2.10.0) lib/sprockets/caching.rb:58:in `cache_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:93:in `build_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:287:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/index.rb:61:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/environment.rb:75:in `find_asset'
+  sprockets (2.10.0) lib/sprockets/base.rb:295:in `[]'
+  sprockets-rails (2.0.0) lib/sprockets/rails/helper.rb:141:in `lookup_asset_for_path'
+  sprockets-rails (2.0.0) lib/sprockets/rails/helper.rb:112:in `block in stylesheet_link_tag'
+  sprockets-rails (2.0.0) lib/sprockets/rails/helper.rb:111:in `map'
+  sprockets-rails (2.0.0) lib/sprockets/rails/helper.rb:111:in `stylesheet_link_tag'
+  /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/layouts/best_boy_backend.html.erb:14:in `___sers_christophseydel__evelopment_gems_my_gems_best_boy_app_views_layouts_best_boy_backend_html_erb__4490179973785420220_70226967638720'
+  actionpack (4.0.0) lib/action_view/template.rb:143:in `block in render'
+  activesupport (4.0.0) lib/active_support/notifications.rb:161:in `instrument'
+  actionpack (4.0.0) lib/action_view/template.rb:141:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/christophseydel/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:393:in `_run__4095556347807852488__process_action__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:655:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:373:in `_run__4421412809074621599__call__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  railties (4.0.0) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  thin (1.5.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.5.1) lib/thin/runner.rb:187:in `run_command'
+  thin (1.5.1) lib/thin/runner.rb:152:in `run!'
+  thin (1.5.1) bin/thin:6:in `<top (required)>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19:in `load'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19:in `<main>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/ruby_noexec_wrapper:14:in `eval'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/ruby_noexec_wrapper:14:in `<main>'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.3ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19)
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 12:41:52 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/index.html.erb within layouts/best_boy_backend (2.3ms)
+Completed 200 OK in 1152ms (Views: 1151.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:54 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:54 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:54 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:54 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:54 +0200
+
+
+Started GET "/best_boy_admin/stats" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+Processing by BestBoy::BestBoyEventsController#stats as HTML
+  [1m[36mBestBoyEvent Load (3.9ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-07 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".created_at ASC LIMIT 1
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2012-12-31 23:00:00.000000' AND '2013-01-31 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-01-31 23:00:00.000000' AND '2013-02-28 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-02-28 23:00:00.000000' AND '2013-03-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-03-31 22:00:00.000000' AND '2013-04-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-04-30 22:00:00.000000' AND '2013-05-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-05-31 22:00:00.000000' AND '2013-06-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-31 22:00:00.000000' AND '2013-08-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-08-31 22:00:00.000000' AND '2013-09-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-09-30 22:00:00.000000' AND '2013-10-31 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-10-31 23:00:00.000000' AND '2013-11-30 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-11-30 23:00:00.000000' AND '2013-12-31 22:59:59.999999') GROUP BY event
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (0.9ms)
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/stats.html.erb within layouts/best_boy_backend (14.4ms)
+Completed 200 OK in 61ms (Views: 19.9ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:56 +0200
+
+
+Started GET "/best_boy_admin/lists" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (0.8ms)
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events"[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (20.0ms)
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:41:59 +0200
+
+
+Started GET "/assets/best_boy/glyphicons-halflings.png" for 127.0.0.1 at 2013-07-02 12:42:00 +0200
+
+
+Started GET "/best_boy_admin/charts" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND "best_boy_events"."event" IS NULL ORDER BY "best_boy_events".event_source ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (5.7ms)
+Completed 200 OK in 32ms (Views: 10.1ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:01 +0200
+
+
+Started GET "/best_boy_admin/stats" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+Processing by BestBoy::BestBoyEventsController#stats as HTML
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-07 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".created_at ASC LIMIT 1
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2012-12-31 23:00:00.000000' AND '2013-01-31 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-01-31 23:00:00.000000' AND '2013-02-28 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-02-28 23:00:00.000000' AND '2013-03-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-03-31 22:00:00.000000' AND '2013-04-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-04-30 22:00:00.000000' AND '2013-05-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-05-31 22:00:00.000000' AND '2013-06-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-07-31 22:00:00.000000' AND '2013-08-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-08-31 22:00:00.000000' AND '2013-09-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-09-30 22:00:00.000000' AND '2013-10-31 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-10-31 23:00:00.000000' AND '2013-11-30 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL AND (best_boy_events.created_at BETWEEN '2013-11-30 23:00:00.000000' AND '2013-12-31 22:59:59.999999') GROUP BY event
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (0.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" IS NULL ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/stats.html.erb within layouts/best_boy_backend (2.7ms)
+Completed 200 OK in 25ms (Views: 7.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:03 +0200
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/index.html.erb within layouts/best_boy_backend (0.1ms)
+Completed 200 OK in 5ms (Views: 5.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 12:42:07 +0200
+
+
+Started GET "/tests" for 127.0.0.1 at 2013-07-02 12:43:30 +0200
+Processing by TestsController#index as HTML
+Completed 500 Internal Server Error in 0ms
+
+NoMethodError (undefined method `create' for Test:Module):
+  app/controllers/tests_controller.rb:4:in `index'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.7ms)
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19)
+
+
+Started GET "/test_events" for 127.0.0.1 at 2013-07-02 12:45:38 +0200
+Processing by TestEventsController#index as HTML
+Completed 500 Internal Server Error in 12ms
+
+ActiveRecord::StatementInvalid (Could not find table 'test_events'):
+  app/controllers/test_events_controller.rb:4:in `index'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeTestsToTestevents (20130702104631)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "tests" RENAME TO "test_events"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130702104631"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "best_boy_events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "owner_type" varchar(255), "event" varchar(255), "created_at" datetime, "updated_at" datetime, "event_source" varchar(255)) 
+  [1m[36m (1.1ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_event" ON "best_boy_events" ("event")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_best_boy_events_on_event_source" ON "best_boy_events" ("event_source")
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_best_boy_events_on_owner_id_and_owner_type" ON "best_boy_events" ("owner_id", "owner_type")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_best_boy_events_on_owner_type" ON "best_boy_events" ("owner_type")
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "test_events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130702104631')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130702102348')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130702102713')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130702102714')
+DEPRECATION WARNING: You didn't set config.secret_key_base. Read the upgrade documentation to learn more about this new config option. (called from load at /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19)
+
+
+Started GET "/test_events" for 127.0.0.1 at 2013-07-02 13:00:18 +0200
+Processing by TestEventsController#index as HTML
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (7.0ms)[0m  INSERT INTO "test_events" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00], ["updated_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "best_boy_events" ("created_at", "event", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00], ["event", "create"], ["owner_id", 1], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "best_boy_events" ("created_at", "event", "event_source", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00], ["event", "test_event"], ["event_source", "test_source"], ["owner_id", 1], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:00:18 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 130ms
+
+ActionView::MissingTemplate (Missing template test_events/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :haml]}. Searched in:
+  * "/Users/christophseydel/Development/gems/my_gems/best_boy/spec/dummy/app/views"
+  * "/Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/kaminari-0.14.1/app/views"
+  * "/Users/christophseydel/Development/gems/my_gems/best_boy/app/views"
+):
+  actionpack (4.0.0) lib/action_view/path_set.rb:46:in `find'
+  actionpack (4.0.0) lib/action_view/lookup_context.rb:115:in `find'
+  actionpack (4.0.0) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:35:in `determine_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/christophseydel/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:383:in `_run__884261041841329410__process_action__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:655:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:373:in `_run__400312933532017655__call__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  railties (4.0.0) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  thin (1.5.1) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.1) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.1) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.1) lib/thin/connection.rb:54:in `process'
+  thin (1.5.1) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.5.1) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.1) lib/thin/server.rb:159:in `start'
+  thin (1.5.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.5.1) lib/thin/runner.rb:187:in `run_command'
+  thin (1.5.1) lib/thin/runner.rb:152:in `run!'
+  thin (1.5.1) bin/thin:6:in `<top (required)>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19:in `load'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/thin:19:in `<main>'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/ruby_noexec_wrapper:14:in `eval'
+  /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/bin/ruby_noexec_wrapper:14:in `<main>'
+
+
+  Rendered /Users/christophseydel/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (3.0ms)
+
+
+Started GET "/test_events" for 127.0.0.1 at 2013-07-02 13:02:56 +0200
+Processing by TestEventsController#index as HTML
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "test_events" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00], ["updated_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00]]
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "best_boy_events" ("created_at", "event", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00], ["event", "create"], ["owner_id", 2], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00]]
+  [1m[36m (3.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "best_boy_events" ("created_at", "event", "event_source", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00], ["event", "test_event"], ["event_source", "test_source"], ["owner_id", 2], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "best_boy_events" SET "owner_id" = NULL WHERE "best_boy_events"."owner_id" = ? AND "best_boy_events"."owner_type" = ?  [["owner_id", 2], ["owner_type", "TestEvent"]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "test_events" WHERE "test_events"."id" = ?[0m  [["id", 2]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "best_boy_events" ("created_at", "event", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00], ["event", "destroy"], ["owner_id", 2], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:02:56 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 57ms (Views: 4.6ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/test_events" for 127.0.0.1 at 2013-07-02 13:03:55 +0200
+Processing by TestEventsController#index as HTML
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "test_events" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00], ["updated_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "best_boy_events" ("created_at", "event", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00], ["event", "create"], ["owner_id", 3], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "best_boy_events" ("created_at", "event", "event_source", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00], ["event", "test_event"], ["event_source", "test_source"], ["owner_id", 3], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "best_boy_events" SET "owner_id" = NULL WHERE "best_boy_events"."owner_id" = ? AND "best_boy_events"."owner_type" = ?  [["owner_id", 3], ["owner_type", "TestEvent"]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "test_events" WHERE "test_events"."id" = ?[0m  [["id", 3]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "best_boy_events" ("created_at", "event", "owner_id", "owner_type", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00], ["event", "destroy"], ["owner_id", 3], ["owner_type", "TestEvent"], ["updated_at", Tue, 02 Jul 2013 11:03:55 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  Rendered test_events/index.html.haml within layouts/application (1.1ms)
+Completed 200 OK in 78ms (Views: 12.4ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:55 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-02 13:03:55 +0200
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/index.html.erb within layouts/best_boy_backend (0.4ms)
+Completed 200 OK in 26ms (Views: 25.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:03:56 +0200
+
+
+Started GET "/best_boy_admin/stats" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+Processing by BestBoy::BestBoyEventsController#stats as HTML
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.4ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-07 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2012-12-31 23:00:00.000000' AND '2013-01-31 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-01-31 23:00:00.000000' AND '2013-02-28 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-02-28 23:00:00.000000' AND '2013-03-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-03-31 22:00:00.000000' AND '2013-04-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-04-30 22:00:00.000000' AND '2013-05-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-05-31 22:00:00.000000' AND '2013-06-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-31 22:00:00.000000' AND '2013-08-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-08-31 22:00:00.000000' AND '2013-09-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-09-30 22:00:00.000000' AND '2013-10-31 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-10-31 23:00:00.000000' AND '2013-11-30 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-11-30 23:00:00.000000' AND '2013-12-31 22:59:59.999999') GROUP BY event[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/stats.html.erb within layouts/best_boy_backend (9.4ms)
+Completed 200 OK in 41ms (Views: 13.8ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:03:58 +0200
+
+
+Started GET "/best_boy_admin/details?event=create&owner_type=TestEvent" for 127.0.0.1 at 2013-07-02 13:04:01 +0200
+Processing by BestBoy::BestBoyEventsController#details as HTML
+  Parameters: {"event"=>"create", "owner_type"=>"TestEvent"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-07 23:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' ORDER BY "best_boy_events".event_source ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2012-12-31 23:00:00.000000' AND '2013-01-31 22:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-01-31 23:00:00.000000' AND '2013-02-28 22:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-02-28 23:00:00.000000' AND '2013-03-31 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-03-31 22:00:00.000000' AND '2013-04-30 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-04-30 22:00:00.000000' AND '2013-05-31 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-05-31 22:00:00.000000' AND '2013-06-30 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-31 22:00:00.000000' AND '2013-08-31 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-08-31 22:00:00.000000' AND '2013-09-30 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-09-30 22:00:00.000000' AND '2013-10-31 22:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-10-31 23:00:00.000000' AND '2013-11-30 22:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-11-30 23:00:00.000000' AND '2013-12-31 22:59:59.999999') GROUP BY event_source[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/details.html.erb within layouts/best_boy_backend (52.6ms)
+Completed 200 OK in 79ms (Views: 57.4ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:02 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:02 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:02 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:02 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:02 +0200
+
+
+Started GET "/best_boy_admin/monthly_details?event=create&month=Jul&owner_type=TestEvent&time_interval=month&year=2013" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+Processing by BestBoy::BestBoyEventsController#monthly_details as HTML
+  Parameters: {"event"=>"create", "month"=>"Jul", "owner_type"=>"TestEvent", "time_interval"=>"month", "year"=>"2013"}
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-01 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' ORDER BY "best_boy_events".event_source ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-01 22:00:00.000000' AND '2013-07-02 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-02 22:00:00.000000' AND '2013-07-03 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-03 22:00:00.000000' AND '2013-07-04 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-04 22:00:00.000000' AND '2013-07-05 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-05 22:00:00.000000' AND '2013-07-06 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-06 22:00:00.000000' AND '2013-07-07 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-07 22:00:00.000000' AND '2013-07-08 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-08 22:00:00.000000' AND '2013-07-09 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-09 22:00:00.000000' AND '2013-07-10 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-10 22:00:00.000000' AND '2013-07-11 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-11 22:00:00.000000' AND '2013-07-12 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-12 22:00:00.000000' AND '2013-07-13 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-13 22:00:00.000000' AND '2013-07-14 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-14 22:00:00.000000' AND '2013-07-15 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-15 22:00:00.000000' AND '2013-07-16 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-16 22:00:00.000000' AND '2013-07-17 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-17 22:00:00.000000' AND '2013-07-18 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-18 22:00:00.000000' AND '2013-07-19 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-19 22:00:00.000000' AND '2013-07-20 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-20 22:00:00.000000' AND '2013-07-21 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-21 22:00:00.000000' AND '2013-07-22 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-22 22:00:00.000000' AND '2013-07-23 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-23 22:00:00.000000' AND '2013-07-24 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-24 22:00:00.000000' AND '2013-07-25 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-25 22:00:00.000000' AND '2013-07-26 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-26 22:00:00.000000' AND '2013-07-27 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-27 22:00:00.000000' AND '2013-07-28 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-28 22:00:00.000000' AND '2013-07-29 21:59:59.999999') GROUP BY event_source
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-29 22:00:00.000000' AND '2013-07-30 21:59:59.999999') GROUP BY event_source[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event_source
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/monthly_details.html.erb within layouts/best_boy_backend (9.4ms)
+Completed 200 OK in 48ms (Views: 15.2ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:04 +0200
+
+
+Started GET "/best_boy_admin/stats?owner_type=TestEvent" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+Processing by BestBoy::BestBoyEventsController#stats as HTML
+  Parameters: {"owner_type"=>"TestEvent"}
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-07 23:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2012-12-31 23:00:00.000000' AND '2013-01-31 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-01-31 23:00:00.000000' AND '2013-02-28 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-02-28 23:00:00.000000' AND '2013-03-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-03-31 22:00:00.000000' AND '2013-04-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-04-30 22:00:00.000000' AND '2013-05-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-05-31 22:00:00.000000' AND '2013-06-30 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-06-30 22:00:00.000000' AND '2013-07-31 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-31 22:00:00.000000' AND '2013-08-31 21:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-08-31 22:00:00.000000' AND '2013-09-30 21:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-09-30 22:00:00.000000' AND '2013-10-31 22:59:59.999999') GROUP BY event[0m
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-10-31 23:00:00.000000' AND '2013-11-30 22:59:59.999999') GROUP BY event
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT COUNT(*) as counter, event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-11-30 23:00:00.000000' AND '2013-12-31 22:59:59.999999') GROUP BY event[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (0.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".created_at ASC LIMIT 1
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/stats.html.erb within layouts/best_boy_backend (6.4ms)
+Completed 200 OK in 28ms (Views: 12.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:07 +0200
+
+
+Started GET "/best_boy_admin/lists" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.2ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events"
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (18.5ms)
+Completed 200 OK in 25ms (Views: 23.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:09 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=02-07-2013&owner_type=TestEvent&event=" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"02-07-2013", "owner_type"=>"TestEvent", "event"=>""}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.8ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.5ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (18.0ms)
+Completed 200 OK in 23ms (Views: 21.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:13 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=02-07-2013&owner_type=TestEvent&event=create" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"02-07-2013", "owner_type"=>"TestEvent", "event"=>"create"}
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.4ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (14.8ms)
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:18 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=02-07-2013&owner_type=TestEvent&event=destroy" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"02-07-2013", "owner_type"=>"TestEvent", "event"=>"destroy"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.7ms)
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (13.3ms)
+Completed 200 OK in 18ms (Views: 17.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:21 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=02-07-2013&owner_type=TestEvent&event=test_event" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"02-07-2013", "owner_type"=>"TestEvent", "event"=>"test_event"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.1ms)
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.4ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (16.9ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:25 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=02-07-2013&owner_type=TestEvent&event=test_event" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"02-07-2013", "owner_type"=>"TestEvent", "event"=>"test_event"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.1ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999') ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (14.3ms)
+Completed 200 OK in 22ms (Views: 20.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:31 +0200
+
+
+Started GET "/best_boy_admin/charts" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  [1m[36mBestBoyEvent Load (0.4ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" IS NULL ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (4.7ms)
+Completed 200 OK in 26ms (Views: 8.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:33 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=&event=destroy&event_source=&time_interval=" for 127.0.0.1 at 2013-07-02 13:04:35 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"", "event"=>"destroy", "event_source"=>"", "time_interval"=>""}
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' ORDER BY "best_boy_events".event_source ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (27.5ms)
+Completed 200 OK in 53ms (Views: 32.4ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:36 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:36 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=&event=create&event_source=&time_interval=" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"", "event"=>"create", "event_source"=>"", "time_interval"=>""}
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (5.8ms)
+Completed 200 OK in 29ms (Views: 10.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:38 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=&event=test_event&event_source=&time_interval=" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"", "event"=>"test_event", "event_source"=>"", "time_interval"=>""}
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (5.4ms)
+Completed 200 OK in 36ms (Views: 10.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:40 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=TestEvent&event=test_event&event_source=&time_interval=" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"TestEvent", "event"=>"test_event", "event_source"=>"", "time_interval"=>""}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.4ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (4.1ms)
+Completed 200 OK in 27ms (Views: 8.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:43 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=TestEvent&event=test_event&event_source=test_source&time_interval=" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"TestEvent", "event"=>"test_event", "event_source"=>"test_source", "time_interval"=>""}
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-01-01 00:00:00.000000' AND '2013-01-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-02-01 00:00:00.000000' AND '2013-02-28 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-03-01 00:00:00.000000' AND '2013-03-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-04-01 00:00:00.000000' AND '2013-04-30 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-05-01 00:00:00.000000' AND '2013-05-31 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-06-01 00:00:00.000000' AND '2013-06-30 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-31 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-08-01 00:00:00.000000' AND '2013-08-31 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-09-01 00:00:00.000000' AND '2013-09-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-10-01 00:00:00.000000' AND '2013-10-31 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-11-01 00:00:00.000000' AND '2013-11-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-12-01 00:00:00.000000' AND '2013-12-31 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (3.6ms)
+Completed 200 OK in 28ms (Views: 7.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:45 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=TestEvent&event=test_event&event_source=test_source&time_interval=month" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"TestEvent", "event"=>"test_event", "event_source"=>"test_source", "time_interval"=>"month"}
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-01 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-03 00:00:00.000000' AND '2013-07-03 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-04 00:00:00.000000' AND '2013-07-04 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-05 00:00:00.000000' AND '2013-07-05 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-06 00:00:00.000000' AND '2013-07-06 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-07 00:00:00.000000' AND '2013-07-07 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-08 00:00:00.000000' AND '2013-07-08 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-09 00:00:00.000000' AND '2013-07-09 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-10 00:00:00.000000' AND '2013-07-10 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-11 00:00:00.000000' AND '2013-07-11 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-12 00:00:00.000000' AND '2013-07-12 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-13 00:00:00.000000' AND '2013-07-13 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-14 00:00:00.000000' AND '2013-07-14 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-15 00:00:00.000000' AND '2013-07-15 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-16 00:00:00.000000' AND '2013-07-16 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-17 00:00:00.000000' AND '2013-07-17 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-18 00:00:00.000000' AND '2013-07-18 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-19 00:00:00.000000' AND '2013-07-19 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-20 00:00:00.000000' AND '2013-07-20 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-21 00:00:00.000000' AND '2013-07-21 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-22 00:00:00.000000' AND '2013-07-22 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-23 00:00:00.000000' AND '2013-07-23 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-24 00:00:00.000000' AND '2013-07-24 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-25 00:00:00.000000' AND '2013-07-25 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-26 00:00:00.000000' AND '2013-07-26 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-27 00:00:00.000000' AND '2013-07-27 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-28 00:00:00.000000' AND '2013-07-28 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-29 00:00:00.000000' AND '2013-07-29 23:59:59.999999')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-30 00:00:00.000000' AND '2013-07-30 23:59:59.999999')[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-31 00:00:00.000000' AND '2013-07-31 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (4.4ms)
+Completed 200 OK in 50ms (Views: 8.1ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:47 +0200
+
+
+Started GET "/best_boy_admin/charts?utf8=%E2%9C%93&owner_type=TestEvent&event=test_event&event_source=test_source&time_interval=week" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+Processing by BestBoy::BestBoyEventsController#charts as HTML
+  Parameters: {"utf8"=>"✓", "owner_type"=>"TestEvent", "event"=>"test_event", "event_source"=>"test_source", "time_interval"=>"week"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-01 00:00:00.000000' AND '2013-07-01 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-02 00:00:00.000000' AND '2013-07-02 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-03 00:00:00.000000' AND '2013-07-03 23:59:59.999999')
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-04 00:00:00.000000' AND '2013-07-04 23:59:59.999999')[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-05 00:00:00.000000' AND '2013-07-05 23:59:59.999999')
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-06 00:00:00.000000' AND '2013-07-06 23:59:59.999999')[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' AND "best_boy_events"."event_source" = 'test_source' AND (best_boy_events.created_at BETWEEN '2013-07-07 00:00:00.000000' AND '2013-07-07 23:59:59.999999')
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/charts.html.erb within layouts/best_boy_backend (3.8ms)
+Completed 200 OK in 24ms (Views: 7.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:52 +0200
+
+
+Started GET "/best_boy_admin" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+Processing by BestBoy::BestBoyEventsController#index as HTML
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/index.html.erb within layouts/best_boy_backend (0.1ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:56 +0200
+
+
+Started GET "/best_boy_admin/lists" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.2ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events"
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (14.1ms)
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:04:58 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=test_event" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"test_event"}
+  [1m[36mBestBoyEvent Load (0.4ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.9ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'test_event'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (14.6ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:05:01 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=destroy" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"destroy"}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (24.6ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'destroy' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'destroy'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (34.5ms)
+Completed 200 OK in 40ms (Views: 38.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:05:04 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=create" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"create"}
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.4ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'create' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event_source" = 'create'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (13.2ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:07:09 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>""}
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.9ms)
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.5ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (19.8ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:07:11 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>""}
+  [1m[36mBestBoyEvent Load (0.4ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.6ms)
+  [1m[35mBestBoyEvent Load (0.1ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.1ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" IS NULL ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent'[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (15.4ms)
+Completed 200 OK in 22ms (Views: 19.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:30 +0200
+
+
+Started GET "/assets/best_boy/glyphicons-halflings.png" for 127.0.0.1 at 2013-07-02 13:09:31 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=create" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"create"}
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.0ms)
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' ORDER BY "best_boy_events".event_source ASC
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'create'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (18.1ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/assets/best_boy/glyphicons-halflings.png" for 127.0.0.1 at 2013-07-02 13:09:33 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=destroy" for 127.0.0.1 at 2013-07-02 13:09:35 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"destroy"}
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (1.5ms)
+  [1m[35mBestBoyEvent Load (0.2ms)[0m  SELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC
+  [1m[36mBestBoyEvent Load (0.2ms)[0m  [1mSELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' ORDER BY "best_boy_events".event_source ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'destroy'[0m
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (14.6ms)
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/assets/best_boy/glyphicons-halflings.png" for 127.0.0.1 at 2013-07-02 13:09:36 +0200
+
+
+Started GET "/best_boy_admin/lists?utf8=%E2%9C%93&date=&owner_type=TestEvent&event=test_event" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+Processing by BestBoy::BestBoyEventsController#lists as HTML
+  Parameters: {"utf8"=>"✓", "date"=>"", "owner_type"=>"TestEvent", "event"=>"test_event"}
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT owner_type FROM "best_boy_events" ORDER BY "best_boy_events".owner_type ASC
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/_navigation.html.erb (2.4ms)
+  [1m[36mBestBoyEvent Load (0.3ms)[0m  [1mSELECT DISTINCT event FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' ORDER BY "best_boy_events".event ASC[0m
+  [1m[35mBestBoyEvent Load (0.3ms)[0m  SELECT DISTINCT event_source FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY "best_boy_events".event_source ASC
+  [1m[36mBestBoyEvent Load (0.4ms)[0m  [1mSELECT "best_boy_events".* FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event' ORDER BY created_at DESC, event ASC LIMIT 50 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "best_boy_events" WHERE "best_boy_events"."owner_type" = 'TestEvent' AND "best_boy_events"."event" = 'test_event'
+  Rendered /Users/christophseydel/Development/gems/my_gems/best_boy/app/views/best_boy/best_boy_events/lists.html.erb within layouts/best_boy_backend (20.4ms)
+Completed 200 OK in 27ms (Views: 24.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/best_boy/best_boy.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.css?body=1" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+
+
+Started GET "/assets/best_boy/bootstrap_datepicker.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+
+
+Started GET "/assets/best_boy/best_boy.js?body=1" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
+
+
+Started GET "/assets/best_boy/glyphicons-halflings.png" for 127.0.0.1 at 2013-07-02 13:09:38 +0200
