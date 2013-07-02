@@ -5,7 +5,6 @@ best_boy
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/Absolventa/best_boy)
 
 A simple event driven logging for ActiveRecord models.
-This gem moved from cseydel/best_boy to absolventa/best_boy
 
 
 What does this gem do?
@@ -13,6 +12,13 @@ What does this gem do?
 
 best_boy logs "create" and "delete" events as well as custom events triggered in controller actions. It uses an own polimorphic database table to log each event.
 At the moment, best_boy only provides support for ActiveRecord models.
+
+
+Rails version support
+----------------------
+
+best_boy supports rails 3.2.x in its versions 1.1.x. At this point there is a feature stop and it will only provide fixes for its current features.
+Rails 4.0 support is provided in best_boy's versions 1.2.0 up to the current version.
 
 
 Installation
@@ -61,18 +67,6 @@ If you were using the gem without asset-pipeline and want to update your project
 If you need to precompile assets, maybe for deployment on heroku cedar stack, please add the following flag to your best_boy initializer.
 
     config.precompile_assets = true
-
-
-Update from version 0.1.0
--------------------------
-
-Rerun the generator to get needed migrations
-
-    rails g best_boy
-
-Run the migration
-
-    rake db:migrate
 
 
 Usage
@@ -134,9 +128,17 @@ Used gems and resource
 
 [Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visulr in its version 2.1.2
 
+
+Contributors in alphabetic order
+--------------------------------
+@cseydel
+@danscho
+
+
 Thanks
 ------
-
+We are extremely grateful to everyone contributing to this project.
 Big thanks to each contributor on Impressionist. This gem helped me a long way to get here in modelling and creating a gem.
 
-Copyright (c) 2012 Absolventa GmbH. See LICENSE.txt for further details.
+
+See LICENSE.txt for details on licenses.
