@@ -247,7 +247,7 @@ module BestBoy
 
     def collection
       @best_boy_events ||= (
-        scope = current_scope({owner_type: params[:owner_type], event_source: current_event, date: current_date})
+        scope = current_scope({owner_type: params[:owner_type],event: current_event, event_source: current_event_source, date: current_date})
         scope.order("created_at DESC, event ASC").page(params[:page]).per(50)
       )
     end
