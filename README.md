@@ -113,6 +113,7 @@ Following configurations can be done:
     config.base_controller      "String"                    # default: "ApplicationController"      # declare with Controller should be inherited
     config.before_filter        "comma separated symbols"   # default: nil                          # declare before_filter to use inherited before_filters in admin section
     config.skip_before_filter   "comma separated symbols"   # default: nil                          # declare skip_before_filter to skip inherited before_filters in admin section
+    config.skip_after_filter    "comma separated symbols"   # default: nil                          # declare skip_after_filter to skip inherited after_filters in admin section
     config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
 
 After installation you can access it through:
