@@ -18,6 +18,8 @@ ActiveRecord::Base.establish_connection(
 )
 ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'examples'")
 ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'best_boy_events'")
+ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'best_boy_day_reports'")
+ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'best_boy_month_reports'")
 ActiveRecord::Schema.define do
   self.verbose = false
 
@@ -32,6 +34,29 @@ ActiveRecord::Schema.define do
   add_index :best_boy_events, :owner_type
   add_index :best_boy_events, [:owner_id, :owner_type]
   add_index :best_boy_events, :event
+
+  create_table :day_reports, :force => true do |t|
+    t.string  :eventable_type
+    t.integer :eventable_id
+    t.string  :event_type
+    t.integer :month_report_id
+    t.integer :occurences, default: 0
+    t.timestamps
+  end
+  create_table :month_reports, :force => true do |t|
+    t.string  :eventable_type
+    t.integer :eventable_id
+    t.string  :event_type
+    t.integer :occurences, default: 0
+    t.timestamps
+  end
+
+  add_index :day_reports, :created_at
+  add_index :month_reports, :created_at
+
+  puts "================"
+  puts "reports created!"
+  puts "================"
 
   create_table :examples, :force => true do |t|
     t.timestamps
