@@ -36,13 +36,13 @@ module BestBoy
     def trigger_create_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
-      reports_for "create"
+      report "create"
     end
 
     def trigger_destroy_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "destroy"
-      reports_for "destroy"
+      report "destroy"
     end
 
     def trigger_best_boy_event type, source = nil
@@ -56,7 +56,7 @@ module BestBoy
       best_boy_event.save
     end
 
-    def reports_for type
+    def report  type
       @month_report = BestBoy::MonthReport.current_for(self, type)
       @day_report   = BestBoy::DayReport.current_for(self, type)
 
