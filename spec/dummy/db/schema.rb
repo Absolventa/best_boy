@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131024104300) do
 
-  create_table "best_boy_day_reports", force: true do |t|
-    t.string   "eventable_type"
-    t.integer  "eventable_id"
-    t.string   "event_type"
-    t.integer  "month_report_id"
-    t.integer  "occurences",      default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "best_boy_day_reports", ["created_at"], name: "index_best_boy_day_reports_on_created_at"
-  add_index "best_boy_day_reports", ["eventable_type", "eventable_id"], name: "bb_day"
-
   create_table "best_boy_events", force: true do |t|
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -40,7 +27,20 @@ ActiveRecord::Schema.define(version: 20131024104300) do
   add_index "best_boy_events", ["owner_id", "owner_type"], name: "index_best_boy_events_on_owner_id_and_owner_type"
   add_index "best_boy_events", ["owner_type"], name: "index_best_boy_events_on_owner_type"
 
-  create_table "best_boy_month_reports", force: true do |t|
+  create_table "day_reports", force: true do |t|
+    t.string   "eventable_type"
+    t.integer  "eventable_id"
+    t.string   "event_type"
+    t.integer  "month_report_id"
+    t.integer  "occurences",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "day_reports", ["created_at"], name: "index_day_reports_on_created_at"
+  add_index "day_reports", ["eventable_type", "eventable_id"], name: "bb_day"
+
+  create_table "month_reports", force: true do |t|
     t.string   "eventable_type"
     t.integer  "eventable_id"
     t.string   "event_type"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20131024104300) do
     t.datetime "updated_at"
   end
 
-  add_index "best_boy_month_reports", ["created_at"], name: "index_best_boy_month_reports_on_created_at"
-  add_index "best_boy_month_reports", ["eventable_type", "eventable_id"], name: "bb_month"
+  add_index "month_reports", ["created_at"], name: "index_month_reports_on_created_at"
+  add_index "month_reports", ["eventable_type", "eventable_id"], name: "bb_month"
 
   create_table "test_events", force: true do |t|
     t.datetime "created_at"
