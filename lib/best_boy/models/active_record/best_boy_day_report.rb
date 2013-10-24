@@ -41,7 +41,10 @@ module BestBoy
 
       def self.create_for(eventable, type)
         month_report = BestBoy::MonthReport.current_for(eventable, type)
-        day_report = BestBoy::DayReport.create(eventable_id: eventable.id, eventable_type: eventable.class.to_param, event_type: type, month_report_id: month_report.to_param)
+        day_report = BestBoy::DayReport.create(
+          eventable_id: eventable.id,
+          eventable_type: eventable.class.to_param,
+          event_type: type, month_report_id: month_report.to_param)
         day_report
       end
 
