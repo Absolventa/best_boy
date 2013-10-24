@@ -28,22 +28,17 @@ describe BestBoy::MonthReport do
   context "with scopes" do
     it "aggregates MonthReports of specific month" do
       collection = BestBoy::MonthReport.order('created_at DESC')
-      expect(collection.month(Time.zone.now.month, Time.zone.now.year)).to include(month_report)
+      expect(collection.month(Time.now.month, Time.now.year)).to include(month_report)
       expect(collection.month(2.month.ago.month, 2.month.ago.year )).to_not include(month_report)
     end
     it "aggregates MonthReports of specific day" do
       collection = BestBoy::MonthReport.order('created_at DESC')
-      expect(collection.created_on(Time.zone.now)).to include(month_report)
+      expect(collection.created_on(Time.now)).to include(month_report)
       expect(collection.created_on(1.day.ago)).to_not include(month_report)
     end
   end
 
   context "with instance methods" do
-    context "with delegations" do
-      its(:month) { should == subject.created_at.month }
-      its(:year) { should == subject.created_at.year }
-    end
-
     describe "#closed?" do
       it "is not closed if no younger MonthReport for the eventable_id exists" do
         expect(month_report.closed?).to be_false
@@ -78,12 +73,15 @@ describe BestBoy::MonthReport do
 
       context "when no today's day_report is present" do
         eventable = Example.create # important to be placed right her # important to be placed right heree
-        scope = BestBoy::MonthReport.where(eventable_id: eventable.id, eventable_type: eventable.class.to_s, event_type: "create")
+        scope = BestBoy::MonthReport.where(
+          eventable_id: eventable.id,
+          eventable_type: eventable.class.to_s,
+          event_type: "create")
         mth = Time.now.month
         yr = Time.now.year
 
         it { expect(scope.month(mth, yr)).to be_empty }
-        it { expect{ BestBoy::MonthReport.current_for(viewable) }.to change(scope.month(mth, yr), :count).by(1) }
+        it { expect{ BestBoy::MonthReport.current_for(eventable, "create") }.to change(scope.month(mth, yr), :count).by(1) }
       end
     end
   end

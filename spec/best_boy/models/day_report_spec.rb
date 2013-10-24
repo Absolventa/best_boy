@@ -12,9 +12,10 @@ describe BestBoy::DayReport do
   end
   let(:day_report) do
      BestBoy::DayReport.create({
-      eventable_id:   eventable.id,
-      eventable_type: eventable.class.to_param,
-      event_type:     "create"
+      eventable_id:    eventable.id,
+      eventable_type:  eventable.class.to_param,
+      event_type:      "create",
+      month_report_id: month_report.to_param
     })
   end
 
@@ -36,20 +37,16 @@ describe BestBoy::DayReport do
   context "with scopes" do
     it "aggregates DayReports of specific day" do
       collection = BestBoy::DayReport.order('created_at DESC')
-      expect(collection.created_on(Time.zone.now)).to include(day_report)
+      expect(collection.created_on(Time.now)).to include(day_report)
       expect(collection.created_on(1.day.ago)).to_not include(day_report)
     end
   end
 
   context "with instance methods" do
-    context "with delegations" do
-      its(:day) { should == subject.created_at.day }
-      its(:month) { should == subject.created_at.month }
-      its(:year) { should == subject.created_at.year }
-    end
-
     describe "#closed?" do
       it "is not closed if it is the youngest DayReport for the eventable" do
+        day_report.save
+        p day_report
         expect(day_report.closed?).to be_false
       end
 
