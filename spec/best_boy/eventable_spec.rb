@@ -19,20 +19,20 @@ describe BestBoy::Eventable do
   end
 
   context "with reporting" do
-      let(:month_report) do
-        BestBoy::MonthReport.where(
-                      eventable_id: @example.id,
-                      eventable_type: @example.class,
-                      event_type: 'create'
-                     ).first
-      end
-      let(:day_report) do
-        BestBoy::DayReport.where(
-                      eventable_id: @example.id,
-                      eventable_type: @example.class,
-                      event_type: 'create'
-                     ).first
-      end
+    let(:month_report) do
+      BestBoy::MonthReport.where(
+        eventable_id: @example.id,
+        eventable_type: @example.class,
+        event_type: 'create'
+      ).first
+    end
+    let(:day_report) do
+      BestBoy::DayReport.where(
+        eventable_id: @example.id,
+        eventable_type: @example.class,
+        event_type: 'create'
+      ).first
+    end
     it "loads reports" do
       expect(month_report).to be_present
       expect(day_report).to be_present
@@ -42,6 +42,12 @@ describe BestBoy::Eventable do
       BestBoy::MonthReport.any_instance.should_receive(:increment).and_return(true)
       BestBoy::DayReport.any_instance.should_receive(:increment).and_return(true)
       Example.create
+    end
+
+    it "increases occurence counter when an instance is destroyed" do
+      BestBoy::MonthReport.any_instance.should_receive(:increment).and_return(true)
+      BestBoy::DayReport.any_instance.should_receive(:increment).and_return(true)
+      Example.first.destroy
     end
   end
 end
