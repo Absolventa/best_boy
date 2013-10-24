@@ -54,10 +54,6 @@ ActiveRecord::Schema.define do
   add_index :day_reports, :created_at
   add_index :month_reports, :created_at
 
-  puts "================"
-  puts "reports created!"
-  puts "================"
-
   create_table :examples, :force => true do |t|
     t.timestamps
   end
