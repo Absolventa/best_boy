@@ -16,9 +16,9 @@ class CreateReports < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :best_boy_day_reports, [:eventable_type, :eventable_id]
+    add_index :best_boy_day_reports, [:eventable_type, :eventable_id], name: 'bb_day'
     add_index :best_boy_day_reports, :created_at
-    add_index :best_boy_month_reports, [:eventable_type, :eventable_id]
+    add_index :best_boy_month_reports, [:eventable_type, :eventable_id], name: 'bb_month'
     add_index :best_boy_month_reports, :created_at
   end
 
