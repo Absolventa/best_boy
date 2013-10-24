@@ -71,8 +71,10 @@ describe BestBoy::MonthReport do
         it { expect(demanded).to be_eql existing_report }
       end
 
-      context "when no today's day_report is present" do
+      context "when no month_report is present" do
         eventable = Example.create # important to be placed right her # important to be placed right heree
+        BestBoy::MonthReport.destroy_all
+
         scope = BestBoy::MonthReport.where(
           eventable_id: eventable.id,
           eventable_type: eventable.class.to_s,

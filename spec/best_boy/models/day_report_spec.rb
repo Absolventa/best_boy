@@ -45,8 +45,7 @@ describe BestBoy::DayReport do
   context "with instance methods" do
     describe "#closed?" do
       it "is not closed if it is the youngest DayReport for the eventable" do
-        day_report.save
-        p day_report
+        day_report
         expect(day_report.closed?).to be_false
       end
 
@@ -82,6 +81,8 @@ describe BestBoy::DayReport do
 
       context "when no today's day_report is present" do
         eventable = Example.create # important to be placed right her # important to be placed right heree
+        BestBoy::DayReport.destroy_all
+
         scope = BestBoy::DayReport.where(eventable_id: eventable.id, eventable_type: eventable.class.to_s, event_type: "create")
         it { expect(scope.today).to be_empty }
         it { expect{ BestBoy::DayReport.current_for(eventable, "create") }.to change(scope.today, :count).by(1) }
