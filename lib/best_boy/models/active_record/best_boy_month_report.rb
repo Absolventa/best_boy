@@ -37,7 +37,7 @@ module BestBoy
       #
 
       def self.current_for(eventable, type)
-        month_report = self.for(eventable, type).month(Time.zone.now.month, Time.zone.now.year).last
+        month_report = self.for(eventable, type).month(Time.now.month, Time.now.year).last
         month_report.present? ? month_report : self.create_for(eventable, type)
       end
 
