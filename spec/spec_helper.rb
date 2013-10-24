@@ -37,7 +37,6 @@ ActiveRecord::Schema.define do
 
   create_table :day_reports, :force => true do |t|
     t.string  :eventable_type
-    t.integer :eventable_id
     t.string  :event_type
     t.integer :month_report_id
     t.integer :occurences, default: 0
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define do
   end
   create_table :month_reports, :force => true do |t|
     t.string  :eventable_type
-    t.integer :eventable_id
     t.string  :event_type
     t.integer :occurences, default: 0
     t.timestamps
