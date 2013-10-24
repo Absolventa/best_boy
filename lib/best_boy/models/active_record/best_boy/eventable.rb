@@ -36,11 +36,13 @@ module BestBoy
     def trigger_create_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
+      reports_for "create"
     end
 
     def trigger_destroy_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "destroy"
+      reports_for "destroy"
     end
 
     def trigger_best_boy_event type, source = nil
@@ -52,6 +54,9 @@ module BestBoy
       best_boy_event = BestBoyEvent.new(:event => type, :event_source => source)
       best_boy_event.owner = self
       best_boy_event.save
+    end
+
+    def reports_for type
     end
   end
 end
