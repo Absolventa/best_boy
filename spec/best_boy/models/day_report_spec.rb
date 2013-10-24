@@ -6,14 +6,14 @@ describe BestBoy::DayReport do
   let(:month_report) do
     BestBoy::MonthReport.create({
       eventable_id:   eventable.id,
-      eventable_type: eventable.class.to_param
+      eventable_type: eventable.class.to_param,
       event_type:     "create"
     })
   end
   let(:day_report) do
      BestBoy::DayReport.create({
       eventable_id:   eventable.id,
-      eventable_type: eventable.class.to_param
+      eventable_type: eventable.class.to_param,
       event_type:     "create"
     })
   end
@@ -67,7 +67,8 @@ describe BestBoy::DayReport do
 
   context "with class methods" do
     describe "#create_for" do
-      report = BestBoy::DayReport.create_for(eventable)
+      eventable = Example.create
+      report = BestBoy::DayReport.create_for(eventable, "create")
 
       it { expect(report).to be_valid }
       it { expect(report.eventable_id).to be_eql(eventable.id) }
@@ -76,6 +77,7 @@ describe BestBoy::DayReport do
 
     describe "#current_for" do
       context "when day_report exists" do
+        eventable = Example.create
         existing_report = BestBoy::DayReport.create_for(eventable, "create")
         demanded = BestBoy::DayReport.current_for(eventable, "create")
         it { expect(demanded).to be_eql existing_report }
