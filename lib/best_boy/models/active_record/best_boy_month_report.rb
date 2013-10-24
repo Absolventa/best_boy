@@ -6,7 +6,7 @@ module BestBoy
       #
 
       belongs_to :eventable, polymorphic: true
-      belongs_to :month_report
+      has_many :day_reports
 
       # validations
       #
