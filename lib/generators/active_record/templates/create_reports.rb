@@ -1,6 +1,6 @@
 class CreateReports < ActiveRecord::Migration
   def self.up
-    create_table :best_boy_day_reports, :force => true do |t|
+    create_table :day_reports, :force => true do |t|
       t.string  :eventable_type
       t.integer :eventable_id
       t.string  :event_type
@@ -8,7 +8,7 @@ class CreateReports < ActiveRecord::Migration
       t.integer :occurences, default: 0
       t.timestamps
     end
-    create_table :best_boy_month_reports, :force => true do |t|
+    create_table :month_reports, :force => true do |t|
       t.string  :eventable_type
       t.integer :eventable_id
       t.string  :event_type
@@ -16,14 +16,14 @@ class CreateReports < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :best_boy_day_reports, [:eventable_type, :eventable_id], name: 'bb_day'
-    add_index :best_boy_day_reports, :created_at
-    add_index :best_boy_month_reports, [:eventable_type, :eventable_id], name: 'bb_month'
-    add_index :best_boy_month_reports, :created_at
+    add_index :day_reports, [:eventable_type, :eventable_id], name: 'bb_day'
+    add_index :day_reports, :created_at
+    add_index :month_reports, [:eventable_type, :eventable_id], name: 'bb_month'
+    add_index :month_reports, :created_at
   end
 
   def self.down
-    drop_table :best_boy_month_reports
-    drop_table :best_boy_day_reports
+    drop_table :month_reports
+    drop_table :day_reports
   end
 end
