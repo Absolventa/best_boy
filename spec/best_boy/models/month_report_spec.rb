@@ -53,7 +53,7 @@ describe BestBoy::MonthReport do
   context "with class methods" do
     describe "#create_for" do
       eventable = Example.create
-      report = BestBoy::MonthReport.create_for(eventable, "create")
+      report = BestBoy::MonthReport.create_for(eventable.class, "create")
 
       it { expect(report).to be_valid }
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
@@ -63,8 +63,8 @@ describe BestBoy::MonthReport do
     describe "#current_for" do
       context "when month_report exists" do
         eventable = Example.create
-        existing_report = BestBoy::MonthReport.create_for(eventable, "create")
-        demanded = BestBoy::MonthReport.current_for(eventable, "create")
+        existing_report = BestBoy::MonthReport.create_for(eventable.class, "create")
+        demanded = BestBoy::MonthReport.current_for(eventable.class, "create")
         it { expect(demanded).to be_eql existing_report }
       end
 
@@ -79,7 +79,7 @@ describe BestBoy::MonthReport do
           yr = Time.now.year
 
           expect(scope.month(mth, yr)).to be_empty
-          expect{ BestBoy::MonthReport.current_for(eventable, "create") }.to change(scope.month(mth, yr), :count).by(1)
+          expect{ BestBoy::MonthReport.current_for(eventable.class, "create") }.to change(scope.month(mth, yr), :count).by(1)
         end
       end
     end

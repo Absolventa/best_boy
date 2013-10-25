@@ -60,7 +60,7 @@ describe BestBoy::DayReport do
   context "with class methods" do
     describe "#create_for" do
       eventable = Example.create
-      report = BestBoy::DayReport.create_for(eventable, "create")
+      report = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
 
       it { expect(report).to be_valid }
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
@@ -69,8 +69,8 @@ describe BestBoy::DayReport do
     describe "#current_for" do
       context "when day_report exists" do
         eventable = Example.create
-        existing_report = BestBoy::DayReport.create_for(eventable, "create")
-        demanded = BestBoy::DayReport.current_for(eventable, "create")
+        existing_report = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
+        demanded = BestBoy::DayReport.current_for(eventable.class.to_s, "create")
         it { expect(demanded).to be_eql existing_report }
       end
 
@@ -80,7 +80,7 @@ describe BestBoy::DayReport do
           scope = BestBoy::DayReport.where(eventable_type: Example.to_s, event_type: "create")
 
           expect(scope.today).to be_empty
-          expect{ BestBoy::DayReport.current_for(eventable, "create") }.to change(scope.today, :count).by(1)
+          expect{ BestBoy::DayReport.current_for(eventable.class.to_s, "create") }.to change(scope.today, :count).by(1)
         end
       end
     end

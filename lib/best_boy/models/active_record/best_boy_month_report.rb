@@ -42,11 +42,11 @@ module BestBoy
       end
 
       def self.create_for(eventable, type)
-        BestBoy::MonthReport.create(eventable_type: eventable.class.to_param, event_type: type)
+        BestBoy::MonthReport.create(eventable_type: eventable.to_s, event_type: type)
       end
 
       def self.for(eventable, type)
-        self.where(eventable_type: eventable.class, event_type: type)
+        self.where(eventable_type: eventable, event_type: type)
       end
   end
 end
