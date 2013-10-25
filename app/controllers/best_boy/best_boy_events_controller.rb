@@ -13,7 +13,18 @@ module BestBoy
                   :render_chart, :month_name_array, :detail_count
 
 
+    def grab_reports
+      @day_reports, @month_reports, @occurences = {}, {}, {}
+
+      available_events.each do |event|
+        @day_reports[event] = BestBoy::DayReport.current_for(current_owner_type, event)
+        @month_reports[event] = BestBoy::MonthReport.current_for(current_owner_type, event)
+        @occurences = @occurences.merge({ event.to_sym => { :today => @day_reports[event].occurences, :current_month => @month_reports[event].occurences }})
+      end
+    end
+
     def stats
+      grab_reports
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event").where(:owner_type => current_owner_type).group('event')
 
       # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
