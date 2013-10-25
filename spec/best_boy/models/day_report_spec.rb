@@ -5,14 +5,12 @@ describe BestBoy::DayReport do
   let(:eventable) { Example.create }
   let(:month_report) do
     BestBoy::MonthReport.create({
-      eventable_id:   eventable.id,
       eventable_type: eventable.class.to_param,
       event_type:     "create"
     })
   end
   let(:day_report) do
      BestBoy::DayReport.create({
-      eventable_id:    eventable.id,
       eventable_type:  eventable.class.to_param,
       event_type:      "create",
       month_report_id: month_report.to_param
@@ -29,7 +27,6 @@ describe BestBoy::DayReport do
     it "validates presence of attributes" do
       should validate_presence_of(:month_report_id)
       should validate_presence_of(:eventable_type)
-      should validate_presence_of(:eventable_id)
       should validate_presence_of(:event_type)
     end
   end
@@ -52,7 +49,6 @@ describe BestBoy::DayReport do
       it "is closed if it is not the youngest DayReport" do
         newer_day_report = BestBoy::DayReport.new(
           eventable_type: day_report.eventable_type,
-          eventable_id: day_report.eventable_id,
           month_report_id: month_report.to_param,
           event_type: day_report.event_type)
         newer_day_report.save
@@ -67,7 +63,6 @@ describe BestBoy::DayReport do
       report = BestBoy::DayReport.create_for(eventable, "create")
 
       it { expect(report).to be_valid }
-      it { expect(report.eventable_id).to be_eql(eventable.id) }
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
     end
 
@@ -83,11 +78,10 @@ describe BestBoy::DayReport do
         eventable = Example.create # important to be placed right her # important to be placed right heree
         BestBoy::DayReport.destroy_all
 
-        scope = BestBoy::DayReport.where(eventable_id: eventable.id, eventable_type: eventable.class.to_s, event_type: "create")
+        scope = BestBoy::DayReport.where(eventable_type: eventable.class.to_s, event_type: "create")
         it { expect(scope.today).to be_empty }
         it { expect{ BestBoy::DayReport.current_for(eventable, "create") }.to change(scope.today, :count).by(1) }
       end
     end
   end
 end
-

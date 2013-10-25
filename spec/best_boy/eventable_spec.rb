@@ -21,14 +21,12 @@ describe BestBoy::Eventable do
   context "with reporting" do
     let(:month_report) do
       BestBoy::MonthReport.where(
-        eventable_id: @example.id,
         eventable_type: @example.class,
         event_type: 'create'
       ).first
     end
     let(:day_report) do
       BestBoy::DayReport.where(
-        eventable_id: @example.id,
         eventable_type: @example.class,
         event_type: 'create'
       ).first

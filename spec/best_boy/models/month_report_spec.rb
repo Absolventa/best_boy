@@ -5,7 +5,6 @@ describe BestBoy::MonthReport do
   let(:eventable) { Example.create }
   let(:month_report) do
     BestBoy::MonthReport.create({
-      eventable_id:   eventable.id,
       eventable_type: eventable.class.to_param,
       event_type:     "create"
     })
@@ -20,7 +19,6 @@ describe BestBoy::MonthReport do
   describe "with validations" do
     it "should validate presence of attributes" do
       should validate_presence_of(:eventable_type)
-      should validate_presence_of(:eventable_id)
       should validate_presence_of(:event_type)
     end
   end
@@ -45,7 +43,7 @@ describe BestBoy::MonthReport do
       end
 
       it "is closed if it is not the youngest MonthReport" do
-        newer_month_report = BestBoy::MonthReport.new(eventable_type: month_report.eventable_type, eventable_id: month_report.eventable_id, event_type: month_report.event_type)
+        newer_month_report = BestBoy::MonthReport.new(eventable_type: month_report.eventable_type, event_type: month_report.event_type)
         newer_month_report.save
         expect(month_report.closed?).to be_true
       end
@@ -58,7 +56,6 @@ describe BestBoy::MonthReport do
       report = BestBoy::MonthReport.create_for(eventable, "create")
 
       it { expect(report).to be_valid }
-      it { expect(report.eventable_id).to be_eql(eventable.id) }
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
       it { expect(report.event_type).to be_eql("create") }
     end
@@ -76,7 +73,6 @@ describe BestBoy::MonthReport do
         BestBoy::MonthReport.destroy_all
 
         scope = BestBoy::MonthReport.where(
-          eventable_id: eventable.id,
           eventable_type: eventable.class.to_s,
           event_type: "create")
         mth = Time.now.month

@@ -12,7 +12,7 @@ module BestBoy
       #
       #
 
-      validates :month_report_id, :eventable_id, :eventable_type, :event_type, presence: true
+      validates :month_report_id, :eventable_type, :event_type, presence: true
 
       # scopes
       #
@@ -27,7 +27,7 @@ module BestBoy
       delegate :day, :month, :year, to: :created_at
 
       def closed?
-        self.id == BestBoy::DayReport.where(eventable_id: eventable_id, eventable_type: eventable_type, event_type: event_type).order('created_at ASC').last.id ? false : true
+        self.id == BestBoy::DayReport.where(eventable_type: eventable_type, event_type: event_type).order('created_at ASC').last.id ? false : true
       end
 
       # class methods
@@ -42,14 +42,14 @@ module BestBoy
       def self.create_for(eventable, type)
         month_report = BestBoy::MonthReport.current_for(eventable, type)
         day_report = BestBoy::DayReport.create(
-          eventable_id: eventable.id,
+
           eventable_type: eventable.class.to_param,
           event_type: type, month_report_id: month_report.to_param)
         day_report
       end
 
       def self.for(eventable, type)
-        self.where(eventable_id: eventable.id, eventable_type: eventable.class, event_type: type)
+        self.where(eventable_type: eventable.class, event_type: type)
       end
 
       def self.today
