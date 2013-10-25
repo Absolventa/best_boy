@@ -69,17 +69,18 @@ describe BestBoy::MonthReport do
       end
 
       context "when no month_report is present" do
-        eventable = Example.create # important to be placed right her # important to be placed right heree
-        BestBoy::MonthReport.destroy_all
+        it "creates a new month_report" do
+          BestBoy::MonthReport.destroy_all
 
-        scope = BestBoy::MonthReport.where(
-          eventable_type: eventable.class.to_s,
-          event_type: "create")
-        mth = Time.now.month
-        yr = Time.now.year
+          scope = BestBoy::MonthReport.where(
+            eventable_type: Example.to_s,
+            event_type: "create")
+          mth = Time.now.month
+          yr = Time.now.year
 
-        it { expect(scope.month(mth, yr)).to be_empty }
-        it { expect{ BestBoy::MonthReport.current_for(eventable, "create") }.to change(scope.month(mth, yr), :count).by(1) }
+          expect(scope.month(mth, yr)).to be_empty
+          expect{ BestBoy::MonthReport.current_for(eventable, "create") }.to change(scope.month(mth, yr), :count).by(1)
+        end
       end
     end
   end

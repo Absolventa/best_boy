@@ -75,12 +75,13 @@ describe BestBoy::DayReport do
       end
 
       context "when no today's day_report is present" do
-        eventable = Example.create # important to be placed right her # important to be placed right heree
-        BestBoy::DayReport.destroy_all
+        it "creates a new month_report" do
+          BestBoy::DayReport.destroy_all
+          scope = BestBoy::DayReport.where(eventable_type: Example.to_s, event_type: "create")
 
-        scope = BestBoy::DayReport.where(eventable_type: eventable.class.to_s, event_type: "create")
-        it { expect(scope.today).to be_empty }
-        it { expect{ BestBoy::DayReport.current_for(eventable, "create") }.to change(scope.today, :count).by(1) }
+          expect(scope.today).to be_empty
+          expect{ BestBoy::DayReport.current_for(eventable, "create") }.to change(scope.today, :count).by(1)
+        end
       end
     end
   end
