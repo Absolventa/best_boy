@@ -56,8 +56,8 @@ module BestBoy
     end
 
     def report type
-      @month_report = BestBoy::MonthReport.current_for(self, type)
-      @day_report   = BestBoy::DayReport.current_for(self, type)
+      @month_report = BestBoy::MonthReport.current_for(self.class.to_s, type)
+      @day_report   = BestBoy::DayReport.current_for(self.class.to_s, type)
 
       increment_occurences_in_month_report
       increment_occurences_in_day_report
