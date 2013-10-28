@@ -14,19 +14,42 @@ module BestBoy
                   :render_chart, :month_name_array, :detail_count
 
 
-    def grab_reports
+    def weekly_occurences_for event
+      BestBoy::DayReport.week.where(eventable_type: current_owner_type, event_type: event).sum(:occurences)
+    end
+
+    def monthly_occurences_for event, month, year
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).month(month, year).sum(:occurences)
+    end
+
+    def yearly_occurences_for event, year
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).months(1, 12, year, year).sum(:occurences)
+    end
+
+    def overall_occurences_for event
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).sum(:occurences)
+    end
+
+    def grab_reports_for_this_year
       @day_reports, @month_reports, @occurences = {}, {}, {}
 
       available_events.each do |event|
-        @day_reports[event] = BestBoy::DayReport.current_for(current_owner_type, event)
+        @day_reports[event]   = BestBoy::DayReport.current_for(current_owner_type, event)
         @month_reports[event] = BestBoy::MonthReport.current_for(current_owner_type, event)
-        @occurences = @occurences.merge({ event.to_sym => { :today => @day_reports[event].occurences, :current_month => @month_reports[event].occurences }})
+        @occurences           = @occurences.merge({ event => {
+          :daily => @day_reports[event].occurences,
+          :weekly => weekly_occurences_for(event),
+          :monthly => @month_reports[event].occurences,
+          :yearly => yearly_occurences_for(event, current_year),
+          :overall => overall_occurences_for(event)
+        }})
       end
     end
 
-    def stats
-      grab_reports
-      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event").where(:owner_type => current_owner_type).group('event')
+    def crunch_data_for_selected_year
+      @selected_year_month_reports = {}
+      available_events.each { |event| crunch_data_for_selected_year_of event }
+    end
 
       # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
       # We fire 5 database queries, one for each group, to keep it database acnostic.
@@ -37,6 +60,8 @@ module BestBoy
       current_month_hash = counter_scope.per_month(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
       current_week_hash = counter_scope.per_week(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
       current_day_hash = counter_scope.per_day(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
+    def crunch_data_for_selected_year_of event
+      @selected_year_month_reports = @selected_year_month_reports.merge({event => {}})
 
       available_events.each do |event|
         @event_counts_per_group[event] ||= {}
@@ -45,7 +70,12 @@ module BestBoy
         @event_counts_per_group[event]['month'] = current_month_hash[event] || 0
         @event_counts_per_group[event]['week'] = current_week_hash[event] || 0
         @event_counts_per_group[event]['day'] = current_day_hash[event] || 0
+      (1..12).each do |month|
+        @selected_year_month_reports[event] = @selected_year_month_reports[event].merge({
+          month => BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).month(month, current_year).sum(:occurences)
+        })
       end
+    end
 
       # Custom hash for current event stats per month (with given current_owner_type)
       # We fire 12 database queries, one for each month, to keep it database acnostic.
@@ -53,10 +83,24 @@ module BestBoy
       @event_counts_per_month = {}
       %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
         month_hash = counter_scope.per_month("1-#{month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
+    def compute_totals
+      @this_year_totals = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
+      @selected_year_totals = {}
 
         available_events.each do |event|
           @event_counts_per_month[event] ||= {}
           @event_counts_per_month[event][month] = month_hash[event] || 0
+      available_events.each do |event|
+        @this_year_totals[:daily]   += @occurences[event][:daily]
+        @this_year_totals[:weekly]  += @occurences[event][:weekly]
+        @this_year_totals[:monthly] += @occurences[event][:monthly]
+        @this_year_totals[:yearly]  += @occurences[event][:yearly]
+        @this_year_totals[:overall] += @occurences[event][:overall]
+
+        (1..12).each do |month|
+          @selected_year_totals = @selected_year_totals.update(
+            { month => monthly_occurences_for(event, month, current_year) }
+          ) { |key, value1, value2| value1+value2  } # sum up values each time hash is updated
         end
       end
     end
