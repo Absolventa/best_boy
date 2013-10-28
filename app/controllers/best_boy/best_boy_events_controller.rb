@@ -51,25 +51,9 @@ module BestBoy
       available_events.each { |event| crunch_data_for_selected_year_of event }
     end
 
-      # Custom hash for current event stats - current_year, current_month, current_week, current_day (with given current_owner_type)
-      # We fire 5 database queries, one for each group, to keep it database acnostic.
-      # Before we had 5 * n events queries
-      @event_counts_per_group = {}
-      overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event] = element.counter; hash}
-      current_year_hash = counter_scope.per_year(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
-      current_month_hash = counter_scope.per_month(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
-      current_week_hash = counter_scope.per_week(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
-      current_day_hash = counter_scope.per_day(Time.zone.now).inject({}){ |hash, element| hash[element.event] = element.counter; hash }
     def crunch_data_for_selected_year_of event
       @selected_year_month_reports = @selected_year_month_reports.merge({event => {}})
 
-      available_events.each do |event|
-        @event_counts_per_group[event] ||= {}
-        @event_counts_per_group[event]['overall'] = overall_hash[event] || 0
-        @event_counts_per_group[event]['year'] = current_year_hash[event] || 0
-        @event_counts_per_group[event]['month'] = current_month_hash[event] || 0
-        @event_counts_per_group[event]['week'] = current_week_hash[event] || 0
-        @event_counts_per_group[event]['day'] = current_day_hash[event] || 0
       (1..12).each do |month|
         @selected_year_month_reports[event] = @selected_year_month_reports[event].merge({
           month => BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).month(month, current_year).sum(:occurences)
@@ -77,19 +61,10 @@ module BestBoy
       end
     end
 
-      # Custom hash for current event stats per month (with given current_owner_type)
-      # We fire 12 database queries, one for each month, to keep it database acnostic.
-      # Before we had 12 * n events queries
-      @event_counts_per_month = {}
-      %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
-        month_hash = counter_scope.per_month("1-#{month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event] = element.counter; hash}
     def compute_totals
       @this_year_totals = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
       @selected_year_totals = {}
 
-        available_events.each do |event|
-          @event_counts_per_month[event] ||= {}
-          @event_counts_per_month[event][month] = month_hash[event] || 0
       available_events.each do |event|
         @this_year_totals[:daily]   += @occurences[event][:daily]
         @this_year_totals[:weekly]  += @occurences[event][:weekly]
