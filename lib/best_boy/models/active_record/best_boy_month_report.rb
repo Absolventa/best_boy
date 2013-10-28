@@ -19,14 +19,26 @@ module BestBoy
       #
 
       scope :created_on, ->(date) { where('created_at >= ? AND created_at <= ?', date.beginning_of_day, date.end_of_day) }
-      scope :month, ->(month, year) { where('created_at >= ? AND created_at <= ?', Date.parse("01."+month.to_s+"."+year.to_s).beginning_of_day,
-                                            Date.parse("01."+month.to_s+"."+year.to_s).next_month.beginning_of_day) }
+
+      scope :months, ->(start_month, end_month, start_year, end_year) {
+        where('created_at >= ? AND created_at < ?',
+              Date.parse("#{start_year}-#{start_month}-01").beginning_of_day,
+              Date.parse("#{end_year}-#{end_month}-01").next_month.beginning_of_day
+        )
+      }
+
+      scope :month, ->(month, year) {
+        where('created_at >= ? AND created_at < ?',
+              Date.parse("#{year}-#{month}-01").beginning_of_day,
+              Date.parse("#{year}-#{month}-01").next_month.beginning_of_day
+        )
+      }
 
       # instance methods
       #
       #
 
-      delegate :month, :year,  to: :created_at
+      delegate :month, :year, to: :created_at
 
       def closed?
         self.id == BestBoy::MonthReport.where(eventable_type: eventable_type, event_type: event_type).order('created_at ASC').last.id ? false : true

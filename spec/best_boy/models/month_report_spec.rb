@@ -29,6 +29,20 @@ describe BestBoy::MonthReport do
       expect(collection.month(Time.now.month, Time.now.year)).to include(month_report)
       expect(collection.month(2.month.ago.month, 2.month.ago.year )).to_not include(month_report)
     end
+
+    it "aggregates MonthReports of specific month period" do
+      report_from_first_month = BestBoy::MonthReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 2.month.ago; e.save }
+      report_from_last_month = BestBoy::MonthReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 1.month.ago }
+
+      collection = BestBoy::MonthReport.order('created_at DESC')
+      expect(collection.months(3.month.ago.month, Time.now.month, 3.month.ago.year, Time.now.year)).to include(report_from_first_month)
+      expect(collection.months(3.month.ago.month, Time.now.month, 3.month.ago.year, Time.now.year)).to include(report_from_last_month)
+      expect(collection.months(1.month.ago.month, Time.now.month, 1.month.ago.year, Time.now.year)).to_not include(report_from_first_month)
+      expect(collection.months(3.month.ago.month, 2.month.ago.month, 3.month.ago.year, 2.month.ago.year )).to_not include(report_from_last_month)
+      expect(collection.months(6.month.ago.month, 4.month.ago.month, 6.month.ago.year, 4.month.ago.year )).to_not include(report_from_last_month)
+    end
+
+
     it "aggregates MonthReports of specific day" do
       collection = BestBoy::MonthReport.order('created_at DESC')
       expect(collection.created_on(Time.now)).to include(month_report)
