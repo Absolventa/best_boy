@@ -15,29 +15,30 @@
         </tr>
       </thead>
       <tbody>
-        <% @event_counts_per_group.each do |event_string, group_hash| %>
+        <% @occurences.keys.each do |key| %>
           <tr>
-            <td><%= link_to event_string, best_boy_admin_details_path(:event => event_string, :owner_type => current_owner_type) %></td>
-            <% group_hash.each do |group, counter| %>
-              <td><%= counter %></td>
-            <% end %>
+            <td><%= key.to_s %></td>
+            <td><%= @occurences[key][:overall] %></td>
+            <td><%= @occurences[key][:yearly] %></td>
+            <td><%= @occurences[key][:monthly] %></td>
+            <td><%= @occurences[key][:weekly] %> </td>
+            <td><%= @occurences[key][:daily] %></td>
           </tr>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
           <th>Total</th>
-          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['overall'].to_i; sum} %></th>
-          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['year'].to_i; sum} %></th>
-          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['month'].to_i; sum} %></th>
-          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['week'].to_i; sum} %></th>
-          <th><%= @event_counts_per_group.values.inject(0){|sum, hash| sum += hash['day'].to_i; sum} %></th>
+          <th><%= @this_year_totals[:overall] %></th>
+          <th><%= @this_year_totals[:yearly] %></th>
+          <th><%= @this_year_totals[:monthly] %></th>
+          <th><%= @this_year_totals[:weekly] %></th>
+          <th><%= @this_year_totals[:daily] %></th>
         </tr>
       </tfoot>
     </table>
   </div>
 </div>
-
 <div class="span12">
   <div class="well">
     <h3 class="pull-left">Statistics for <%= current_year %> per month</h3>
@@ -57,20 +58,20 @@
         </tr>
       </thead>
       <tbody>
-        <% @event_counts_per_month.each do |event_string, month_hash| %>
+        <% @selected_year_month_reports.keys.each do |event| %>
           <tr>
-            <td><%= event_string %></td>
-            <% month_hash.each do |month, counter| %>
-              <td><%= counter %></td>
+            <td><%= event %></td>
+            <% @selected_year_month_reports[event].keys.each do |month| %>
+              <td><%= @selected_year_month_reports[event][month] %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
-          <th>Total</th>
-          <% (1..12).to_a.map(&:to_s).each do |month_no| %>
-            <th><%= @event_counts_per_month.values.inject(0){|sum, hash| sum += hash[month_no].to_i; sum} %></th>
+          <td><strong>Total</strong></td>
+          <% @selected_year_totals.keys.each do |month| %>
+            <td><%= @selected_year_totals[month] %></td>
           <% end %>
         </tr>
       </tfoot>
