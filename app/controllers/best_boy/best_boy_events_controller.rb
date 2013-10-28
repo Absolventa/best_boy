@@ -61,6 +61,11 @@ module BestBoy
       end
     end
 
+    def stats
+      grab_reports_for_this_year
+      crunch_data_for_selected_year
+      compute_totals
+    end
 
     def details
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
