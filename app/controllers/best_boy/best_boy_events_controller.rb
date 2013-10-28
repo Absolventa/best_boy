@@ -1,8 +1,9 @@
 module BestBoy
   class BestBoyEventsController < BestBoy.base_controller.constantize
 
-    before_filter BestBoy.before_filter if BestBoy.before_filter.present?
-    before_filter :prepare_chart, :only => [:charts]
+    before_action BestBoy.before_filter if BestBoy.before_filter.present?
+    before_action :prepare_chart, :only => [:charts]
+
     skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
     skip_after_filter BestBoy.skip_after_filter if BestBoy.skip_after_filter.present?
 
