@@ -15,19 +15,19 @@ module BestBoy
 
 
     def weekly_occurences_for event
-      BestBoy::DayReport.week.where(eventable_type: current_owner_type, event_type: event).sum(:occurences)
+      BestBoy::DayReport.week.where(eventable_type: current_owner_type, event_type: event, event_source: nil).sum(:occurences)
     end
 
     def monthly_occurences_for event, month, year
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).month(month, year).sum(:occurences)
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).month(month, year).sum(:occurences)
     end
 
     def yearly_occurences_for event, year
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).months(1, 12, year, year).sum(:occurences)
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).months(1, 12, year, year).sum(:occurences)
     end
 
     def overall_occurences_for event
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).sum(:occurences)
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).sum(:occurences)
     end
 
     def grab_reports_for_this_year
