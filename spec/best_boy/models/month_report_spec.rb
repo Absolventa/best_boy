@@ -49,20 +49,6 @@ describe BestBoy::MonthReport do
     end
   end
 
-  context "with instance methods" do
-    describe "#closed?" do
-      it "is not closed if no younger MonthReport for the eventable_id exists" do
-        expect(month_report.closed?).to be_false
-      end
-
-      it "is closed if it is not the youngest MonthReport" do
-        newer_month_report = BestBoy::MonthReport.new(eventable_type: month_report.eventable_type, event_type: month_report.event_type)
-        newer_month_report.save
-        expect(month_report.closed?).to be_true
-      end
-    end
-  end
-
   context "with class methods" do
     describe "#create_for" do
       eventable          = Example.create

@@ -20,6 +20,9 @@ module BestBoy
 
     scope :created_on, ->(date) { where(created_at: date.beginning_of_day..date.end_of_day) }
 
+
+    # TODO: refactor input, use Date/Time-Ranges with sth like *.step(...) or similar
+    # suggestion: rename to 'beweeen(..)'
     scope :months, ->(start_month, end_month, start_year, end_year) {
       where('created_at >= ? AND created_at < ?',
             Date.parse("#{start_year}-#{start_month}-01").beginning_of_day,
@@ -33,16 +36,6 @@ module BestBoy
             Date.parse("#{year}-#{month}-01").next_month.beginning_of_day
       )
     }
-
-    # instance methods
-    #
-    #
-
-    delegate :month, :year, to: :created_at
-
-    def closed?
-      self.id == BestBoy::MonthReport.where(eventable_type: eventable_type, event_type: event_type, event_source: event_source).order('created_at ASC').last.id ? false : true
-    end
 
     # class methods
     #
