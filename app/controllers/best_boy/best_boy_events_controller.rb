@@ -178,12 +178,27 @@ module BestBoy
     end
 
     def custom_data_count(source, time)
-      scope = BestBoy::MonthReport.where(eventable_type: current_owner_type)
-      scope = scope.where(event_type: current_event) if current_event.present?
-      scope = scope.where(event_source: source) if source.present?
-      scope = scope.where(event_source: nil) if source.nil?
-      scope = scope.month(time.month, time.year)
-      scope.sum(:occurences)
+      case current_time_interval
+      when "week"
+        scope = BestBoy::DayReport.created_on(time).where(eventable_type: current_owner_type)
+        scope = scope.where(event_type: current_event) if current_event.present?
+        scope = scope.where(event_source: source) if source.present?
+        scope = scope.where(event_source: nil) if source.nil?
+        scope.sum(:occurences)
+      when "month"
+        scope = BestBoy::MonthReport.created_on(time).where(eventable_type: current_owner_type)
+        scope = scope.where(event_type: current_event) if current_event.present?
+        scope = scope.where(event_source: source) if source.present?
+        scope = scope.where(event_source: nil) if source.nil?
+        scope.sum(:occurences)
+      else
+        scope = BestBoy::MonthReport.where(eventable_type: current_owner_type)
+        scope = scope.where(event_type: current_event) if current_event.present?
+        scope = scope.where(event_source: source) if source.present?
+        scope = scope.where(event_source: nil) if source.nil?
+        scope = scope.month(time.month, time.year)
+        scope.sum(:occurences)
+      end
     end
 
     def time_periode_range
