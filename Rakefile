@@ -42,7 +42,10 @@ task :recover_report_history do
   puts "(Go and grab a coffee!)"
   puts ""
   # find_each / find_in_batches do  |group|    group.each do |event| ... 
-  scope.each do |event|
+
+  unreported = scope.where(reported: false)
+
+  unreported.each do |event|
     month_report = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event).month(event.created_at.month, event.created_at.year).first
     if month_report.present?
       puts "> Found existing MonthReport for Event#" << event.to_param << ". Will increase occurence counter."
@@ -69,6 +72,9 @@ task :recover_report_history do
       day_report.increment(:occurences)
       puts day_report.save ? "> success!" : "> Ooops. Can't save this brand-new DayReport!"
     end 
+  
+    event.reported = true
+    puts event.save ? "successfully reported Event." : "Oh: Can't save event as reported!"
   end
   puts ""
   puts "====================="
