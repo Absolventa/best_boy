@@ -66,20 +66,35 @@ describe BestBoy::MonthReport do
 
   context "with class methods" do
     describe "#create_for" do
-      eventable = Example.create
-      report = BestBoy::MonthReport.create_for(eventable.class, "create")
+      eventable          = Example.create
+      report             = BestBoy::MonthReport.create_for(eventable.class, "create")
+      report_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
 
       it { expect(report).to be_valid }
+      it { expect(report_with_source).to be_valid }
+
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+
+
       it { expect(report.event_type).to be_eql("create") }
+      it { expect(report_with_source.event_type).to be_eql("create") }
+
+      it { expect(report.event_source).to be_nil }
+      it { expect(report_with_source.event_source).to eql "api" }
     end
 
     describe "#current_for" do
       context "when month_report exists" do
-        eventable = Example.create
-        existing_report = BestBoy::MonthReport.create_for(eventable.class, "create")
-        demanded = BestBoy::MonthReport.current_for(eventable.class, "create")
-        it { expect(demanded).to be_eql existing_report }
+        eventable            = Example.create
+        existing_report      = BestBoy::MonthReport.create_for(eventable.class, "create")
+        existing_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
+
+        demanded              = BestBoy::MonthReport.current_for(eventable.class, "create")
+        demanded_with_source  = BestBoy::MonthReport.current_for(eventable.class, "create", "api")
+
+        it { expect(demanded).to eql existing_report }
+        it { expect(demanded_with_source).to eql existing_with_source }
       end
 
       context "when no month_report is present" do
