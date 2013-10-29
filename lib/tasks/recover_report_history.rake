@@ -1,15 +1,12 @@
 namespace :best_boy do
-
   desc "Creates consistent DayReport and MonthReport structure for given events"
   task :recover_report_history  => :environment do 
-
-
     unreported = BestBoyEvent.where(reported: false)
 
     puts "" 
-    puts "===================================================================================="
+    puts "=================================================================="
     puts "= Creating missing reports for #{unreported.count} events in steps of 1000 records ="
-    puts "===================================================================================="
+    puts "=================================================================="
     puts ""
 
     unreported.find_in_batches do |batch|
