@@ -120,6 +120,25 @@ After installation you can access it through:
 
     <your application path>/best_boy_admin
 
+Some thoughts about Performance
+-------------------------------
+
+When you're running BestBoy for a long time, accessing and processing data in
+the backend can take awfully long.
+
+By changing to version 1.4.0, we modified BestBoy's data storage organization to
+reduce database queries. This leads to more convenient access times. To do
+so, BestBoy creates daily and monthly reports, which are aggregations
+of the persisted events. When computing statistical data, BestBoy
+then uses the aggregated tables.
+
+If you're upgrading BestBoy from an older version, there
+is a rake task for 'recovering' these report structure for
+an existing set of events. Simply run 
+    
+    bundle exec rake recover_report_history
+
+Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
 Used gems and resource
 ----------------------
@@ -134,7 +153,6 @@ Contributors in alphabetic order
 --------------------------------
 @cseydel
 @danscho
-
 
 Thanks
 ------
