@@ -35,22 +35,24 @@ module BestBoy
       #
       #
 
-      def self.current_for(eventable, type)
-        day_report = self.for(eventable, type).today.last
-        day_report.present? ? day_report : self.create_for(eventable, type)
+      def self.current_for(eventable, type, source = nil)
+        day_report = self.for(eventable, type, source).today.last
+        day_report.present? ? day_report : self.create_for(eventable, type, source)
       end
 
-      def self.create_for(eventable, type)
-        month_report = BestBoy::MonthReport.current_for(eventable, type)
+      def self.create_for(eventable, type, source = nil)
+        month_report = BestBoy::MonthReport.current_for(eventable, type, source)
         day_report = BestBoy::DayReport.create(
-
-          eventable_type: eventable,
-          event_type: type, month_report_id: month_report.to_param)
+          eventable_type:  eventable,
+          event_type:      type,
+          month_report_id: month_report.to_param,
+          event_source:    source
+        )
         day_report
       end
 
-      def self.for(eventable, type)
-        self.where(eventable_type: eventable, event_type: type)
+      def self.for(eventable, type, source = nil)
+        self.where(eventable_type: eventable, event_type: type, event_source: source)
       end
 
       def self.today

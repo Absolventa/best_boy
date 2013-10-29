@@ -69,19 +69,30 @@ describe BestBoy::DayReport do
 
   context "with class methods" do
     describe "#create_for" do
-      eventable = Example.create
-      report = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
+      eventable          = Example.create
+      report             = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
+      report_with_source = BestBoy::DayReport.create_for(eventable.class.to_s, "create", "api")
 
       it { expect(report).to be_valid }
       it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report.event_source).to be_nil }
+
+      it { expect(report_with_source).to be_valid }
+      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report_with_source.event_source).to be_eql("api") }
     end
 
     describe "#current_for" do
       context "when day_report exists" do
-        eventable = Example.create
-        existing_report = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
-        demanded = BestBoy::DayReport.current_for(eventable.class.to_s, "create")
+        eventable            = Example.create
+        existing_report      = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
+        existing_with_source = BestBoy::DayReport.create_for(eventable.class.to_s, "create", "api")
+
+        demanded             = BestBoy::DayReport.current_for(eventable.class.to_s, "create")
+        demanded_with_source = BestBoy::DayReport.current_for(eventable.class.to_s, "create", "api")
+
         it { expect(demanded).to be_eql existing_report }
+        it { expect(demanded_with_source).to be_eql existing_with_source }
       end
 
       context "when no today's day_report is present" do
