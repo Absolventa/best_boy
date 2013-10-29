@@ -19,38 +19,43 @@ task :default => :spec
 task :recover_report_history do 
 
   ActiveRecord::Base.establish_connection(
-    :adapter => "sqlite3",
+    :adapter  => "sqlite3",
     :database => "spec/dummy/db/development.sqlite3"
     #:database => "db/bestboy.db"
   )
 
   ActiveRecord::Base.send(:include, BestBoy::Eventable)
 
-  puts "=========================="
-  puts "= Loading BBEvents ...   ="
-  puts "=========================="
+  puts "==============================="
+  puts "= Loading BestBoyEvents ...   ="
+  puts "==============================="
   puts "" 
   puts ""
+
   scope = BestBoyEvent.order('created_at ASC')  
   unreported = scope.where(reported: false)
 
   puts "> Loaded " << scope.count.to_s  << " Events. " << unreported.count.to_s << " events are unreported."
-  puts ""
- 
+  puts "" 
   puts "==============================="
   puts "= Creating missing reports... ="
   puts "==============================="
   puts ""
   puts "(Go and grab a coffee!)"
   puts ""
-  # find_each / find_in_batches do  |group|    group.each do |event| ... 
 
+  # OPTIMIZE ME: Use find_each / find_in_batches do  |group|    group.each do |event| ... 
   unreported.each do |event|
+
+    # Tell about current resource
+    #
+    # 
 
     puts ""
     puts ""
     puts "--------------------------------------------------------------------------------------------------------------------------------"
     puts "> Now Processing Event:" << event.event.to_s << ", Owner:" << event.owner_type.to_s << ", Source: " << event.event_source.to_s << ", created_at: " << event.created_at.to_s
+
     # care for a MonthReport WITHOUT source
     #
     # 
@@ -129,6 +134,7 @@ task :recover_report_history do
     event.reported = true
     puts event.save ? "successfully reported Event." : "Oh: Can't save event as reported!"
   end
+
   puts ""
   puts "====================="
   puts "= Done! Goodbye...  ="
