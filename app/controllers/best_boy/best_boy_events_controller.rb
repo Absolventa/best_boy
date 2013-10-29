@@ -178,27 +178,12 @@ module BestBoy
     end
 
     def custom_data_count(source, time)
-      case current_time_interval
-      when "week"
-        scope = BestBoy::DayReport.created_on(time).where(eventable_type: current_owner_type)
-        scope = scope.where(event_type: current_event) if current_event.present?
-        scope = scope.where(event_source: source) if source.present?
-        scope = scope.where(event_source: nil) if source.nil?
-        scope.sum(:occurences)
-      when "month"
-        scope = BestBoy::DayReport.created_on(time).where(eventable_type: current_owner_type)
-        scope = scope.where(event_type: current_event) if current_event.present?
-        scope = scope.where(event_source: source) if source.present?
-        scope = scope.where(event_source: nil) if source.nil?
-        scope.sum(:occurences)
-      else
-        scope = BestBoy::MonthReport.where(eventable_type: current_owner_type)
-        scope = scope.where(event_type: current_event) if current_event.present?
-        scope = scope.where(event_source: source) if source.present?
-        scope = scope.where(event_source: nil) if source.nil?
-        scope = scope.month(time.month, time.year)
-        scope.sum(:occurences)
-      end
+      scope = %("week", "month").include?(current_time_interval) ? BestBoy::DayReport.created_on(time) : BestBoy::MonthReport.month(time.month, time.year)
+      scope = scope.where(eventable_type: current_owner_type)
+      scope = scope.where(event_type: current_event) if current_event.present?
+      scope = scope.where(event_source: source) if source.present?
+      scope = scope.where(event_source: nil) if source.nil?
+      scope.sum(:occurences)
     end
 
     def time_periode_range
