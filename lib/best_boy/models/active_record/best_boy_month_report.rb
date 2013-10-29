@@ -18,7 +18,7 @@ module BestBoy
     #
     #
 
-    scope :created_on, ->(date) { where('created_at >= ? AND created_at <= ?', date.beginning_of_day, date.end_of_day) }
+    scope :created_on, ->(date) { where(created_at: date.beginning_of_day..date.end_of_day) }
 
     scope :months, ->(start_month, end_month, start_year, end_year) {
       where('created_at >= ? AND created_at < ?',
