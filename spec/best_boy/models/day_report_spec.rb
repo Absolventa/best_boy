@@ -49,24 +49,6 @@ describe BestBoy::DayReport do
 
   end
 
-  context "with instance methods" do
-    describe "#closed?" do
-      it "is not closed if it is the youngest DayReport for the eventable" do
-        day_report
-        expect(day_report.closed?).to be_false
-      end
-
-      it "is closed if it is not the youngest DayReport" do
-        newer_day_report = BestBoy::DayReport.new(
-          eventable_type: day_report.eventable_type,
-          month_report_id: month_report.to_param,
-          event_type: day_report.event_type)
-        newer_day_report.save
-        expect(day_report.closed?).to be_true
-      end
-    end
-  end
-
   context "with class methods" do
     describe "#create_for" do
       eventable          = Example.create
