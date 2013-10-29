@@ -132,7 +132,7 @@ task :recover_report_history do
     end
    
     event.reported = true
-    puts event.save ? "successfully reported Event." : "Oh: Can't save event as reported!"
+    puts event.save ? "> successfully reported Event." : "Oh: Can't save event as reported!"
   end
 
   puts ""
