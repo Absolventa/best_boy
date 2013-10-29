@@ -42,7 +42,6 @@ describe BestBoy::MonthReport do
       expect(collection.months(6.month.ago.month, 4.month.ago.month, 6.month.ago.year, 4.month.ago.year )).to_not include(report_from_last_month)
     end
 
-
     it "aggregates MonthReports of specific day" do
       collection = BestBoy::MonthReport.order('created_at DESC')
       expect(collection.created_on(Time.now)).to include(month_report)
