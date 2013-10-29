@@ -51,7 +51,7 @@ task :recover_report_history do
     #
     # 
 
-    month_report = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event).month(event.created_at.month, event.created_at.year).first
+    month_report = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event, event_source: nil).month(event.created_at.month, event.created_at.year).first
     if month_report.present?
       puts "> Found existing MonthReport for Event#" << event.to_param << ". Will increase occurence counter."
       month_report.increment(:occurences)
@@ -68,7 +68,7 @@ task :recover_report_history do
     #
     #
      
-    day_report = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event).created_on(event.created_at).first.present?  
+    day_report = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event, event_source: nil).created_on(event.created_at).first.present?  
     if day_report.present?
       puts "> Found existing DayReport for Event#" << event.to_param << ". Will increase occurence counter."
       
