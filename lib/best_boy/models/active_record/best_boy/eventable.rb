@@ -56,34 +56,21 @@ module BestBoy
     end
 
     def report type, source = nil
-      @month_report             = BestBoy::MonthReport.current_for(self.class.to_s, type)
-      @month_report_with_source = BestBoy::MonthReport.current_for(self.class.to_s, type, source) if source.present?
+      month_report             = BestBoy::MonthReport.current_for(self.class.to_s, type)
+      month_report_with_source = BestBoy::MonthReport.current_for(self.class.to_s, type, source) if source.present?
 
-      @day_report             = BestBoy::DayReport.current_for(self.class.to_s, type)
-      @day_report_with_source = BestBoy::DayReport.current_for(self.class.to_s, type, source) if source.present?
+      day_report             = BestBoy::DayReport.current_for(self.class.to_s, type)
+      day_report_with_source = BestBoy::DayReport.current_for(self.class.to_s, type, source) if source.present?
 
-      increment_occurences_in_month_reports
-      increment_occurences_in_day_reports
+      increment_occurences_in_reports month_report, month_report_with_source, day_report, day_report_with_source
     end
 
-    def increment_occurences_in_month_reports
-      if @month_report_with_source.present?
-        @month_report_with_source.increment(:occurences)
-        @month_report_with_source.save
-      end
+    def increment_occurences_in_reports(month_report, month_report_with_source, day_report, day_report_with_source)
+      day_report_with_source.increment(:occurences) if day_report_with_source.present?
+      month_report_with_source.increment(:occurences) if month_report_with_source.present?
 
-      @month_report.increment(:occurences)
-      @month_report.save
-    end
-
-    def increment_occurences_in_day_reports
-      if @day_report_with_source.present?
-        @day_report_with_source.increment(:occurences)
-        @day_report_with_source.save
-      end
-
-      @day_report.increment(:occurences)
-      @day_report.save
+      day_report.increment!(:occurences)
+      month_report.increment!(:occurences)
     end
   end
 end
