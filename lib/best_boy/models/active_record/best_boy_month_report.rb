@@ -49,20 +49,12 @@ module BestBoy
     #
 
     def self.current_for(eventable, type, source = nil)
-      if source.present?
-        month_report = self.for(eventable, type, source).month(Time.now.month, Time.now.year).last
-      else
-        month_report = self.for(eventable, type).month(Time.now.month, Time.now.year).last
-      end
+      month_report = self.for(eventable, type, source).month(Time.now.month, Time.now.year).last
       month_report.present? ? month_report : self.create_for(eventable, type)
     end
 
     def self.create_for(eventable, type, source = nil)
-      if source.present?
-        BestBoy::MonthReport.create(eventable_type: eventable.to_s, event_type: type, event_source: source)
-      else
-        BestBoy::MonthReport.create(eventable_type: eventable.to_s, event_type: type)
-      end
+      BestBoy::MonthReport.create(eventable_type: eventable.to_s, event_type: type, event_source: source)
     end
 
     def self.for(eventable, type, source = nil)
