@@ -146,7 +146,7 @@ Used gems and resource
 
 [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
 
-[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visulr in its version 2.1.2
+[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
 
 
 Contributors in alphabetic order
