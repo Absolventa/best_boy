@@ -62,11 +62,11 @@ module BestBoy
       @day_report             = BestBoy::DayReport.current_for(self.class.to_s, type)
       @day_report_with_source = BestBoy::DayReport.current_for(self.class.to_s, type, source) if source.present?
 
-      increment_occurences_in_month_report
-      increment_occurences_in_day_report
+      increment_occurences_in_month_reports
+      increment_occurences_in_day_reports
     end
 
-    def increment_occurences_in_month_report
+    def increment_occurences_in_month_reports
       if @month_report_with_source.present?
         @month_report_with_source.increment(:occurences)
         @month_report_with_source.save
@@ -76,7 +76,7 @@ module BestBoy
       @month_report.save
     end
 
-    def increment_occurences_in_day_report
+    def increment_occurences_in_day_reports
       if @day_report_with_source.present?
         @day_report_with_source.increment(:occurences)
         @day_report_with_source.save
