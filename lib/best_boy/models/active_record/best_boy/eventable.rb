@@ -52,23 +52,36 @@ module BestBoy
       best_boy_event = BestBoyEvent.new(:event => type, :event_source => source)
       best_boy_event.owner = self
       best_boy_event.save
-      report type
+      report type, source
     end
 
-    def report type
-      @month_report = BestBoy::MonthReport.current_for(self.class.to_s, type)
-      @day_report   = BestBoy::DayReport.current_for(self.class.to_s, type)
+    def report type, source = nil
+      @month_report             = BestBoy::MonthReport.current_for(self.class.to_s, type)
+      @month_report_with_source = BestBoy::MonthReport.current_for(self.class.to_s, type, source) if source.present?
+
+      @day_report             = BestBoy::DayReport.current_for(self.class.to_s, type)
+      @day_report_with_source = BestBoy::DayReport.current_for(self.class.to_s, type, source) if source.present?
 
       increment_occurences_in_month_report
       increment_occurences_in_day_report
     end
 
     def increment_occurences_in_month_report
+      if @month_report_with_source.present?
+        @month_report_with_source.increment(:occurences)
+        @month_report_with_source.save
+      end
+
       @month_report.increment(:occurences)
       @month_report.save
     end
 
     def increment_occurences_in_day_report
+      if @day_report_with_source.present?
+        @day_report_with_source.increment(:occurences)
+        @day_report_with_source.save
+      end
+
       @day_report.increment(:occurences)
       @day_report.save
     end
