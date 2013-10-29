@@ -47,18 +47,22 @@ task :recover_report_history do
 
   unreported.each do |event|
 
+    puts ""
+    puts ""
+    puts "--------------------------------------------------------------------------------------------------------------------------------"
+    puts "> Now Processing Event:" << event.event.to_s << ", Owner:" << event.owner_type.to_s << ", Source: " << event.event_source.to_s << ", created_at: " << event.created_at.to_s
     # care for a MonthReport WITHOUT source
     #
     # 
 
-    month_report = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event, event_source: nil).month(event.created_at.month, event.created_at.year).first
+    month_report = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event.event, event_source: nil).month(event.created_at.month, event.created_at.year).first
     if month_report.present?
       puts "> Found existing MonthReport for Event#" << event.to_param << ". Will increase occurence counter."
       month_report.increment(:occurences)
       puts month_report.save ? "> success!" : "> Oouch! Can't save updated MonthReport."
     else
       puts "> No MonthReport for Event#" << event.to_param << ". Creating..."
-      month_report = BestBoy::MonthReport.create(eventable_type: event.owner_type, event_type: event).tap { |r| r.created_at = event.created_at }
+      month_report = BestBoy::MonthReport.create(eventable_type: event.owner_type, event_type: event.event).tap { |r| r.created_at = event.created_at }
 
       month_report.increment(:occurences)
       puts month_report.save ? "> success!" : "> Oouch! Can't save this brand-new MonthReport!"
@@ -68,7 +72,7 @@ task :recover_report_history do
     #
     #
      
-    day_report = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event, event_source: nil).created_on(event.created_at).first.present?  
+    day_report = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event.event, event_source: nil).created_on(event.created_at).first  
     if day_report.present?
       puts "> Found existing DayReport for Event#" << event.to_param << ". Will increase occurence counter."
       
@@ -76,7 +80,7 @@ task :recover_report_history do
       puts day_report.save ? "> success!" : "> Oooops. Can't save updated DayReport!" 
     else
       puts "> No DayReport for Event#" << event.to_param << ". Creating..."
-      day_report = BestBoy::DayReport.create(eventable_type: event.owner_type, event_type: event, month_report_id: month_report.id).tap { |r| r.created_at = event.created_at }
+      day_report = BestBoy::DayReport.create(eventable_type: event.owner_type, event_type: event.event, month_report_id: month_report.id).tap { |r| r.created_at = event.created_at }
      
       day_report.increment(:occurences)
       puts day_report.save ? "> success!" : "> Ooops. Can't save this brand-new DayReport!"
@@ -90,14 +94,14 @@ task :recover_report_history do
       #  
 
       puts "> Source detected."
-      month_report_with_source = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event, event_source: event.event_source).month(event.created_at.month, event.created_at.year).first
+      month_report_with_source = BestBoy::MonthReport.where(eventable_type: event.owner_type, event_type: event.event, event_source: event.event_source).month(event.created_at.month, event.created_at.year).first
       if month_report_with_source.present?
         puts "> Found existing MonthReport with source for Event#" << event.to_param << ". Will increase its occurence counter."
-        month_report.increment(:occurences)
+        month_report_with_source.increment(:occurences)
         puts month_report_with_source.save ? "> success!" : "> Oouch! Can't save updated MonthReport with source."
       else
         puts "> No MonthReport with source for Event#" << event.to_param << ". Creating..."
-        month_report_with_source = BestBoy::MonthReport.create(eventable_type: event.owner_type, event_type: event, event_source: event.event_source).tap { |r| r.created_at = event.created_at }
+        month_report_with_source = BestBoy::MonthReport.create(eventable_type: event.owner_type, event_type: event.event, event_source: event.event_source).tap { |r| r.created_at = event.created_at }
 
         month_report_with_source.increment(:occurences)
         puts month_report_with_source.save ? "> success!" : "> Oouch! Can't save this brand-new MonthReport with source!"
@@ -107,7 +111,7 @@ task :recover_report_history do
       #
       #
        
-      day_report_with_source = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event, event_source: event.event_source).created_on(event.created_at).first.present?  
+      day_report_with_source = BestBoy::DayReport.where(eventable_type: event.owner_type, event_type: event.event, event_source: event.event_source).created_on(event.created_at).first  
       if day_report_with_source.present?
         puts "> Found existing DayReport with source for Event#" << event.to_param << ". Will increase its occurence counter."
         
@@ -115,7 +119,7 @@ task :recover_report_history do
         puts day_report.save ? "> success!" : "> Oooops. Can't save updated DayReport with source!" 
       else
         puts "> No DayReport with source for Event#" << event.to_param << ". Creating..."
-        day_report_with_source = BestBoy::DayReport.create(eventable_type: event.owner_type, event_type: event, event_source: event.event_source, month_report_id: month_report_with_source.id).tap { |r| r.created_at = event.created_at }
+        day_report_with_source = BestBoy::DayReport.create(eventable_type: event.owner_type, event_type: event.event, event_source: event.event_source, month_report_id: month_report_with_source.id).tap { |r| r.created_at = event.created_at }
        
         day_report_with_source.increment(:occurences)
         puts day_report_with_source.save ? "> success!" : "> Ooops. Can't save this brand-new DayReport source!"
