@@ -186,7 +186,7 @@ module BestBoy
         scope = scope.where(event_source: nil) if source.nil?
         scope.sum(:occurences)
       when "month"
-        scope = BestBoy::MonthReport.created_on(time).where(eventable_type: current_owner_type)
+        scope = BestBoy::DayReport.created_on(time).where(eventable_type: current_owner_type)
         scope = scope.where(event_type: current_event) if current_event.present?
         scope = scope.where(event_source: source) if source.present?
         scope = scope.where(event_source: nil) if source.nil?
