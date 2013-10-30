@@ -76,12 +76,12 @@ module BestBoy
       if available_event_sources?
         available_event_sources.each do |source|
           days_of(month).each do |day|
-            @selected_month_occurrences.merge!({source => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, params[:event], source, day)}}) { |k, v1, v2| v1.merge!(v2) }
+            @selected_month_occurrences.merge!({source => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, source, day)}}) { |k, v1, v2| v1.merge!(v2) }
           end
         end
       end
       days_of(month).each do |day|
-        @selected_month_occurrences.merge!({"All" => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, params[:event], nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
+        @selected_month_occurrences.merge!({"All" => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
       end
     end
 
