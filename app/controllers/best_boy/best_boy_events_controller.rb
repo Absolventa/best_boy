@@ -2,10 +2,6 @@ module BestBoy
   class BestBoyEventsController < BestBoy.base_controller.constantize
 
     before_action BestBoy.before_filter if BestBoy.before_filter.present?
-    before_action :prepare_chart,                    :only => [:charts]
-    before_action :collect_occurences_for_this_year, :only => [:stats, :details]
-    before_action :collect_occurences_by_sources,    :only => [:details]
-    before_action :compute_totals,                   :only => [:stats, :details]
 
     skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
     skip_after_filter BestBoy.skip_after_filter if BestBoy.skip_after_filter.present?
@@ -16,67 +12,105 @@ module BestBoy
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
                   :render_chart, :month_name_array, :detail_count
 
-    def collect_occurences_by_sources
+    def stats
+      collect_occurences
+      collect_occurences_for_selected_year
+      available_events_totals
+      selected_year_totals
+    end
+
+    def details
+      collect_occurences
+      collect_occurences_grouped_by_sources
+      collect_occurences_for_selected_year_of current_event
+      selected_year_totals
+    end
+
+    def monthly_details
+      collect_occurences_for_month current_month
+      prepare_monthly_details_chart
+    end
+
+    def charts
+      prepare_chart
+    end
+
+    private
+
+    def collect_event_occurences(event)
+      {
+        event => {
+          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event, nil, Time.zone.now),
+          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
+          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.zone.now),
+          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.zone.now),
+          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
+        }
+      }
+    end
+
+    def collect_occurences
+      @occurences = {}
+      available_events.each { |event| @occurences.merge! collect_event_occurences(event) }
+    end
+
+    def collect_source_occurences(source)
+      {
+        source => {
+          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, current_event, source, Time.zone.now),
+          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, current_event, source),
+          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, current_event, source, Time.zone.now),
+          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, current_event, source, Time.zone.now),
+          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, current_event, source)
+        }
+      }
+    end
+
+    def collect_occurences_grouped_by_sources
       @sourced_occurences = {}
-      available_event_sources.each do |source|
-        available_events.each do |event|
-          @sourced_occurences.merge!({
-            source => {
-              event => {
-                :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event, source),
-                :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event, source),
-                :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, source, Time.now),
-                :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, source, Time.now),
-                :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event, source)
-              }
-            }
-          })
+      available_event_sources.each { |source| @sourced_occurences.merge! collect_source_occurences(source) }
+    end
+
+    def collect_occurences_for_month(month)
+      @selected_month_occurences = {}
+      if available_event_sources?
+        available_event_sources.each do |source|
+          days_of(month).each do |day|
+            @selected_month_occurences.merge!({source => {day => BestBoy::DayReport.daily_occurences_for(current_owner_type, params[:event], source, day)}}) { |k, v1, v2| v1.merge!(v2) }
+          end
         end
       end
-    end
-
-    def collect_occurences_for_this_year
-      @occurences = {}
-      available_events.each do |event|
-        @occurences.merge!({
-          event => {
-            :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event),
-            :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
-            :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.now),
-            :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.now),
-            :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
-          }
-        })
+      days_of(month).each do |day|
+        @selected_month_occurences.merge!({"All" => {day => BestBoy::DayReport.daily_occurences_for(current_owner_type, params[:event], nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
       end
     end
 
-    def crunch_data_for_selected_year
+    def collect_occurences_for_selected_year
       @selected_year_occurences = {}
       available_events.each do |event|
         @selected_year_occurences.merge!({event => {}})
         (1..12).each do |month|
-          date = Date.parse("#{Time.now.year}-#{month}-1")
+          date = Date.parse("#{current_year}-#{month}-1")
           @selected_year_occurences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
         end
       end
     end
 
-    def crunch_data_for_selected_year_for_event(event)
+    def collect_occurences_for_selected_year_of(event)
       @event_selected_year_occurences = {}
-      if available_event_sources.first.present?
+      if available_event_sources?
         available_event_sources.each do |source|
           @event_selected_year_occurences.merge!({source => {}})
           (1..12).each do |month|
-            date = Date.parse("#{Time.now.year}-#{month}-1")
+            date = Date.parse("#{current_year}-#{month}-1")
             @event_selected_year_occurences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, source, date)})
           end
         end
       end
     end
 
-    def compute_totals
-      @this_year_totals = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
-      @selected_year_totals = {}
+    def available_events_totals
+      @this_year_totals     = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
 
       available_events.each do |event|
         @this_year_totals[:daily]   += @occurences[event][:daily]
@@ -84,73 +118,63 @@ module BestBoy
         @this_year_totals[:monthly] += @occurences[event][:monthly]
         @this_year_totals[:yearly]  += @occurences[event][:yearly]
         @this_year_totals[:overall] += @occurences[event][:overall]
-
-        (1..12).each do |month|
-          @selected_year_totals.merge!({
-            month => BestBoy::MonthReport.monthly_occurences_for(
-              current_owner_type,
-              event,
-              nil,
-              Date.parse("#{current_year}-#{month}-1")
-            )
-          }) { |key, value1, value2| value1+value2  }
-        end
       end
     end
 
-    def stats
-      crunch_data_for_selected_year
-    end
-
-    def details
-      crunch_data_for_selected_year
-      crunch_data_for_selected_year_for_event params[:event]
-    end
-
-    def monthly_details
-      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
-      days = 1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))
-      # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
-      # We fire a max of 31 database queries, one for each day, to keep it database agnostic.
-      # Before we had 31 * n event_sources queries
-      @event_sources_counts_per_day = {}
-      days.each do |day|
-        day_hash = counter_scope.per_day("#{day}-#{current_month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-
-        available_event_sources.each do |event_source|
-          @event_sources_counts_per_day[event_source] ||= {}
-          @event_sources_counts_per_day[event_source][day] = day_hash[event_source] || 0
-        end
+    def selected_year_totals
+      @selected_year_totals = {}
+      # TODO: This database query may could  work with GROUP_BY or like
+      # @selected_year_totals = BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:eventable_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
+      (1..12).each do |month|
+        date = Date.parse("#{current_year}-#{month}-1")
+        @selected_year_totals.merge!({
+          month => BestBoy::MonthReport
+          .where(eventable_type: current_owner_type, event_source: nil)
+          .between(date.beginning_of_month, date.end_of_month).sum(:occurences)
+        })
       end
+    end
 
+    def days_of(month)
+      reference = Date.parse("#{current_year}#{month}-1")
+      (reference.beginning_of_month..reference.end_of_month)
+    end
+
+    def render_chart(chart, dom)
+      chart.to_js(dom).html_safe
+    end
+
+    def chart_for data
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 900, height: 240, title: "" })
+    end
+
+    def prepare_monthly_details_chart
       data_table = GoogleVisualr::DataTable.new
       data_table.new_column('string', 'time')
       available_event_sources.each do |source|
         data_table.new_column('number', source.to_s)
       end
 
-      days.each do |day|
-        time = "#{day}-#{current_month}-#{current_year}".to_time
-        data_table.add_row( [ day.to_s] + available_event_sources.map{ |event_source| @event_sources_counts_per_day[event_source][day].to_i })
+      days_of(params[:month]).each do |day|
+        if available_event_sources?
+          data_table.add_row( [ day.strftime("%d") ] + available_event_sources.map{ |event_source| @selected_month_occurences[event_source][day] })
+        else
+          data_table.add_row( [ day.strftime("%d") ] + [@selected_month_occurences["All"][day]] )
+        end
       end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
-    end
 
-
-    private
-
-    def render_chart(chart, dom)
-      chart.to_js(dom).html_safe
+      chart_for data_table
     end
 
     def prepare_chart
       data_table = GoogleVisualr::DataTable.new
       data_table.new_column('string', 'time')
       data_table.new_column('number', current_owner_type.to_s)
+
       time_periode_range.each do |periode|
         data_table.add_row([chart_legend_time_name(periode), custom_data_count(current_event_source, calculated_point_in_time(periode))])
       end
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, { width: 900, height: 240, title: "" })
+      chart_for data_table
     end
 
     def week_name_array
