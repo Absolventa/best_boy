@@ -19,7 +19,7 @@ module BestBoy
     #
 
     scope :created_on, ->(date) { where(created_at: date.beginning_of_day..date.end_of_day) }
-    scope :week,       ->       { where(created_at: Time.now.beginning_of_week..Time.now)   }
+    scope :week,       ->       { where(created_at: Time.zone.now.beginning_of_week..Time.zone.now)   }
 
     # class methods
     #
