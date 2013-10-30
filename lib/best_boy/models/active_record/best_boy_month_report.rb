@@ -18,24 +18,9 @@ module BestBoy
     #
     #
 
-    scope :created_on, ->(date) { where(created_at: date.beginning_of_day..date.end_of_day) }
-
-
-    # TODO: refactor input, use Date/Time-Ranges with sth like *.step(...) or similar
-    # suggestion: rename to 'beweeen(..)'
-    scope :months, ->(start_month, end_month, start_year, end_year) {
-      where('created_at >= ? AND created_at < ?',
-            Date.parse("#{start_year}-#{start_month}-01").beginning_of_day,
-            Date.parse("#{end_year}-#{end_month}-01").next_month.beginning_of_day
-      )
-    }
-
-    scope :month, ->(month, year) {
-      where('created_at >= ? AND created_at < ?',
-            Date.parse("#{year}-#{month}-01").beginning_of_day,
-            Date.parse("#{year}-#{month}-01").next_month.beginning_of_day
-      )
-    }
+    scope :created_on, ->(date)                 { where(created_at: date.beginning_of_day..date.end_of_day) }
+    scope :between,    ->(start_date, end_date) { where(created_at: start_date.beginning_of_day..end_date.end_of_day) }
+    scope :month,      ->(month, year)          { where(created_at: Date.parse("#{year}-#{month}-01").beginning_of_day..Date.parse("#{year}-#{month}-01").next_month.beginning_of_day) }
 
     # class methods
     #
