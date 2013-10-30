@@ -23,7 +23,7 @@ module BestBoy
     end
 
     def yearly_occurences_for event, year
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).months(1, 12, year, year).sum(:occurences)
+      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).between(Time.now.beginning_of_year, Time.now).sum(:occurences)
     end
 
     def overall_occurences_for event
@@ -34,12 +34,12 @@ module BestBoy
       @day_reports, @month_reports, @occurences = {}, {}, {}
 
       available_events.each do |event|
-        @day_reports[event]   = BestBoy::DayReport.current_for(current_owner_type, event)
-        @month_reports[event] = BestBoy::MonthReport.current_for(current_owner_type, event)
+        @day_reports[event]   = BestBoy::DayReport.current_for(Time.now, current_owner_type, event, nil).last
+        @month_reports[event] = BestBoy::MonthReport.current_for(Time.now, current_owner_type, event, nil).last
         @occurences           = @occurences.merge({ event => {
-          :daily => @day_reports[event].occurences,
+          :daily => @day_reports[event].present? ? @day_reports[event].occurences : 0,
           :weekly => weekly_occurences_for(event),
-          :monthly => @month_reports[event].occurences,
+          :monthly => @month_reports[event].present? ? @month_reports[event].occurences : 0,
           :yearly => yearly_occurences_for(event, current_year),
           :overall => overall_occurences_for(event)
         }})
