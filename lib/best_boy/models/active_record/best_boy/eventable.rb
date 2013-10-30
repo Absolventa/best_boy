@@ -56,11 +56,11 @@ module BestBoy
     end
 
     def report type, source = nil
-      month_report             = BestBoy::MonthReport.current_for(self.class.to_s, type)
-      month_report_with_source = BestBoy::MonthReport.current_for(self.class.to_s, type, source) if source.present?
+      month_report             = BestBoy::MonthReport.current_or_create_for(self.class.to_s, type)
+      month_report_with_source = BestBoy::MonthReport.current_or_create_for(self.class.to_s, type, source) if source.present?
 
-      day_report             = BestBoy::DayReport.current_for(self.class.to_s, type)
-      day_report_with_source = BestBoy::DayReport.current_for(self.class.to_s, type, source) if source.present?
+      day_report             = BestBoy::DayReport.current_or_create_for(self.class.to_s, type)
+      day_report_with_source = BestBoy::DayReport.current_or_create_for(self.class.to_s, type, source) if source.present?
 
       increment_occurences_in_reports month_report, month_report_with_source, day_report, day_report_with_source
     end
