@@ -23,10 +23,9 @@
           <% @sourced_occurences.keys.each do |source| %>
           <tr>
             <td><%= source %><dd/td>
-            <% @sourced_occurences[source][params[:event]].keys.reverse.each do |time_period| %>
-              <% occurences = @occurences[params[:event]][time_period] %>
-              <td><%= occurences %></td>
-              <td><%= number_to_percentage( occurences.to_f / @occurences[params[:event]][:overall].to_f * 100, :precision => 2 ) %></td>
+            <% @sourced_occurences[source].keys.reverse.each do |time_period| %>
+              <td><%= @sourced_occurences[source][time_period]  %></td>
+              <td><%= number_to_percentage( @sourced_occurences[source][time_period].to_f / @sourced_occurences[source][:overall].to_f * 100, :precision => 2 ) %></td>
             <% end %>
           </tr>
           <% end %>
@@ -80,8 +79,8 @@
       <tfoot>
         <tr>
           <td><strong>All</strong></td>
-          <% @selected_year_occurences[params[:event]].keys.each do |month| %>
-            <td><%= @selected_year_occurences[params[:event]][month] %></td>
+          <% @selected_year_totals.keys.each do |month| %>
+            <td><%= @selected_year_totals[month] %></td>
           <% end %>
         </tr>
       </tfoot>
