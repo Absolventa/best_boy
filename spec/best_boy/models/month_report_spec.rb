@@ -13,13 +13,13 @@ describe BestBoy::MonthReport do
   subject { month_report }
 
   describe "with associations" do
-    it { should have_many(:day_reports) }
+    it { expect(subject).to have_many(:day_reports) }
   end
 
   describe "with validations" do
-    it "should validate presence of attributes" do
-      should validate_presence_of(:eventable_type)
-      should validate_presence_of(:event_type)
+    it "validates presence of attributes" do
+      expect(subject).to validate_presence_of(:eventable_type)
+      expect(subject).to validate_presence_of(:event_type)
     end
   end
 
@@ -35,11 +35,11 @@ describe BestBoy::MonthReport do
       report_from_last_month = BestBoy::MonthReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 1.month.ago }
 
       collection = BestBoy::MonthReport.order('created_at DESC')
-      expect(collection.months(3.month.ago.month, Time.now.month, 3.month.ago.year, Time.now.year)).to include(report_from_first_month)
-      expect(collection.months(3.month.ago.month, Time.now.month, 3.month.ago.year, Time.now.year)).to include(report_from_last_month)
-      expect(collection.months(1.month.ago.month, Time.now.month, 1.month.ago.year, Time.now.year)).to_not include(report_from_first_month)
-      expect(collection.months(3.month.ago.month, 2.month.ago.month, 3.month.ago.year, 2.month.ago.year )).to_not include(report_from_last_month)
-      expect(collection.months(6.month.ago.month, 4.month.ago.month, 6.month.ago.year, 4.month.ago.year )).to_not include(report_from_last_month)
+      expect(collection.between(3.month.ago, Time.now)).to include(report_from_first_month)
+      expect(collection.between(3.month.ago, Time.now)).to include(report_from_last_month)
+      expect(collection.between(1.month.ago, Time.now)).to_not include(report_from_first_month)
+      expect(collection.between(3.month.ago, 2.month.ago)).to_not include(report_from_last_month)
+      expect(collection.between(6.month.ago, 4.month.ago)).to_not include(report_from_last_month)
     end
 
     it "aggregates MonthReports of specific day" do
@@ -50,33 +50,33 @@ describe BestBoy::MonthReport do
   end
 
   context "with class methods" do
-    describe "#create_for" do
-      eventable          = Example.create
-      report             = BestBoy::MonthReport.create_for(eventable.class, "create")
-      report_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
+    describe "#current_for" do
+      context "when day_report exists" do
+        existing_report      = BestBoy::MonthReport.create_for("ExampleClass", "create")
+        existing_with_source = BestBoy::MonthReport.create_for("ExampleClass", "create", "api")
 
-      it { expect(report).to be_valid }
-      it { expect(report_with_source).to be_valid }
+        demanded             = BestBoy::MonthReport.current_for(Time.now, "ExampleClass", "create").last
+        demanded_with_source = BestBoy::MonthReport.current_for(Time.now, "ExampleClass", "create", "api").last
 
-      it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
-      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+        it { expect(demanded).to be_eql existing_report }
+        it { expect(demanded_with_source).to be_eql existing_with_source }
+      end
 
-
-      it { expect(report.event_type).to be_eql("create") }
-      it { expect(report_with_source.event_type).to be_eql("create") }
-
-      it { expect(report.event_source).to be_nil }
-      it { expect(report_with_source.event_source).to eql "api" }
+      context "when no today's day_report is present" do
+        it "delivers empty ActiceRecord::Relation" do
+          expect(BestBoy::MonthReport.current_for(Time.now, "GibberishClass", "create")).to be_empty
+        end
+      end
     end
 
-    describe "#current_for" do
+    describe "#current_or_create_for" do
       context "when month_report exists" do
         eventable            = Example.create
         existing_report      = BestBoy::MonthReport.create_for(eventable.class, "create")
         existing_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
 
-        demanded              = BestBoy::MonthReport.current_for(eventable.class, "create")
-        demanded_with_source  = BestBoy::MonthReport.current_for(eventable.class, "create", "api")
+        demanded              = BestBoy::MonthReport.current_or_create_for(eventable.class, "create")
+        demanded_with_source  = BestBoy::MonthReport.current_or_create_for(eventable.class, "create", "api")
 
         it { expect(demanded).to eql existing_report }
         it { expect(demanded_with_source).to eql existing_with_source }
@@ -93,9 +93,27 @@ describe BestBoy::MonthReport do
           yr = Time.now.year
 
           expect(scope.month(mth, yr)).to be_empty
-          expect{ BestBoy::MonthReport.current_for(eventable.class, "create") }.to change(scope.month(mth, yr), :count).by(1)
+          expect{ BestBoy::MonthReport.current_or_create_for(eventable.class, "create") }.to change(scope.month(mth, yr), :count).by(1)
         end
       end
+    end
+
+    describe "#create_for" do
+      eventable          = Example.create
+      report             = BestBoy::MonthReport.create_for(eventable.class, "create")
+      report_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
+
+      it { expect(report).to be_valid }
+      it { expect(report_with_source).to be_valid }
+
+      it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+
+      it { expect(report.event_type).to be_eql("create") }
+      it { expect(report_with_source.event_type).to be_eql("create") }
+
+      it { expect(report.event_source).to be_nil }
+      it { expect(report_with_source.event_source).to eql "api" }
     end
   end
 end

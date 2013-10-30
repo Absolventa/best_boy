@@ -25,13 +25,17 @@ module BestBoy
     #
     #
 
-    def self.current_for(eventable, type, source = nil)
-      day_report = self.for(eventable, type, source).today.last
+    def self.current_for(date, eventable, type, source = nil)
+      self.for(eventable, type, source).created_on(date)
+    end
+
+    def self.current_or_create_for(eventable, type, source = nil)
+      day_report = self.current_for(Time.now, eventable, type, source).last
       day_report.present? ? day_report : self.create_for(eventable, type, source)
     end
 
     def self.create_for(eventable, type, source = nil)
-      month_report = BestBoy::MonthReport.current_for(eventable, type, source)
+      month_report = BestBoy::MonthReport.current_or_create_for(eventable, type, source)
       BestBoy::DayReport.create(
         eventable_type:  eventable,
         event_type:      type,
@@ -42,11 +46,6 @@ module BestBoy
 
     def self.for(eventable, type, source = nil)
       self.where(eventable_type: eventable, event_type: type, event_source: source)
-    end
-
-    # TODO: remove?
-    def self.today
-      self.created_on(Date.today)
     end
   end
 end

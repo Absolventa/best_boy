@@ -26,9 +26,13 @@ module BestBoy
     #
     #
 
-    def self.current_for(eventable, type, source = nil)
-      month_report = self.for(eventable, type, source).month(Time.now.month, Time.now.year).last
-      month_report.present? ? month_report : self.create_for(eventable, type)
+    def self.current_for(date, eventable, type, source = nil)
+      self.for(eventable, type, source).month(date.month, date.year)
+    end
+
+    def self.current_or_create_for(eventable, type, source = nil)
+      month_report = self.current_for(Time.now, eventable, type, source).last
+      month_report.present? ? month_report : self.create_for(eventable, type, source)
     end
 
     def self.create_for(eventable, type, source = nil)
