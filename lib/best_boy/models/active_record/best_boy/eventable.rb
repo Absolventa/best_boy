@@ -66,8 +66,8 @@ module BestBoy
     end
 
     def increment_occurrences_in_reports(month_report, month_report_with_source, day_report, day_report_with_source)
-      day_report_with_source.increment(:occurrences) if day_report_with_source.present?
-      month_report_with_source.increment(:occurrences) if month_report_with_source.present?
+      day_report_with_source.increment!(:occurrences) if day_report_with_source.present?
+      month_report_with_source.increment!(:occurrences) if month_report_with_source.present?
 
       day_report.increment!(:occurrences)
       month_report.increment!(:occurrences)
