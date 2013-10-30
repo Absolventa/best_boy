@@ -111,13 +111,10 @@ module BestBoy
 
     def available_events_totals
       @this_year_totals     = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
-
       available_events.each do |event|
-        @this_year_totals[:daily]   += @occurences[event][:daily]
-        @this_year_totals[:weekly]  += @occurences[event][:weekly]
-        @this_year_totals[:monthly] += @occurences[event][:monthly]
-        @this_year_totals[:yearly]  += @occurences[event][:yearly]
-        @this_year_totals[:overall] += @occurences[event][:overall]
+        @this_year_totals.keys.each do |time_period|
+          @this_year_totals[time_period] += @occurences[event][time_period]
+        end
       end
     end
 
