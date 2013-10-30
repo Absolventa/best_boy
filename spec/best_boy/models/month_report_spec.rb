@@ -26,8 +26,8 @@ describe BestBoy::MonthReport do
   context "with scopes" do
     it "aggregates MonthReports of specific month" do
       collection = BestBoy::MonthReport.order('created_at DESC')
-      expect(collection.month(Time.now.month, Time.now.year)).to include(month_report)
-      expect(collection.month(2.month.ago.month, 2.month.ago.year )).to_not include(month_report)
+      expect(collection.between(Time.now.beginning_of_month, Time.now)).to include(month_report)
+      expect(collection.between(2.month.ago.beginning_of_month, 2.month.ago)).to_not include(month_report)
     end
 
     it "aggregates MonthReports of specific month period" do
@@ -85,15 +85,9 @@ describe BestBoy::MonthReport do
       context "when no month_report is present" do
         it "creates a new month_report" do
           BestBoy::MonthReport.destroy_all
-
-          scope = BestBoy::MonthReport.where(
-            eventable_type: Example.to_s,
-            event_type: "create")
-          mth = Time.now.month
-          yr = Time.now.year
-
-          expect(scope.month(mth, yr)).to be_empty
-          expect{ BestBoy::MonthReport.current_or_create_for(eventable.class, "create") }.to change(scope.month(mth, yr), :count).by(1)
+          scope = BestBoy::MonthReport.where(eventable_type: Example.to_s, event_type: "create")
+          expect(scope.between(Time.now.beginning_of_month, Time.now)).to be_empty
+          expect{ BestBoy::MonthReport.current_or_create_for(eventable.class, "create") }.to change(scope.between(Time.now.beginning_of_month, Time.now), :count).by(1)
         end
       end
     end

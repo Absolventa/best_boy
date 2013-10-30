@@ -20,14 +20,13 @@ module BestBoy
 
     scope :created_on, ->(date)                 { where(created_at: date.beginning_of_day..date.end_of_day) }
     scope :between,    ->(start_date, end_date) { where(created_at: start_date.beginning_of_day..end_date.end_of_day) }
-    scope :month,      ->(month, year)          { where(created_at: Date.parse("#{year}-#{month}-01").beginning_of_day..Date.parse("#{year}-#{month}-01").next_month.beginning_of_day) }
 
     # class methods
     #
     #
 
     def self.current_for(date, eventable, type, source = nil)
-      self.for(eventable, type, source).month(date.month, date.year)
+      self.for(eventable, type, source).between(date.beginning_of_month, date)
     end
 
     def self.current_or_create_for(eventable, type, source = nil)
