@@ -30,11 +30,11 @@
         </tr>
       </thead>
       <tbody>
-        <% @selected_month_occurences.keys.each do |source| %>
+        <% @selected_month_occurrences.keys.each do |source| %>
           <tr>
             <td><%= source %></td>
-            <% @selected_month_occurences[source].keys.each do |day| %>
-              <td><%= @selected_month_occurences[source][day] %></td>
+            <% @selected_month_occurrences[source].keys.each do |day| %>
+              <td><%= @selected_month_occurrences[source][day] %></td>
             <% end%>
           </tr>
         <% end%>
