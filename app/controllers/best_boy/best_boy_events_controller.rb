@@ -17,27 +17,29 @@ module BestBoy
       @occurences = {}
 
       available_events.each do |event|
-        @occurences.merge!({ event => {
-          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event),
-          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
-          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.now),
-          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.now),
-          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
-        }})
+        @occurences.merge!({
+          event => {
+            :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event),
+            :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
+            :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.now),
+            :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.now),
+            :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
+          }
+        })
       end
     end
 
     def crunch_data_for_selected_year
-      @selected_year_month_reports = {}
+      @selected_year_occurences = {}
       available_events.each { |event| crunch_data_for_selected_year_of event }
     end
 
     def crunch_data_for_selected_year_of event
-      @selected_year_month_reports = @selected_year_month_reports.merge({event => {}})
+      @selected_year_occurences.merge!({event => {}})
 
       (1..12).each do |month|
         date = Date.parse("#{Time.now.year}-#{month}-1")
-        @selected_year_month_reports[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
+        @selected_year_occurences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
       end
     end
 
@@ -75,7 +77,7 @@ module BestBoy
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
 
       # Custom hash for current event_source stats - current_year, current_month, current_week, current_day (with given current_owner_type)
-      # We fire 5 database queries, one for each group, to keep it database acnostic.
+      # We fire 5 database queries, one for each group, to keep it database agnostic.
       # Before we had 5 * n event_sources queries
       @event_source_counts_per_group = {}
       overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
@@ -94,7 +96,7 @@ module BestBoy
       end
 
       # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
-      # We fire 12 database queries, one for each month, to keep it database acnostic.
+      # We fire 12 database queries, one for each month, to keep it database agnostic.
       # Before we had 12 * n event_sources queries
       @event_sources_counts_per_month = {}
       %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
@@ -111,7 +113,7 @@ module BestBoy
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
       days = 1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))
       # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
-      # We fire a max of 31 database queries, one for each day, to keep it database acnostic.
+      # We fire a max of 31 database queries, one for each day, to keep it database agnostic.
       # Before we had 31 * n event_sources queries
       @event_sources_counts_per_day = {}
       days.each do |day|
