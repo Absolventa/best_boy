@@ -48,12 +48,12 @@ module BestBoy
       self.where(eventable_type: eventable, event_type: type, event_source: source)
     end
 
-    def self.daily_occurences_for(eventable, type, source = nil, date)
-      self.created_on(date).for(eventable, type, source).sum(:occurences)
+    def self.daily_occurrences_for(eventable, type, source = nil, date)
+      self.created_on(date).for(eventable, type, source).sum(:occurrences)
     end
 
-    def self.weekly_occurences_for(eventable, type, source = nil)
-      self.week.for(eventable, type, source).sum(:occurences)
+    def self.weekly_occurrences_for(eventable, type, source = nil)
+      self.week.for(eventable, type, source).sum(:occurrences)
     end
   end
 end

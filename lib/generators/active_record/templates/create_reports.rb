@@ -4,13 +4,13 @@ class CreateReports < ActiveRecord::Migration
       t.string  :eventable_type
       t.string  :event_type
       t.integer :month_report_id
-      t.integer :occurences, default: 0
+      t.integer :occurrences, default: 0
       t.timestamps
     end
     create_table :month_reports, :force => true do |t|
       t.string  :eventable_type
       t.string  :event_type
-      t.integer :occurences, default: 0
+      t.integer :occurrences, default: 0
       t.timestamps
     end
 

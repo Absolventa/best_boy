@@ -36,13 +36,13 @@ describe BestBoy::Eventable do
       expect(day_report).to be_present
     end
 
-    it "increases occurence counter when a new instance is created" do
+    it "increases occurrence counter when a new instance is created" do
       BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
       BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
       Example.create
     end
 
-    it "increases occurence counter when an instance is destroyed" do
+    it "increases occurrence counter when an instance is destroyed" do
       BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
       BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
       Example.first.destroy

@@ -13,21 +13,21 @@ module BestBoy
                   :render_chart, :month_name_array, :detail_count
 
     def stats
-      collect_occurences
-      collect_occurences_for_selected_year
+      collect_occurrences
+      collect_occurrences_for_selected_year
       available_events_totals
       selected_year_totals
     end
 
     def details
-      collect_occurences
-      collect_occurences_grouped_by_sources
-      collect_occurences_for_selected_year_of current_event
+      collect_occurrences
+      collect_occurrences_grouped_by_sources
+      collect_occurrences_for_selected_year_of current_event
       selected_year_totals
     end
 
     def monthly_details
-      collect_occurences_for_month current_month
+      collect_occurrences_for_month current_month
       prepare_monthly_details_chart
     end
 
@@ -37,73 +37,73 @@ module BestBoy
 
     private
 
-    def collect_event_occurences(event)
+    def collect_event_occurrences(event)
       {
         event => {
-          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event, nil, Time.zone.now),
-          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
-          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.zone.now),
-          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.zone.now),
-          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
+          :daily   => BestBoy::DayReport.daily_occurrences_for(current_owner_type, event, nil, Time.zone.now),
+          :weekly  => BestBoy::DayReport.weekly_occurrences_for(current_owner_type, event),
+          :monthly => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, nil, Time.zone.now),
+          :yearly  => BestBoy::MonthReport.yearly_occurrences_for(current_owner_type, event, nil, Time.zone.now),
+          :overall => BestBoy::MonthReport.overall_occurrences_for(current_owner_type, event)
         }
       }
     end
 
-    def collect_occurences
-      @occurences = {}
-      available_events.each { |event| @occurences.merge! collect_event_occurences(event) }
+    def collect_occurrences
+      @occurrences = {}
+      available_events.each { |event| @occurrences.merge! collect_event_occurrences(event) }
     end
 
-    def collect_source_occurences(source)
+    def collect_source_occurrences(source)
       {
         source => {
-          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, current_event, source, Time.zone.now),
-          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, current_event, source),
-          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, current_event, source, Time.zone.now),
-          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, current_event, source, Time.zone.now),
-          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, current_event, source)
+          :daily   => BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, source, Time.zone.now),
+          :weekly  => BestBoy::DayReport.weekly_occurrences_for(current_owner_type, current_event, source),
+          :monthly => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, current_event, source, Time.zone.now),
+          :yearly  => BestBoy::MonthReport.yearly_occurrences_for(current_owner_type, current_event, source, Time.zone.now),
+          :overall => BestBoy::MonthReport.overall_occurrences_for(current_owner_type, current_event, source)
         }
       }
     end
 
-    def collect_occurences_grouped_by_sources
-      @sourced_occurences = {}
-      available_event_sources.each { |source| @sourced_occurences.merge! collect_source_occurences(source) }
+    def collect_occurrences_grouped_by_sources
+      @sourced_occurrences = {}
+      available_event_sources.each { |source| @sourced_occurrences.merge! collect_source_occurrences(source) }
     end
 
-    def collect_occurences_for_month(month)
-      @selected_month_occurences = {}
+    def collect_occurrences_for_month(month)
+      @selected_month_occurrences = {}
       if available_event_sources?
         available_event_sources.each do |source|
           days_of(month).each do |day|
-            @selected_month_occurences.merge!({source => {day => BestBoy::DayReport.daily_occurences_for(current_owner_type, params[:event], source, day)}}) { |k, v1, v2| v1.merge!(v2) }
+            @selected_month_occurrences.merge!({source => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, params[:event], source, day)}}) { |k, v1, v2| v1.merge!(v2) }
           end
         end
       end
       days_of(month).each do |day|
-        @selected_month_occurences.merge!({"All" => {day => BestBoy::DayReport.daily_occurences_for(current_owner_type, params[:event], nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
+        @selected_month_occurrences.merge!({"All" => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, params[:event], nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
       end
     end
 
-    def collect_occurences_for_selected_year
-      @selected_year_occurences = {}
+    def collect_occurrences_for_selected_year
+      @selected_year_occurrences = {}
       available_events.each do |event|
-        @selected_year_occurences.merge!({event => {}})
+        @selected_year_occurrences.merge!({event => {}})
         (1..12).each do |month|
           date = Date.parse("#{current_year}-#{month}-1")
-          @selected_year_occurences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
+          @selected_year_occurrences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, nil, date)})
         end
       end
     end
 
-    def collect_occurences_for_selected_year_of(event)
-      @event_selected_year_occurences = {}
+    def collect_occurrences_for_selected_year_of(event)
+      @event_selected_year_occurrences = {}
       if available_event_sources?
         available_event_sources.each do |source|
-          @event_selected_year_occurences.merge!({source => {}})
+          @event_selected_year_occurrences.merge!({source => {}})
           (1..12).each do |month|
             date = Date.parse("#{current_year}-#{month}-1")
-            @event_selected_year_occurences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, source, date)})
+            @event_selected_year_occurrences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, source, date)})
           end
         end
       end
@@ -113,7 +113,7 @@ module BestBoy
       @this_year_totals     = { :daily => 0, :weekly => 0, :monthly => 0, :yearly => 0, :overall => 0 }
       available_events.each do |event|
         @this_year_totals.keys.each do |time_period|
-          @this_year_totals[time_period] += @occurences[event][time_period]
+          @this_year_totals[time_period] += @occurrences[event][time_period]
         end
       end
     end
@@ -127,7 +127,7 @@ module BestBoy
         @selected_year_totals.merge!({
           month => BestBoy::MonthReport
           .where(eventable_type: current_owner_type, event_source: nil)
-          .between(date.beginning_of_month, date.end_of_month).sum(:occurences)
+          .between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
         })
       end
     end
@@ -154,9 +154,9 @@ module BestBoy
 
       days_of(params[:month]).each do |day|
         if available_event_sources?
-          data_table.add_row( [ day.strftime("%d") ] + available_event_sources.map{ |event_source| @selected_month_occurences[event_source][day] })
+          data_table.add_row( [ day.strftime("%d") ] + available_event_sources.map{ |event_source| @selected_month_occurrences[event_source][day] })
         else
-          data_table.add_row( [ day.strftime("%d") ] + [@selected_month_occurences["All"][day]] )
+          data_table.add_row( [ day.strftime("%d") ] + [@selected_month_occurrences["All"][day]] )
         end
       end
 
@@ -188,7 +188,7 @@ module BestBoy
       scope = scope.where(event_type: current_event) if current_event.present?
       scope = scope.where(event_source: source) if source.present?
       scope = scope.where(event_source: nil) if source.nil?
-      scope.sum(:occurences)
+      scope.sum(:occurrences)
     end
 
     def time_periode_range

@@ -42,16 +42,16 @@ module BestBoy
       self.where(eventable_type: eventable, event_type: type, event_source: source)
     end
 
-    def self.monthly_occurences_for(eventable, type, source = nil, date)
-      self.for(eventable, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurences)
+    def self.monthly_occurrences_for(eventable, type, source = nil, date)
+      self.for(eventable, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
     end
 
-    def self.yearly_occurences_for(eventable, type, source = nil, date)
-      self.for(eventable, type, source).between(date.beginning_of_year, date).sum(:occurences)
+    def self.yearly_occurrences_for(eventable, type, source = nil, date)
+      self.for(eventable, type, source).between(date.beginning_of_year, date).sum(:occurrences)
     end
 
-    def self.overall_occurences_for(eventable, type, source = nil)
-      self.for(eventable, type, source).sum(:occurences)
+    def self.overall_occurrences_for(eventable, type, source = nil)
+      self.for(eventable, type, source).sum(:occurrences)
     end
   end
 end

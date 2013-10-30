@@ -15,14 +15,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @occurences.keys.each do |key| %>
+        <% @occurrences.keys.each do |key| %>
           <tr>
             <td><%= link_to key, best_boy_admin_details_path(:event => key, :owner_type => current_owner_type) %></td>
-            <td><%= @occurences[key][:overall] %></td>
-            <td><%= @occurences[key][:yearly] %></td>
-            <td><%= @occurences[key][:monthly] %></td>
-            <td><%= @occurences[key][:weekly] %> </td>
-            <td><%= @occurences[key][:daily] %></td>
+            <td><%= @occurrences[key][:overall] %></td>
+            <td><%= @occurrences[key][:yearly] %></td>
+            <td><%= @occurrences[key][:monthly] %></td>
+            <td><%= @occurrences[key][:weekly] %> </td>
+            <td><%= @occurrences[key][:daily] %></td>
           </tr>
         <% end %>
       </tbody>
@@ -58,11 +58,11 @@
         </tr>
       </thead>
       <tbody>
-        <% @selected_year_occurences.keys.each do |event| %>
+        <% @selected_year_occurrences.keys.each do |event| %>
           <tr>
             <td><%= event %></td>
-            <% @selected_year_occurences[event].keys.each do |month| %>
-              <td><%= @selected_year_occurences[event][month] %></td>
+            <% @selected_year_occurrences[event].keys.each do |month| %>
+              <td><%= @selected_year_occurrences[event][month] %></td>
             <% end %>
           </tr>
         <% end %>

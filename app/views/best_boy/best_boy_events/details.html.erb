@@ -20,12 +20,12 @@
       </thead>
       <% if available_event_sources.first.present? %>
         <tbody>
-          <% @sourced_occurences.keys.each do |source| %>
+          <% @sourced_occurrences.keys.each do |source| %>
           <tr>
             <td><%= source %><dd/td>
-            <% @sourced_occurences[source].keys.reverse.each do |time_period| %>
-              <td><%= @sourced_occurences[source][time_period]  %></td>
-              <td><%= number_to_percentage( @sourced_occurences[source][time_period].to_f / @sourced_occurences[source][:overall].to_f * 100, :precision => 2 ) %></td>
+            <% @sourced_occurrences[source].keys.reverse.each do |time_period| %>
+              <td><%= @sourced_occurrences[source][time_period]  %></td>
+              <td><%= number_to_percentage( @sourced_occurrences[source][time_period].to_f / @sourced_occurrences[source][:overall].to_f * 100, :precision => 2 ) %></td>
             <% end %>
           </tr>
           <% end %>
@@ -34,10 +34,10 @@
       <tfoot>
         <tr>
           <th>All</th>
-          <% @occurences[params[:event]].keys.reverse.each do |time_period| %>
-            <% occurences = @occurences[params[:event]][time_period] %>
-            <th><%= occurences %></th>
-            <th><%= number_to_percentage( occurences.to_f / @occurences[params[:event]][:overall].to_f * 100, :precision => 2 ) %></th>
+          <% @occurrences[params[:event]].keys.reverse.each do |time_period| %>
+            <% occurrences = @occurrences[params[:event]][time_period] %>
+            <th><%= occurrences %></th>
+            <th><%= number_to_percentage( occurrences.to_f / @occurrences[params[:event]][:overall].to_f * 100, :precision => 2 ) %></th>
           <% end %>
         </tr>
       </tfoot>
@@ -66,11 +66,11 @@
       </thead>
       <tbody>
         <% if available_event_sources.first.present? %>
-          <% @event_selected_year_occurences.keys.each do |source| %>
+          <% @event_selected_year_occurrences.keys.each do |source| %>
             <tr>
               <td><%= source %></td>
-              <% @event_selected_year_occurences[source].keys.each do |month| %>
-                <td><%= @event_selected_year_occurences[source][month] %></td>
+              <% @event_selected_year_occurrences[source].keys.each do |month| %>
+                <td><%= @event_selected_year_occurrences[source][month] %></td>
               <% end %>
             </tr>
           <% end %>
