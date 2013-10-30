@@ -15,6 +15,7 @@ module BestBoy
 
     def grab_reports_for_this_year
       @occurences = {}
+
       available_events.each do |event|
         @occurences.merge!({ event => {
           :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event),
@@ -35,9 +36,8 @@ module BestBoy
       @selected_year_month_reports = @selected_year_month_reports.merge({event => {}})
 
       (1..12).each do |month|
-        @selected_year_month_reports[event] = @selected_year_month_reports[event].merge({
-          month => BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event).month(month, current_year).sum(:occurences)
-        })
+        date = Date.parse("#{Time.now.year}-#{month}-1")
+        @selected_year_month_reports[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
       end
     end
 
@@ -53,7 +53,14 @@ module BestBoy
         @this_year_totals[:overall] += @occurences[event][:overall]
 
         (1..12).each do |month|
-          @selected_year_totals.merge!({ month => monthly_occurences_for(event, month, current_year) }) { |key, value1, value2| value1+value2  }
+          @selected_year_totals.merge!({
+            month => BestBoy::MonthReport.monthly_occurences_for(
+              current_owner_type,
+              event,
+              nil,
+              Date.parse("#{current_year}-#{month}-1")
+            )
+          }) { |key, value1, value2| value1+value2  }
         end
       end
     end
