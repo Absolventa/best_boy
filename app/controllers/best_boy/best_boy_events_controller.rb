@@ -164,7 +164,7 @@ module BestBoy
     end
 
     def custom_data_count(source, time)
-      scope = %("week", "month").include?(current_time_interval) ? BestBoy::DayReport.created_on(time) : BestBoy::MonthReport.month(time.month, time.year)
+      scope = %("week", "month").include?(current_time_interval) ? BestBoy::DayReport.created_on(time) : BestBoy::MonthReport.between(time.beginning_of_month, time.end_of_month)
       scope = scope.where(eventable_type: current_owner_type)
       scope = scope.where(event_type: current_event) if current_event.present?
       scope = scope.where(event_source: source) if source.present?
