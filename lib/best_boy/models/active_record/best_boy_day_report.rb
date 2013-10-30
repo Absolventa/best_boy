@@ -47,5 +47,9 @@ module BestBoy
     def self.for(eventable, type, source = nil)
       self.where(eventable_type: eventable, event_type: type, event_source: source)
     end
+
+    def self.weekly_occurences_for(eventable, type, source = nil)
+      self.week.for(eventable, type, source).sum(:occurences)
+    end
   end
 end

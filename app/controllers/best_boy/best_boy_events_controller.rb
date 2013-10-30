@@ -13,35 +13,15 @@ module BestBoy
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
                   :render_chart, :month_name_array, :detail_count
 
-
-    def weekly_occurences_for event
-      BestBoy::DayReport.week.where(eventable_type: current_owner_type, event_type: event, event_source: nil).sum(:occurences)
-    end
-
-    def monthly_occurences_for event, month, year
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).month(month, year).sum(:occurences)
-    end
-
-    def yearly_occurences_for event, year
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).between(Time.now.beginning_of_year, Time.now).sum(:occurences)
-    end
-
-    def overall_occurences_for event
-      BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: event, event_source: nil).sum(:occurences)
-    end
-
     def grab_reports_for_this_year
-      @day_reports, @month_reports, @occurences = {}, {}, {}
-
+      @occurences = {}
       available_events.each do |event|
-        @day_reports[event]   = BestBoy::DayReport.current_for(Time.now, current_owner_type, event, nil).last
-        @month_reports[event] = BestBoy::MonthReport.current_for(Time.now, current_owner_type, event, nil).last
-        @occurences           = @occurences.merge({ event => {
-          :daily => @day_reports[event].present? ? @day_reports[event].occurences : 0,
-          :weekly => weekly_occurences_for(event),
-          :monthly => @month_reports[event].present? ? @month_reports[event].occurences : 0,
-          :yearly => yearly_occurences_for(event, current_year),
-          :overall => overall_occurences_for(event)
+        @occurences.merge!({ event => {
+          :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event),
+          :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event),
+          :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, Time.now),
+          :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, nil, Time.now),
+          :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event)
         }})
       end
     end
