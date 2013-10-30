@@ -1,4 +1,4 @@
-namespace :best_boy do
+name.space :best_boy do
   desc "Creates consistent DayReport and MonthReport structure for given events"
   task :recover_report_history  => :environment do 
     unreported = BestBoyEvent.where(reported: false)
@@ -18,7 +18,7 @@ namespace :best_boy do
         #
         # 
 
-        month_report = event_month_scope.where(event_source: nil).month(event.created_at.month, event.created_at.year).first
+        month_report = event_month_scope.where(event_source: nil).between(event.created_at.beginning_of_month, event.created_at.end_of_month).first
         if month_report.nil?
           month_report = event_month_scope.new.tap { |r| r.created_at = event.created_at; r.save! }
         end 
@@ -40,7 +40,7 @@ namespace :best_boy do
           #
           #  
 
-          month_report_with_source = event_month_scope.where(event_source: event.event_source).month(event.created_at.month, event.created_at.year).first
+          month_report_with_source = event_month_scope.where(event_source: event.event_source).between(event.created_at.beginning_of_month, event.created_at.end_of_month).first
           if month_report_with_source.nil?
             month_report_with_source = event_month_scope.new(event_source: event.event_source).tap { |r| r.created_at = event.created_at; r.save! }
           end
