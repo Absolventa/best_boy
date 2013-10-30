@@ -73,9 +73,7 @@ module BestBoy
         @this_year_totals[:overall] += @occurences[event][:overall]
 
         (1..12).each do |month|
-          @selected_year_totals = @selected_year_totals.update(
-            { month => monthly_occurences_for(event, month, current_year) }
-          ) { |key, value1, value2| value1+value2  } # sum up values each time hash is updated
+          @selected_year_totals.merge!({ month => monthly_occurences_for(event, month, current_year) }) { |key, value1, value2| value1+value2  }
         end
       end
     end
@@ -121,7 +119,6 @@ module BestBoy
         end
       end
     end
-
 
     def monthly_details
       counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
