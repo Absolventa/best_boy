@@ -241,6 +241,10 @@ module BestBoy
       )
     end
 
+    def available_event_sources?
+      available_event_sources.first.present?
+    end
+
     def available_years
       @available_years = (BestBoyEvent.where(owner_type: current_owner_type).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
     end
