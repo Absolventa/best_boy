@@ -2,7 +2,10 @@ module BestBoy
   class BestBoyEventsController < BestBoy.base_controller.constantize
 
     before_action BestBoy.before_filter if BestBoy.before_filter.present?
-    before_action :prepare_chart, :only => [:charts]
+    before_action :prepare_chart,                    :only => [:charts]
+    before_action :collect_occurences_for_this_year, :only => [:stats, :details]
+    before_action :collect_occurences_by_sources,    :only => [:details]
+    before_action :compute_totals,                   :only => [:stats, :details]
 
     skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
     skip_after_filter BestBoy.skip_after_filter if BestBoy.skip_after_filter.present?
@@ -13,9 +16,27 @@ module BestBoy
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
                   :render_chart, :month_name_array, :detail_count
 
-    def grab_reports_for_this_year
-      @occurences = {}
+    def collect_occurences_by_sources
+      @sourced_occurences = {}
+      available_event_sources.each do |source|
+        available_events.each do |event|
+          @sourced_occurences.merge!({
+            source => {
+              event => {
+                :daily   => BestBoy::DayReport.daily_occurences_for(current_owner_type, event, source),
+                :weekly  => BestBoy::DayReport.weekly_occurences_for(current_owner_type, event, source),
+                :monthly => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, source, Time.now),
+                :yearly  => BestBoy::MonthReport.yearly_occurences_for(current_owner_type, event, source, Time.now),
+                :overall => BestBoy::MonthReport.overall_occurences_for(current_owner_type, event, source)
+              }
+            }
+          })
+        end
+      end
+    end
 
+    def collect_occurences_for_this_year
+      @occurences = {}
       available_events.each do |event|
         @occurences.merge!({
           event => {
@@ -31,15 +52,25 @@ module BestBoy
 
     def crunch_data_for_selected_year
       @selected_year_occurences = {}
-      available_events.each { |event| crunch_data_for_selected_year_of event }
+      available_events.each do |event|
+        @selected_year_occurences.merge!({event => {}})
+        (1..12).each do |month|
+          date = Date.parse("#{Time.now.year}-#{month}-1")
+          @selected_year_occurences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
+        end
+      end
     end
 
-    def crunch_data_for_selected_year_of event
-      @selected_year_occurences.merge!({event => {}})
-
-      (1..12).each do |month|
-        date = Date.parse("#{Time.now.year}-#{month}-1")
-        @selected_year_occurences[event].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, nil, date)})
+    def crunch_data_for_selected_year_for_event(event)
+      @event_selected_year_occurences = {}
+      if available_event_sources.first.present?
+        available_event_sources.each do |source|
+          @event_selected_year_occurences.merge!({source => {}})
+          (1..12).each do |month|
+            date = Date.parse("#{Time.now.year}-#{month}-1")
+            @event_selected_year_occurences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurences_for(current_owner_type, event, source, date)})
+          end
+        end
       end
     end
 
@@ -68,45 +99,12 @@ module BestBoy
     end
 
     def stats
-      grab_reports_for_this_year
       crunch_data_for_selected_year
-      compute_totals
     end
 
     def details
-      counter_scope = BestBoyEvent.select("COUNT(*) as counter, event_source").where(owner_type: current_owner_type, event: current_event).group('event_source')
-
-      # Custom hash for current event_source stats - current_year, current_month, current_week, current_day (with given current_owner_type)
-      # We fire 5 database queries, one for each group, to keep it database agnostic.
-      # Before we had 5 * n event_sources queries
-      @event_source_counts_per_group = {}
-      overall_hash = counter_scope.inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_year_hash = counter_scope.per_year(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_month_hash = counter_scope.per_month(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_week_hash = counter_scope.per_week(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-      current_day_hash = counter_scope.per_day(Time.zone.now).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-
-      available_event_sources.each do |event_source|
-        @event_source_counts_per_group[event_source] ||= {}
-        @event_source_counts_per_group[event_source]['overall'] = overall_hash[event_source] || 0
-        @event_source_counts_per_group[event_source]['year'] = current_year_hash[event_source] || 0
-        @event_source_counts_per_group[event_source]['month'] = current_month_hash[event_source] || 0
-        @event_source_counts_per_group[event_source]['week'] = current_week_hash[event_source] || 0
-        @event_source_counts_per_group[event_source]['day'] = current_day_hash[event_source] || 0
-      end
-
-      # Custom hash for current event_sources stats per month (with given current_owner_type and given event)
-      # We fire 12 database queries, one for each month, to keep it database agnostic.
-      # Before we had 12 * n event_sources queries
-      @event_sources_counts_per_month = {}
-      %w(1 2 3 4 5 6 7 8 9 10 11 12).each do |month|
-        month_hash = counter_scope.per_month("1-#{month}-#{current_year}".to_time).inject({}){ |hash, element| hash[element.event_source] = element.counter; hash}
-
-        available_event_sources.each do |event_source|
-          @event_sources_counts_per_month[event_source] ||= {}
-          @event_sources_counts_per_month[event_source][month] = month_hash[event_source] || 0
-        end
-      end
+      crunch_data_for_selected_year
+      crunch_data_for_selected_year_for_event params[:event]
     end
 
     def monthly_details
