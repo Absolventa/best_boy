@@ -39,6 +39,8 @@ describe BestBoy::DayReport do
     end
 
     it "aggregates DayReports of last week" do
+      Time.zone = "Berlin"
+
       report_from_last_week = BestBoy::DayReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 8.days.ago; e.save }
       report_from_this_week = BestBoy::DayReport.create({eventable_type: "Example", event_type: "create", month_report_id: month_report.id })
 
