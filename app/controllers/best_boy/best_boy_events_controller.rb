@@ -255,12 +255,12 @@ module BestBoy
     end
 
     def available_events
-      @available_events ||= BestBoyEvent.select('DISTINCT event').where(owner_type: current_owner_type).order(:event).map(&:event)
+      @available_events ||= BestBoy::MonthReport.where(eventable_type: current_owner_type, event_source: nil).order(:event_type).uniq.pluck(:event_type)
     end
 
     def available_event_sources
       @available_event_sources ||= (
-        BestBoyEvent.select("DISTINCT event_source").where(owner_type: current_owner_type, event: current_event).order(:event_source).map(&:event_source)
+        BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: current_event).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
       )
     end
 
@@ -269,11 +269,11 @@ module BestBoy
     end
 
     def available_years
-      @available_years = (BestBoyEvent.where(owner_type: current_owner_type).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
+      @available_years = (BestBoy::MonthReport.where(eventable_type: current_owner_type, event_source: nil).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
     end
 
     def available_owner_types
-      @available_owner_types ||= BestBoyEvent.select("DISTINCT owner_type").order(:owner_type).map(&:owner_type)
+      @available_owner_types ||= BestBoy::MonthReport.where(event_source: nil).order(:eventable_type).uniq.pluck(:eventable_type)
     end
 
     def detail_count
