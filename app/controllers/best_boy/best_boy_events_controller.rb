@@ -120,8 +120,10 @@ module BestBoy
 
     def selected_year_totals
       @selected_year_totals = {}
-      # TODO: This database query may could  work with GROUP_BY or like
-      # @selected_year_totals = BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:eventable_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
+      # OPTIMIZE ME:
+      # Query below could be replaced with a GROUP_BY or similar
+      # SQL-statement for performance boost, i.e. similar to
+      # BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:eventable_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
       (1..12).each do |month|
         date = Date.parse("#{current_year}-#{month}-1")
         @selected_year_totals.merge!({
