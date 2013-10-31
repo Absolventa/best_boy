@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024104300) do
+ActiveRecord::Schema.define(version: 20131029103019) do
 
   create_table "best_boy_events", force: true do |t|
     t.integer  "owner_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131024104300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "event_source"
+    t.boolean  "reported",     default: false
   end
 
   add_index "best_boy_events", ["event"], name: "index_best_boy_events_on_event"
@@ -29,28 +30,30 @@ ActiveRecord::Schema.define(version: 20131024104300) do
 
   create_table "day_reports", force: true do |t|
     t.string   "eventable_type"
-    t.integer  "eventable_id"
     t.string   "event_type"
     t.integer  "month_report_id"
-    t.integer  "occurences",      default: 0
+    t.integer  "occurrences",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "event_source"
   end
 
   add_index "day_reports", ["created_at"], name: "index_day_reports_on_created_at"
-  add_index "day_reports", ["eventable_type", "eventable_id"], name: "bb_day"
+  add_index "day_reports", ["event_source"], name: "index_day_reports_on_event_source"
+  add_index "day_reports", ["eventable_type"], name: "index_day_reports_on_eventable_type"
 
   create_table "month_reports", force: true do |t|
     t.string   "eventable_type"
-    t.integer  "eventable_id"
     t.string   "event_type"
-    t.integer  "occurences",     default: 0
+    t.integer  "occurrences",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "event_source"
   end
 
   add_index "month_reports", ["created_at"], name: "index_month_reports_on_created_at"
-  add_index "month_reports", ["eventable_type", "eventable_id"], name: "bb_month"
+  add_index "month_reports", ["event_source"], name: "index_month_reports_on_event_source"
+  add_index "month_reports", ["eventable_type"], name: "index_month_reports_on_eventable_type"
 
   create_table "test_events", force: true do |t|
     t.datetime "created_at"
