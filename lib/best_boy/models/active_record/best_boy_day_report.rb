@@ -1,18 +1,24 @@
 module BestBoy
   class DayReport < ActiveRecord::Base
 
+    # db configuration
+    #
+    #
+
+    self.table_name = "best_boy_day_reports"
+
     # associations
     #
     #
 
-    belongs_to :eventable, polymorphic: true
+    belongs_to :owner, polymorphic: true
     belongs_to :month_report
 
     # validations
     #
     #
 
-    validates :month_report_id, :eventable_type, :event_type, presence: true
+    validates :month_report_id, :owner_type, :event, presence: true
 
     # scopes
     #
@@ -25,35 +31,35 @@ module BestBoy
     #
     #
 
-    def self.current_for(date, eventable, type, source = nil)
-      self.for(eventable, type, source).created_on(date)
+    def self.current_for(date, owner, type, source = nil)
+      self.for(owner, type, source).created_on(date)
     end
 
-    def self.current_or_create_for(eventable, type, source = nil)
-      day_report = self.current_for(Time.now, eventable, type, source).last
-      day_report.present? ? day_report : self.create_for(eventable, type, source)
+    def self.current_or_create_for(owner, type, source = nil)
+      day_report = self.current_for(Time.now, owner, type, source).last
+      day_report.present? ? day_report : self.create_for(owner, type, source)
     end
 
-    def self.create_for(eventable, type, source = nil)
-      month_report = BestBoy::MonthReport.current_or_create_for(eventable, type, source)
+    def self.create_for(owner, type, source = nil)
+      month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source)
       BestBoy::DayReport.create(
-        eventable_type:  eventable,
-        event_type:      type,
+        owner_type:  owner,
+        event:      type,
         month_report_id: month_report.to_param,
         event_source:    source
       )
     end
 
-    def self.for(eventable, type, source = nil)
-      self.where(eventable_type: eventable, event_type: type, event_source: source)
+    def self.for(owner, type, source = nil)
+      self.where(owner_type: owner, event: type, event_source: source)
     end
 
-    def self.daily_occurrences_for(eventable, type, source = nil, date)
-      self.created_on(date).for(eventable, type, source).sum(:occurrences)
+    def self.daily_occurrences_for(owner, type, source = nil, date)
+      self.created_on(date).for(owner, type, source).sum(:occurrences)
     end
 
-    def self.weekly_occurrences_for(eventable, type, source = nil)
-      self.week.for(eventable, type, source).sum(:occurrences)
+    def self.weekly_occurrences_for(owner, type, source = nil)
+      self.week.for(owner, type, source).sum(:occurrences)
     end
   end
 end

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe BestBoy::MonthReport do
 
-  let(:eventable) { Example.create }
+  let(:owner) { Example.create }
   let(:month_report) do
     BestBoy::MonthReport.create({
-      eventable_type: eventable.class.to_param,
-      event_type:     "create"
+      owner_type: owner.class.to_param,
+      event:     "create"
     })
   end
 
@@ -18,8 +18,8 @@ describe BestBoy::MonthReport do
 
   describe "with validations" do
     it "validates presence of attributes" do
-      expect(subject).to validate_presence_of(:eventable_type)
-      expect(subject).to validate_presence_of(:event_type)
+      expect(subject).to validate_presence_of(:owner_type)
+      expect(subject).to validate_presence_of(:event)
     end
   end
 
@@ -31,8 +31,8 @@ describe BestBoy::MonthReport do
     end
 
     it "aggregates MonthReports of specific month period" do
-      report_from_first_month = BestBoy::MonthReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 2.month.ago; e.save }
-      report_from_last_month = BestBoy::MonthReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 1.month.ago }
+      report_from_first_month = BestBoy::MonthReport.create({owner_type: "Example", event: "create"}).tap { |e| e.created_at = 2.month.ago; e.save }
+      report_from_last_month = BestBoy::MonthReport.create({owner_type: "Example", event: "create"}).tap { |e| e.created_at = 1.month.ago }
 
       collection = BestBoy::MonthReport.order('created_at DESC')
       expect(collection.between(3.month.ago, Time.now)).to include(report_from_first_month)
@@ -71,12 +71,12 @@ describe BestBoy::MonthReport do
 
     describe "#current_or_create_for" do
       context "when month_report exists" do
-        eventable            = Example.create
-        existing_report      = BestBoy::MonthReport.create_for(eventable.class, "create")
-        existing_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
+        owner            = Example.create
+        existing_report      = BestBoy::MonthReport.create_for(owner.class, "create")
+        existing_with_source = BestBoy::MonthReport.create_for(owner.class, "create", "api")
 
-        demanded              = BestBoy::MonthReport.current_or_create_for(eventable.class, "create")
-        demanded_with_source  = BestBoy::MonthReport.current_or_create_for(eventable.class, "create", "api")
+        demanded              = BestBoy::MonthReport.current_or_create_for(owner.class, "create")
+        demanded_with_source  = BestBoy::MonthReport.current_or_create_for(owner.class, "create", "api")
 
         it { expect(demanded).to eql existing_report }
         it { expect(demanded_with_source).to eql existing_with_source }
@@ -85,26 +85,26 @@ describe BestBoy::MonthReport do
       context "when no month_report is present" do
         it "creates a new month_report" do
           BestBoy::MonthReport.destroy_all
-          scope = BestBoy::MonthReport.where(eventable_type: Example.to_s, event_type: "create")
+          scope = BestBoy::MonthReport.where(owner_type: Example.to_s, event: "create")
           expect(scope.between(Time.now.beginning_of_month, Time.now)).to be_empty
-          expect{ BestBoy::MonthReport.current_or_create_for(eventable.class, "create") }.to change(scope.between(Time.now.beginning_of_month, Time.now), :count).by(1)
+          expect{ BestBoy::MonthReport.current_or_create_for(owner.class, "create") }.to change(scope.between(Time.now.beginning_of_month, Time.now), :count).by(1)
         end
       end
     end
 
     describe "#create_for" do
-      eventable          = Example.create
-      report             = BestBoy::MonthReport.create_for(eventable.class, "create")
-      report_with_source = BestBoy::MonthReport.create_for(eventable.class, "create", "api")
+      owner          = Example.create
+      report             = BestBoy::MonthReport.create_for(owner.class, "create")
+      report_with_source = BestBoy::MonthReport.create_for(owner.class, "create", "api")
 
       it { expect(report).to be_valid }
       it { expect(report_with_source).to be_valid }
 
-      it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
-      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report.owner_type).to be_eql(owner.class.to_s) }
+      it { expect(report_with_source.owner_type).to be_eql(owner.class.to_s) }
 
-      it { expect(report.event_type).to be_eql("create") }
-      it { expect(report_with_source.event_type).to be_eql("create") }
+      it { expect(report.event).to be_eql("create") }
+      it { expect(report_with_source.event).to be_eql("create") }
 
       it { expect(report.event_source).to be_nil }
       it { expect(report_with_source.event_source).to eql "api" }

@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe BestBoy::DayReport do
 
-  let(:eventable) { Example.create }
+  let(:owner) { Example.create }
   let(:month_report) do
     BestBoy::MonthReport.create({
-      eventable_type: eventable.class.to_param,
-      event_type:     "create"
+      owner_type: owner.class.to_param,
+      event:     "create"
     })
   end
   let(:day_report) do
      BestBoy::DayReport.create({
-      eventable_type:  eventable.class.to_param,
-      event_type:      "create",
+      owner_type:  owner.class.to_param,
+      event:      "create",
       month_report_id: month_report.to_param
     })
   end
@@ -26,8 +26,8 @@ describe BestBoy::DayReport do
   context "with validations" do
     it "validates presence of attributes" do
       expect(subject).to validate_presence_of(:month_report_id)
-      expect(subject).to validate_presence_of(:eventable_type)
-      expect(subject).to validate_presence_of(:event_type)
+      expect(subject).to validate_presence_of(:owner_type)
+      expect(subject).to validate_presence_of(:event)
     end
   end
 
@@ -41,8 +41,8 @@ describe BestBoy::DayReport do
     it "aggregates DayReports of last week" do
       Time.zone = "Berlin"
 
-      report_from_last_week = BestBoy::DayReport.create({eventable_type: "Example", event_type: "create"}).tap { |e| e.created_at = 8.days.ago; e.save }
-      report_from_this_week = BestBoy::DayReport.create({eventable_type: "Example", event_type: "create", month_report_id: month_report.id })
+      report_from_last_week = BestBoy::DayReport.create({owner_type: "Example", event: "create"}).tap { |e| e.created_at = 8.days.ago; e.save }
+      report_from_this_week = BestBoy::DayReport.create({owner_type: "Example", event: "create", month_report_id: month_report.id })
 
       collection = BestBoy::DayReport.order('created_at DESC')
       expect(collection.week).to include(report_from_this_week)
@@ -74,12 +74,12 @@ describe BestBoy::DayReport do
 
     describe "#current_or_create_for" do
       context "when day_report exists" do
-        eventable            = Example.create
-        existing_report      = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
-        existing_with_source = BestBoy::DayReport.create_for(eventable.class.to_s, "create", "api")
+        owner            = Example.create
+        existing_report      = BestBoy::DayReport.create_for(owner.class.to_s, "create")
+        existing_with_source = BestBoy::DayReport.create_for(owner.class.to_s, "create", "api")
 
-        demanded             = BestBoy::DayReport.current_or_create_for(eventable.class.to_s, "create")
-        demanded_with_source = BestBoy::DayReport.current_or_create_for(eventable.class.to_s, "create", "api")
+        demanded             = BestBoy::DayReport.current_or_create_for(owner.class.to_s, "create")
+        demanded_with_source = BestBoy::DayReport.current_or_create_for(owner.class.to_s, "create", "api")
 
         it { expect(demanded).to be_eql existing_report }
         it { expect(demanded_with_source).to be_eql existing_with_source }
@@ -88,23 +88,23 @@ describe BestBoy::DayReport do
       context "when no today's day_report is present" do
         it "creates a new month_report" do
           BestBoy::DayReport.destroy_all
-          scope = BestBoy::DayReport.where(eventable_type: Example.to_s, event_type: "create")
-          expect{ BestBoy::DayReport.current_or_create_for(eventable.class.to_s, "create") }.to change(scope.created_on(Time.now), :count).by(1)
+          scope = BestBoy::DayReport.where(owner_type: Example.to_s, event: "create")
+          expect{ BestBoy::DayReport.current_or_create_for(owner.class.to_s, "create") }.to change(scope.created_on(Time.now), :count).by(1)
         end
       end
     end
 
     describe "#create_for" do
-      eventable          = Example.create
-      report             = BestBoy::DayReport.create_for(eventable.class.to_s, "create")
-      report_with_source = BestBoy::DayReport.create_for(eventable.class.to_s, "create", "api")
+      owner          = Example.create
+      report             = BestBoy::DayReport.create_for(owner.class.to_s, "create")
+      report_with_source = BestBoy::DayReport.create_for(owner.class.to_s, "create", "api")
 
       it { expect(report).to be_valid }
-      it { expect(report.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report.owner_type).to be_eql(owner.class.to_s) }
       it { expect(report.event_source).to be_nil }
 
       it { expect(report_with_source).to be_valid }
-      it { expect(report_with_source.eventable_type).to be_eql(eventable.class.to_s) }
+      it { expect(report_with_source.owner_type).to be_eql(owner.class.to_s) }
       it { expect(report_with_source.event_source).to be_eql("api") }
     end
   end

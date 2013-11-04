@@ -21,14 +21,14 @@ describe BestBoy::Eventable do
   context "with reporting" do
     let(:month_report) do
       BestBoy::MonthReport.where(
-        eventable_type: @example.class,
-        event_type: 'create'
+        owner_type: @example.class,
+        event: 'create'
       ).first
     end
     let(:day_report) do
       BestBoy::DayReport.where(
-        eventable_type: @example.class,
-        event_type: 'create'
+        owner_type: @example.class,
+        event: 'create'
       ).first
     end
     it "loads reports" do
