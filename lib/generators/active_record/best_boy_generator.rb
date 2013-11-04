@@ -17,7 +17,6 @@ module ActiveRecord
         %w( create_best_boy_events_table.rb
             add_event_source_to_best_boy_events_table.rb
             create_reports.rb add_event_source_to_reports.rb
-            add_reported_to_best_boy_events.rb
           ).each do |migration_file|
           destination = "db/migrate/#{migration_file.sub(%r\.rb$\, '')}"
           if not self.class.migration_exists?(File.dirname(destination), File.basename(destination))
