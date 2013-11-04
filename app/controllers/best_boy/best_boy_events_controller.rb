@@ -8,6 +8,8 @@ module BestBoy
 
     layout 'best_boy_backend'
 
+
+    helper BestBoy::BestBoyViewHelper
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_years,
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
                   :render_chart, :month_name_array, :detail_count
