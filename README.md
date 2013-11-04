@@ -136,7 +136,7 @@ If you're upgrading BestBoy from an older version, there
 is a rake task for 'recovering' these report structure for
 an existing set of events. Simply run 
     
-    bundle exec rake recover_report_history
+    bundle exec rake best_boy:recover_report_history
 
 Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
