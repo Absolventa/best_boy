@@ -257,12 +257,12 @@ module BestBoy
     end
 
     def available_events
-      @available_events ||= BestBoy::MonthReport.where(eventable_type: current_owner_type, event_source: nil).order(:event_type).uniq.pluck(:event_type)
+      @available_events ||= BestBoy::MonthReport.where(eventable_type: current_owner_type).order(:event_type).uniq.pluck(:event_type)
     end
 
     def available_event_sources
       @available_event_sources ||= (
-        BestBoy::MonthReport.where(eventable_type: current_owner_type, event_type: current_event).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
+        BestBoy::MonthReport.where(eventable_type: current_owner_type).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
       )
     end
 
