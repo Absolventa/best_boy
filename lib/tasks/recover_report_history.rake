@@ -9,9 +9,9 @@ namespace :best_boy do
     def month_report_id_for(year, owner_type, source, event) 
       date = Date.parse("#{year}-01-01")
       BestBoy::MonthReport.where(created_at: date.beginning_of_day..date.end_of_year.end_of_day, 
-                                 eventable_type: owner_type, 
+                                 owner_type: owner_type, 
                                  event_source: source, 
-                                 event_type: event).first.id
+                                 event: event).first.id
     end
 
     def flush
@@ -68,16 +68,16 @@ namespace :best_boy do
                 artifical_created_at = month_scope.first.created_at
                 if source.present?
                   month_report_with_source = BestBoy::MonthReport.create(
-                    eventable_type: owner_type, 
-                    event_type:     event,
+                    owner_type: owner_type, 
+                    event:     event,
                     event_source:   source,
                     occurrences:    monthly_occurrences 
                   ).tap { |r| r.created_at = artifical_created_at; r.save }
                 end
 
                 month_report_without_source = BestBoy::MonthReport.create(
-                  eventable_type: owner_type, 
-                  event_type:     event,
+                  owner_type: owner_type, 
+                  event:     event,
                   event_source:   nil,
                   occurrences:    monthly_occurrences 
                 ).tap { |r| r.created_at = artifical_created_at; r.save }
@@ -96,8 +96,8 @@ namespace :best_boy do
             if daily_occurrences > 0
               if source.present?
                 day_report_with_source = BestBoy::DayReport.create(
-                  eventable_type:  owner_type, 
-                  event_type:      event, 
+                  owner_type:  owner_type, 
+                  event:      event, 
                   event_source:    source,
                   occurrences:     daily_occurrences,
                   month_report_id: month_report_id_for(day.year, owner_type, source, event)
@@ -105,8 +105,8 @@ namespace :best_boy do
               end
 
               day_report_without_source = BestBoy::DayReport.create(
-                eventable_type:  owner_type, 
-                event_type:      event, 
+                owner_type:  owner_type, 
+                event:      event, 
                 event_source:    nil,
                 occurrences:     daily_occurrences,
                 month_report_id: month_report_id_for(day.year, owner_type, source, event)
