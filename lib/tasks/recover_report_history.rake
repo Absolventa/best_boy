@@ -77,9 +77,7 @@ namespace :best_boy do
                         sanitized(source) => { event => month_report_with_source.id } 
                       }
                     }
-                  }) { |key, val1, val2| val1.merge!(val2) { |k,v1,v2| v1.merge!(v2) } }
-                  
-                  flush
+                  }) { |key, val1, val2| val1.merge!(val2) { |k,v1,v2| v1.merge!(v2) } }  
                 end
 
                 month_report_without_source = BestBoy::MonthReport.create(
@@ -99,8 +97,6 @@ namespace :best_boy do
                     }
                   }
                 }) { |key, val1, val2| val1.merge!(val2) { |k,v1,v2| v1.merge!(v2) } }
-                
-                flush
               end
             end
 
@@ -122,7 +118,6 @@ namespace :best_boy do
                   occurrences:     daily_occurrences,
                   month_report_id: month_report_ids[day.year][owner_type][sanitized(source)][event]
                 ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
-                flush
               end
 
               day_report_without_source = BestBoy::DayReport.create(
@@ -132,11 +127,12 @@ namespace :best_boy do
                 occurrences:     daily_occurrences,
                 month_report_id: month_report_ids[day.year][owner_type][sanitized(source)][event]
               ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
-              flush
             end
           end
         end
       end
+
+      flush
     end
 
     puts ""
