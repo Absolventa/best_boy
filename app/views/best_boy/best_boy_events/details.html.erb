@@ -25,7 +25,7 @@
             <td><%= source %><dd/td>
             <% @sourced_occurrences[source].keys.reverse.each do |time_period| %>
               <td><%= @sourced_occurrences[source][time_period]  %></td>
-              <td><%= number_to_percentage( @sourced_occurrences[source][time_period].to_f / @sourced_occurrences[source][:overall].to_f * 100, :precision => 2 ) %></td>
+              <td><%= number_to_percentage( relative_occurrences(source, time_period), :precision => 2) %></td>
             <% end %>
           </tr>
           <% end %>
