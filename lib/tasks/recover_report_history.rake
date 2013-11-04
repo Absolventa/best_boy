@@ -6,8 +6,12 @@ namespace :best_boy do
     #
     #
 
-    def sanitized(source)
-      source.nil? ? "nil" : source
+    def month_report_id_for(year, owner_type, source, event) 
+      date = Date.parse("#{year}-01-01")
+      BestBoy::MonthReport.where(created_at: date.beginning_of_day..date.end_of_year.end_of_day, 
+                                 eventable_type: owner_type, 
+                                 event_source: source, 
+                                 event_type: event).first.id
     end
 
     def flush
@@ -29,7 +33,6 @@ namespace :best_boy do
     owner_types             = BestBoyEvent.order(:owner_type).uniq.pluck(:owner_type)
     available_events        = {}
     available_event_sources = {}
-    month_report_ids = {}
 
     owner_types.each do |owner_type|
       available_events.merge!(        { owner_type => BestBoyEvent.where(owner_type: owner_type).order(:event).uniq.pluck(:event) } )
@@ -70,14 +73,6 @@ namespace :best_boy do
                     event_source:   source,
                     occurrences:    monthly_occurrences 
                   ).tap { |r| r.created_at = artifical_created_at; r.save }
-                  
-                  month_report_ids.merge!({  
-                    artifical_created_at.year => {
-                      owner_type => { 
-                        sanitized(source) => { event => month_report_with_source.id } 
-                      }
-                    }
-                  }) { |key, val1, val2| val1.merge!(val2) { |k,v1,v2| v1.merge!(v2) } }  
                 end
 
                 month_report_without_source = BestBoy::MonthReport.create(
@@ -86,17 +81,6 @@ namespace :best_boy do
                   event_source:   nil,
                   occurrences:    monthly_occurrences 
                 ).tap { |r| r.created_at = artifical_created_at; r.save }
-              
-                month_report_ids.merge!({  
-                  artifical_created_at.year => { 
-                    owner_type => { 
-                      sanitized(source) => { 
-                        event => 
-                          month_report_without_source.id 
-                      } 
-                    }
-                  }
-                }) { |key, val1, val2| val1.merge!(val2) { |k,v1,v2| v1.merge!(v2) } }
               end
             end
 
@@ -116,7 +100,7 @@ namespace :best_boy do
                   event_type:      event, 
                   event_source:    source,
                   occurrences:     daily_occurrences,
-                  month_report_id: month_report_ids[day.year][owner_type][sanitized(source)][event]
+                  month_report_id: month_report_id_for(day.year, owner_type, source, event)
                 ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
               end
 
@@ -125,7 +109,7 @@ namespace :best_boy do
                 event_type:      event, 
                 event_source:    nil,
                 occurrences:     daily_occurrences,
-                month_report_id: month_report_ids[day.year][owner_type][sanitized(source)][event]
+                month_report_id: month_report_id_for(day.year, owner_type, source, event)
               ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
             end
           end
