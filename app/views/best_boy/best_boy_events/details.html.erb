@@ -25,7 +25,7 @@
             <td><%= source %><dd/td>
             <% @sourced_occurrences[source].keys.reverse.each do |time_period| %>
               <td><%= @sourced_occurrences[source][time_period]  %></td>
-              <td><%= number_to_percentage( relative_occurrences(source, time_period), :precision => 2) %></td>
+              <td><%= relative_occurrences(@sourced_occurrences[source], time_period) %></td>
             <% end %>
           </tr>
           <% end %>
@@ -35,9 +35,8 @@
         <tr>
           <th>All</th>
           <% @occurrences[params[:event]].keys.reverse.each do |time_period| %>
-            <% occurrences = @occurrences[params[:event]][time_period] %>
-            <th><%= occurrences %></th>
-            <th><%= number_to_percentage( occurrences.to_f / @occurrences[params[:event]][:overall].to_f * 100, :precision => 2 ) %></th>
+            <th><%= @occurrences[params[:event]][time_period]  %></th>
+            <th><%= relative_occurrences(@occurrences[params[:event]], time_period)%></th>
           <% end %>
         </tr>
       </tfoot>
