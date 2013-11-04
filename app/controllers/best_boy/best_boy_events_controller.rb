@@ -125,12 +125,12 @@ module BestBoy
       # OPTIMIZE ME:
       # Query below could be replaced with a GROUP_BY or similar
       # SQL-statement for performance boost, i.e. similar to
-      # BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:eventable_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
+      # BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:owner_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
       (1..12).each do |month|
         date = Date.parse("#{current_year}-#{month}-1")
         @selected_year_totals.merge!({
           month => BestBoy::MonthReport
-          .where(eventable_type: current_owner_type, event_source: nil)
+          .where(owner_type: current_owner_type, event_source: nil)
           .between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
         })
       end
@@ -188,8 +188,8 @@ module BestBoy
 
     def custom_data_count(source, time)
       scope = %("week", "month").include?(current_time_interval) ? BestBoy::DayReport.created_on(time) : BestBoy::MonthReport.between(time.beginning_of_month, time.end_of_month)
-      scope = scope.where(eventable_type: current_owner_type)
-      scope = scope.where(event_type: current_event) if current_event.present?
+      scope = scope.where(owner_type: current_owner_type)
+      scope = scope.where(event: current_event) if current_event.present?
       scope = scope.where(event_source: source) if source.present?
       scope = scope.where(event_source: nil) if source.nil?
       scope.sum(:occurrences)
@@ -257,12 +257,12 @@ module BestBoy
     end
 
     def available_events
-      @available_events ||= BestBoy::MonthReport.where(eventable_type: current_owner_type).order(:event_type).uniq.pluck(:event_type)
+      @available_events ||= BestBoy::MonthReport.where(owner_type: current_owner_type).order(:event).uniq.pluck(:event)
     end
 
     def available_event_sources
       @available_event_sources ||= (
-        BestBoy::MonthReport.where(eventable_type: current_owner_type).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
+        BestBoy::MonthReport.where(owner_type: current_owner_type).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
       )
     end
 
@@ -271,11 +271,11 @@ module BestBoy
     end
 
     def available_years
-      @available_years = (BestBoy::MonthReport.where(eventable_type: current_owner_type, event_source: nil).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
+      @available_years = (BestBoy::MonthReport.where(owner_type: current_owner_type, event_source: nil).order(:created_at).first.created_at.to_date.year..Time.zone.now.year).map{ |year| year.to_s } rescue [Time.zone.now.year]
     end
 
     def available_owner_types
-      @available_owner_types ||= BestBoy::MonthReport.where(event_source: nil).order(:eventable_type).uniq.pluck(:eventable_type)
+      @available_owner_types ||= BestBoy::MonthReport.where(event_source: nil).order(:owner_type).uniq.pluck(:owner_type)
     end
 
     def detail_count
