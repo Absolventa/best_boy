@@ -27,7 +27,7 @@ namespace :best_boy do
     
     puts ""
     puts "> Destroying all reports ..."
-    puts ">... that where created after #{start}" if start.present?
+    puts ">... that where created after beginning of day #{start}" if start.present?
     puts ""
 
     # Destroy all existing reports

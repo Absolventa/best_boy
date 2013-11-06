@@ -144,7 +144,7 @@ you can pass a date as argument to the rake task call:
     bundle exec rake best_boy:recover_report_history['2010-02-01']
 
 The latter would destroy and recover the all reports created after
-Feb 1st, 2010 - starting at Feb 2nd, 2010 up to now. 
+beginning of Feb 1st, 2010 up to now.
 
 Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
