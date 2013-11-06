@@ -138,6 +138,14 @@ an existing set of events. Simply run
     
     bundle exec rake best_boy:recover_report_history
 
+If you want to recover this report structure not for the whole lifetime,
+you can pass a date as argument to the rake task call:
+
+    bundle exec rake best_boy:recover_report_history['2010-02-01']
+
+The latter would destroy and recover the all reports created after
+Feb 1st, 2010 - starting at Feb 2nd, 2010 up to now. 
+
 Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
 Used gems and resource
