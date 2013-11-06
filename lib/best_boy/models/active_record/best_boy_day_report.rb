@@ -36,7 +36,7 @@ module BestBoy
     end
 
     def self.current_or_create_for(owner, type, source = nil)
-      day_report = self.current_for(Time.now, owner, type, source).last
+      day_report = self.current_for(Time.zone.now, owner, type, source).last
       day_report.present? ? day_report : self.create_for(owner, type, source)
     end
 
