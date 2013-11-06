@@ -1,6 +1,6 @@
 namespace :best_boy do
-  desc "Creates consistent DayReport and MonthReport structure for given events"
-  task :recover_report_history  => :environment do 
+  desc "Creates consistent structure of DayReports and MonthReports for a given set of events"
+  task :recover_report_history, [:date]  => :environment do |t, args| 
 
     # helper methods
     #
@@ -8,10 +8,10 @@ namespace :best_boy do
 
     def month_report_id_for(year, owner_type, source, event) 
       date = Date.parse("#{year}-01-01")
-      BestBoy::MonthReport.where(created_at: date.beginning_of_day..date.end_of_year.end_of_day, 
-                                 owner_type: owner_type, 
+      BestBoy::MonthReport.where(created_at:   date.beginning_of_day..date.end_of_year.end_of_day, 
+                                 owner_type:   owner_type, 
                                  event_source: source, 
-                                 event: event).first.id
+                                 event:        event).first.id
     end
 
     def flush
@@ -19,15 +19,31 @@ namespace :best_boy do
       STDOUT.flush
     end
 
+    # Read optional date
+    #
+    #
+
+    start = args.date.present? ? Date.parse(args.date) : nil
+    
+    puts ""
+    puts "> Destroying all reports ..."
+    puts ">... that where created after #{start}" if start.present?
+    puts ""
+
     # Destroy all existing reports
     #
     #
 
-    BestBoy::MonthReport.destroy_all
-    BestBoy::DayReport.destroy_all
+    if start.present?
+      BestBoy::MonthReport.between(start, Date.today).destroy_all
+      BestBoy::DayReport.where(created_at: start.beginning_of_day..Date.today.end_of_day).destroy_all
+    else
+      BestBoy::MonthReport.destroy_all
+      BestBoy::DayReport.destroy_all
+    end
 
     puts ""
-    puts "> All report data has been destroyed."
+    puts "> Selected report data has been destroyed."
     puts ""
 
     owner_types             = BestBoyEvent.order(:owner_type).uniq.pluck(:owner_type)
@@ -39,9 +55,11 @@ namespace :best_boy do
       available_event_sources.merge!( { owner_type => BestBoyEvent.where(owner_type: owner_type).order(:event_source).uniq.pluck(:event_source) } ) # explicitly including nil
     end
 
-    days = (BestBoyEvent.order('created_at ASC').first.created_at.to_date..BestBoyEvent.order('created_at ASC').last.created_at.to_date)
-
-    puts "> Start creating new reports..."
+    start = BestBoyEvent.order('created_at ASC').first.created_at.to_date unless start.present?
+    days  = (start..BestBoyEvent.order('created_at ASC').last.created_at.to_date)
+    
+    puts ""
+    puts "> Start creating new reports for #{days.count} days ..."
     puts ""
 
     days.each do |day|
@@ -68,16 +86,16 @@ namespace :best_boy do
                 artifical_created_at = month_scope.first.created_at
                 if source.present?
                   month_report_with_source = BestBoy::MonthReport.create(
-                    owner_type: owner_type, 
-                    event:     event,
+                    owner_type:     owner_type, 
+                    event:          event,
                     event_source:   source,
                     occurrences:    monthly_occurrences 
                   ).tap { |r| r.created_at = artifical_created_at; r.save }
                 end
 
                 month_report_without_source = BestBoy::MonthReport.create(
-                  owner_type: owner_type, 
-                  event:     event,
+                  owner_type:     owner_type, 
+                  event:          event,
                   event_source:   nil,
                   occurrences:    monthly_occurrences 
                 ).tap { |r| r.created_at = artifical_created_at; r.save }
@@ -96,8 +114,8 @@ namespace :best_boy do
             if daily_occurrences > 0
               if source.present?
                 day_report_with_source = BestBoy::DayReport.create(
-                  owner_type:  owner_type, 
-                  event:      event, 
+                  owner_type:      owner_type, 
+                  event:           event, 
                   event_source:    source,
                   occurrences:     daily_occurrences,
                   month_report_id: month_report_id_for(day.year, owner_type, source, event)
@@ -105,8 +123,8 @@ namespace :best_boy do
               end
 
               day_report_without_source = BestBoy::DayReport.create(
-                owner_type:  owner_type, 
-                event:      event, 
+                owner_type:      owner_type, 
+                event:           event, 
                 event_source:    nil,
                 occurrences:     daily_occurrences,
                 month_report_id: month_report_id_for(day.year, owner_type, source, event)
@@ -119,6 +137,7 @@ namespace :best_boy do
       flush
     end
 
+    puts ""
     puts ""
     puts "> Reports recovered. Done!"
     puts ""
