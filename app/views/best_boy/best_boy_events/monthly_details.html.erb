@@ -24,8 +24,8 @@
       <thead>
         <tr>
           <th>Event Source</th>
-          <% (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |day| %>
-            <td><%= day %></td>
+          <% days_of(current_month).each do |day| %>
+            <td><%= day.strftime("%d") %></td>
           <% end %>
         </tr>
       </thead>
