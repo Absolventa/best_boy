@@ -54,6 +54,8 @@ describe BestBoy::DayReport do
   context "with class methods" do
     describe "#current_for" do
       context "when day_report exists" do
+        Time.zone = "Berlin"
+
         existing_report      = BestBoy::DayReport.create_for("ExampleClass", "create")
         existing_with_source = BestBoy::DayReport.create_for("ExampleClass", "create", "api")
 
@@ -74,7 +76,9 @@ describe BestBoy::DayReport do
 
     describe "#current_or_create_for" do
       context "when day_report exists" do
-        owner            = Example.create
+        Time.zone = "Berlin"
+
+        owner               = Example.create
         existing_report      = BestBoy::DayReport.create_for(owner.class.to_s, "create")
         existing_with_source = BestBoy::DayReport.create_for(owner.class.to_s, "create", "api")
 
