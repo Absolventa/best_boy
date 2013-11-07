@@ -64,11 +64,11 @@
         </tr>
       </thead>
       <tbody>
-        <% if available_event_sources.first.present? %>
-          <% @event_selected_year_occurrences.keys.each do |source| %>
+        <% if available_event_sources? %>
+          <% @event_selected_year_occurrences.keys.reject { |k| k == "All" }.each do |source| %>
             <tr>
               <td><%= source %></td>
-              <% @event_selected_year_occurrences[source].keys.each do |month| %>
+              <% @event_selected_year_occurrences[source].keys.reject.each do |month| %>
                 <td><%= @event_selected_year_occurrences[source][month] %></td>
               <% end %>
             </tr>
@@ -78,8 +78,8 @@
       <tfoot>
         <tr>
           <td><strong>All</strong></td>
-          <% @selected_year_totals.keys.each do |month| %>
-            <td><%= @selected_year_totals[month] %></td>
+          <% @event_selected_year_occurrences["All"].keys.each do |month| %>
+            <td><%= @event_selected_year_occurrences["All"][month] %></td>
           <% end %>
         </tr>
       </tfoot>

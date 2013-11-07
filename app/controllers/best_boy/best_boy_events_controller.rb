@@ -10,7 +10,7 @@ module BestBoy
 
 
     helper BestBoy::BestBoyViewHelper
-    helper_method :available_owner_types, :available_events, :available_event_sources, :available_years,
+    helper_method :available_owner_types, :available_events, :available_event_sources, :available_event_sources?, :available_years,
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
                   :days_of, :render_chart, :month_name_array, :detail_count
 
@@ -102,10 +102,11 @@ module BestBoy
       @event_selected_year_occurrences = {}
       if available_event_sources?
         available_event_sources.each do |source|
-          @event_selected_year_occurrences.merge!({source => {}})
+          @event_selected_year_occurrences.merge!({source => {}, "All" => {}})
           (1..12).each do |month|
             date = Date.parse("#{current_year}-#{month}-1")
             @event_selected_year_occurrences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, source, date)})
+            @event_selected_year_occurrences["All"].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, source, date)})
           end
         end
       end
