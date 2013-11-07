@@ -100,14 +100,15 @@ module BestBoy
 
     def collect_occurrences_for_selected_year_of(event)
       @event_selected_year_occurrences = {}
-      if available_event_sources?
-        available_event_sources.each do |source|
-          @event_selected_year_occurrences.merge!({source => {}, "All" => {}})
-          (1..12).each do |month|
-            date = Date.parse("#{current_year}-#{month}-1")
-            @event_selected_year_occurrences[source].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, source, date)})
-            @event_selected_year_occurrences["All"].merge!({month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, source, date)})
-          end
+      sources = available_event_sources.to_a + ["All"]
+
+      sources.each do |source|
+        @event_selected_year_occurrences.merge!({source => {}})
+        (1..12).each do |month|
+          date         = Date.parse("#{current_year}-#{month}-1")
+          query_source = source == "All" ? nil : source
+          branch       = {month.to_s => BestBoy::MonthReport.monthly_occurrences_for(current_owner_type, event, query_source, date)}
+          @event_selected_year_occurrences[source].merge!(branch)
         end
       end
     end
