@@ -30,11 +30,11 @@ module BestBoy
 
     def monthly_details
       collect_occurrences_for_month current_month
-      prepare_monthly_details_chart
+      monthly_details_chart
     end
 
     def charts
-      prepare_chart
+      build_chart
     end
 
     private
@@ -146,25 +146,28 @@ module BestBoy
       chart.to_js(dom).html_safe
     end
 
-    def chart_for data
+    def chart_for(data)
       @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 900, height: 240, title: "" })
     end
 
-    def prepare_monthly_details_chart
+    def row_values_for(day)
+      available_event_sources.collect{ |event_source| @selected_month_occurrences[event_source][day] } + [@selected_month_occurrences["All"][day]]
+    end
 
-
+    def monthly_details_chart
       data_table = GoogleVisualr::DataTable.new
       data_table.new_column('string', 'time')
+
       labels = available_event_sources.to_a + ["All"]
       labels.each { |label| data_table.new_column('number', label.to_s) }
 
       days_of(params[:month]).each do |day|
-        data_table.add_row( [ day.strftime("%d")] + available_event_sources.collect{ |event_source| @selected_month_occurrences[event_source][day] } + [@selected_month_occurrences["All"][day]]  )
+        data_table.add_row( [day.strftime("%d")] + row_values_for(day) )
       end
       chart_for data_table
     end
 
-    def prepare_chart
+    def build_chart
       data_table = GoogleVisualr::DataTable.new
       data_table.new_column('string', 'time')
       data_table.new_column('number', current_owner_type.to_s)
