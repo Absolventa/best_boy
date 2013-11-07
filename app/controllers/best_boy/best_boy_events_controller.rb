@@ -151,25 +151,16 @@ module BestBoy
     end
 
     def prepare_monthly_details_chart
+
+
       data_table = GoogleVisualr::DataTable.new
       data_table.new_column('string', 'time')
-
-      if available_event_sources?
-        available_event_sources.each do |source|
-          data_table.new_column('number', source.to_s)
-        end
-      else
-        data_table.new_column('number', 'All')
-      end
+      labels = available_event_sources.to_a + ["All"]
+      labels.each { |label| data_table.new_column('number', label.to_s) }
 
       days_of(params[:month]).each do |day|
-        if available_event_sources?
-          data_table.add_row( [ day.strftime("%d")] + available_event_sources.collect{ |event_source| @selected_month_occurrences[event_source][day] } )
-        else
-          data_table.add_row( [ day.strftime("%d"), @selected_month_occurrences["All"][day]] )
-        end
+        data_table.add_row( [ day.strftime("%d")] + available_event_sources.collect{ |event_source| @selected_month_occurrences[event_source][day] } + [@selected_month_occurrences["All"][day]]  )
       end
-
       chart_for data_table
     end
 
