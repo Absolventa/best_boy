@@ -84,20 +84,22 @@ namespace :best_boy do
               if monthly_occurrences > 0
                 artifical_created_at = month_scope.first.created_at
                 if source.present?
-                  month_report_with_source = BestBoy::MonthReport.new(
-                    owner_type:     owner_type,
-                    event:          event,
-                    event_source:   source,
-                    occurrences:    monthly_occurrences
-                  ).tap { |r| r.created_at = artifical_created_at; r.save! }
+                  month_report_with_source = BestBoy::MonthReport.new
+                  month_report_with_source.owner_type = owner_type
+                  month_report_with_source.event = event
+                  month_report_with_source.event_source = source
+                  month_report_with_source.occurrences = monthly_occurrences
+                  month_report_with_source.created_at = artifical_created_at
+                  month_report_with_source.save!
                 end
 
-                month_report_without_source = BestBoy::MonthReport.new(
-                  owner_type:     owner_type,
-                  event:          event,
-                  event_source:   nil,
-                  occurrences:    monthly_occurrences
-                ).tap { |r| r.created_at = artifical_created_at; r.save! }
+                month_report_without_source = BestBoy::MonthReport.new
+                month_report_without_source.owner_type = owner_type
+                month_report_without_source.event = event
+                month_report_without_source.event_source = nil
+                month_report_without_source.occurrences = monthly_occurrences
+                month_report_without_source.created_at = artifical_created_at
+                month_report_without_source.save!
               end
             end
 
@@ -110,22 +112,24 @@ namespace :best_boy do
 
             if daily_occurrences > 0
               if source.present?
-                day_report_with_source = BestBoy::DayReport.new(
-                  owner_type:      owner_type,
-                  event:           event,
-                  event_source:    source,
-                  occurrences:     daily_occurrences,
-                  month_report_id: month_report_id_for(day.year, owner_type, source, event)
-                ).tap { |r| r.created_at = day_scope.first.created_at; r.save! }
+                day_report_with_source = BestBoy::DayReport.new
+                day_report_with_source.owner_type = owner_type
+                day_report_with_source.event = event
+                day_report_with_source.event_source = source
+                day_report_with_source.occurrences = daily_occurrences
+                day_report_with_source.created_at = day_scope.first.created_at
+                day_report_with_source.month_report_id = month_report_id_for(day.year, owner_type, source, event)
+                day_report_with_source.save!
               end
 
-              day_report_without_source = BestBoy::DayReport.new(
-                owner_type:      owner_type,
-                event:           event,
-                event_source:    nil,
-                occurrences:     daily_occurrences,
-                month_report_id: month_report_id_for(day.year, owner_type, source, event)
-              ).tap { |r| r.created_at = day_scope.first.created_at; r.save! }
+              day_report_without_source = BestBoy::DayReport.new
+              day_report_without_source.owner_type = owner_type
+              day_report_without_source.event = event
+              day_report_without_source.event_source = nil
+              day_report_without_source.occurrences = daily_occurrences
+              day_report_without_source.created_at = day_scope.first.created_at
+              day_report_without_source.month_report_id = month_report_id_for(day.year, owner_type, nil, event)
+              day_report_without_source.save!
             end
           end
         end
