@@ -59,6 +59,12 @@ Run the migration
     rake db:migrate
 
 
+Update in Version 2
+--------------------------------
+
+From Version 2.x on BestBoy uses aggregated tables for the admin panel. See section "Some thoughts about Performance"
+
+
 Update to fit the asset-pipeline
 --------------------------------
 
