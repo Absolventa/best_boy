@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BestBoy::DayReport do
 
-  let(:owner) { Example.create }
+  let(:owner) { TestEvent.create }
   let(:month_report) do
     BestBoy::MonthReport.create({
       owner_type: owner.class.to_param,
@@ -41,8 +41,8 @@ describe BestBoy::DayReport do
     it "aggregates DayReports of last week" do
       Time.zone = "Berlin"
 
-      report_from_last_week = BestBoy::DayReport.create({owner_type: "Example", event: "create"}).tap { |e| e.created_at = 8.days.ago; e.save }
-      report_from_this_week = BestBoy::DayReport.create({owner_type: "Example", event: "create", month_report_id: month_report.id })
+      report_from_last_week = BestBoy::DayReport.create({owner_type: "TestEvent", event: "create"}).tap { |e| e.created_at = 8.days.ago; e.save }
+      report_from_this_week = BestBoy::DayReport.create({owner_type: "TestEvent", event: "create", month_report_id: month_report.id })
 
       collection = BestBoy::DayReport.order('created_at DESC')
       expect(collection.week).to include(report_from_this_week)
@@ -78,7 +78,7 @@ describe BestBoy::DayReport do
       context "when day_report exists" do
         Time.zone = "Berlin"
 
-        owner               = Example.create
+        owner               = TestEvent.create
         existing_report      = BestBoy::DayReport.create_for(owner.class.to_s, "create")
         existing_with_source = BestBoy::DayReport.create_for(owner.class.to_s, "create", "api")
 
@@ -92,14 +92,14 @@ describe BestBoy::DayReport do
       context "when no today's day_report is present" do
         it "creates a new month_report" do
           BestBoy::DayReport.destroy_all
-          scope = BestBoy::DayReport.where(owner_type: Example.to_s, event: "create")
+          scope = BestBoy::DayReport.where(owner_type: TestEvent.to_s, event: "create")
           expect{ BestBoy::DayReport.current_or_create_for(owner.class.to_s, "create") }.to change(scope.created_on(Time.now), :count).by(1)
         end
       end
     end
 
     describe "#create_for" do
-      owner          = Example.create
+      owner          = TestEvent.create
       report             = BestBoy::DayReport.create_for(owner.class.to_s, "create")
       report_with_source = BestBoy::DayReport.create_for(owner.class.to_s, "create", "api")
 

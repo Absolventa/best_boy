@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe BestBoyEvent, 'with creating' do
   it "should have valid model" do
-    example = Example.create
+    example = TestEvent.create
     best_boy_event = BestBoyEvent.create(:event => "create")
     best_boy_event.owner = example
     best_boy_event.should be_valid

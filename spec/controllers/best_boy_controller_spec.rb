@@ -1,8 +1,10 @@
 require "spec_helper"
 
 describe BestBoyController do
+  include BestBoyController::InstanceMethods
+
   before(:each) do
-    @example = Example.create
+    @example = TestEvent.create
   end
 
   it "should send valid custom event" do
@@ -11,11 +13,11 @@ describe BestBoyController do
   end
 
   it "should raise error on empty event_phrase" do
-    expect {best_boy_event(@example, "")}.to raise_error
+    expect { best_boy_event(@example, "") }.to raise_error
   end
 
   it "should raise error on class not beeing a eventable" do
-    klass = Dummy.new
-    expect {best_boy_event(klass, "testing")}.to raise_error
+    klass = Object.new
+    expect { best_boy_event(klass, "testing") }.to raise_error
   end
 end

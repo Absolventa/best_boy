@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe BestBoy::Eventable do
   before(:each) do
-    @example = Example.create
+    @example = TestEvent.create
   end
 
   it "should send valid create event" do
@@ -39,13 +39,13 @@ describe BestBoy::Eventable do
     it "increases occurrence counter when a new instance is created" do
       BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
       BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
-      Example.create
+      TestEvent.create
     end
 
     it "increases occurrence counter when an instance is destroyed" do
       BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
       BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
-      Example.first.destroy
+      TestEvent.first.destroy
     end
   end
 end
