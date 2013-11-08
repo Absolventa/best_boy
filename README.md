@@ -120,6 +120,33 @@ After installation you can access it through:
 
     <your application path>/best_boy_admin
 
+Some thoughts about Performance
+-------------------------------
+
+When you're running BestBoy for a long time, accessing and processing data in
+the backend can take awfully long.
+
+By changing to version 1.4.0, we modified BestBoy's data storage organization to
+reduce database queries. This leads to far more acceptable loading times. To do
+so, BestBoy creates daily and monthly reports, which are aggregations
+of the persisted events. When computing statistical data, BestBoy
+then uses the aggregated tables.
+
+If you're upgrading BestBoy from an older version, there
+is a rake task for 'recovering' these report structure for
+an existing set of events. Simply run
+
+    bundle exec rake best_boy:recover_report_history
+
+If you want to recover this report structure not for the whole lifetime,
+you can pass a date as argument to the rake task call:
+
+    bundle exec rake best_boy:recover_report_history['2010-02-01']
+
+The latter would destroy and recover the all reports created after
+beginning of Feb 1st, 2010 up to now.
+
+Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
 Used gems and resource
 ----------------------
@@ -127,14 +154,14 @@ Used gems and resource
 
 [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
 
-[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visulr in its version 2.1.2
+[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
 
 
 Contributors in alphabetic order
 --------------------------------
 @cseydel
 @danscho
-
+@rneumann
 
 Thanks
 ------

@@ -18,30 +18,26 @@
           <th colspan="2">day</th>
         </tr>
       </thead>
-      <tbody>
-        <% @event_source_counts_per_group.each do |event_source_string, group_hash| %>
+      <% if available_event_sources.first.present? %>
+        <tbody>
+          <% @sourced_occurrences.keys.each do |source| %>
           <tr>
-            <td><%= event_source_string %></td>
-            <% group_hash.each do |group, counter| %>
-              <td><%= counter %></td>
-              <td><%= number_to_percentage(counter.to_f / detail_count * 100, :precision => 2) %></td>
+            <td><%= source %><dd/td>
+            <% @sourced_occurrences[source].keys.reverse.each do |time_period| %>
+              <td><%= @sourced_occurrences[source][time_period]  %></td>
+              <td><%= relative_occurrences(@sourced_occurrences[source], time_period) %></td>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
+          <% end %>
+        </tbody>
+      <% end %>
       <tfoot>
         <tr>
-          <th>Total</th>
-          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['overall'].to_i; sum} %></th>
-          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
-          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['year'].to_i; sum} %></th>
-          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
-          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['month'].to_i; sum} %></th>
-          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
-          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['week'].to_i; sum} %></th>
-          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
-          <th><%= result = @event_source_counts_per_group.values.inject(0){|sum, hash| sum += hash['day'].to_i; sum} %></th>
-          <th><%= number_to_percentage(result.to_f / detail_count * 100, :precision => 2) %></th>
+          <th>All</th>
+          <% @occurrences[params[:event]].keys.reverse.each do |time_period| %>
+            <th><%= @occurrences[params[:event]][time_period]  %></th>
+            <th><%= relative_occurrences(@occurrences[params[:event]], time_period)%></th>
+          <% end %>
         </tr>
       </tfoot>
     </table>
@@ -68,15 +64,25 @@
         </tr>
       </thead>
       <tbody>
-        <% @event_sources_counts_per_month.each do |event_source_string, month_hash| %>
-          <tr>
-            <td><%= event_source_string %></td>
-            <% month_hash.each do |month, counter| %>
-              <td><%= counter %></td>
-            <% end %>
-          </tr>
+        <% if available_event_sources? %>
+          <% @event_selected_year_occurrences.keys.reject { |k| k == "All" }.each do |source| %>
+            <tr>
+              <td><%= source %></td>
+              <% @event_selected_year_occurrences[source].keys.reject.each do |month| %>
+                <td><%= @event_selected_year_occurrences[source][month] %></td>
+              <% end %>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>All</strong></td>
+          <% @event_selected_year_occurrences["All"].keys.each do |month| %>
+            <td><%= @event_selected_year_occurrences["All"][month] %></td>
+          <% end %>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

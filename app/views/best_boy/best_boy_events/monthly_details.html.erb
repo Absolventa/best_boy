@@ -24,20 +24,20 @@
       <thead>
         <tr>
           <th>Event Source</th>
-          <% (1..(Time.days_in_month("1-#{current_month}-#{current_year}".to_time.month))).each do |day| %>
-            <td><%= day %></td>
+          <% days_of(current_month).each do |day| %>
+            <td><%= day.strftime("%d") %></td>
           <% end %>
         </tr>
       </thead>
       <tbody>
-        <% @event_sources_counts_per_day.each do |event_source_string, day_hash| %>
+        <% @selected_month_occurrences.keys.each do |source| %>
           <tr>
-            <td><%= event_source_string %></td>
-            <% day_hash.each do |day, counter| %>
-              <td><%= counter %></td>
-            <% end %>
+            <td><%= source %></td>
+            <% @selected_month_occurrences[source].keys.each do |day| %>
+              <td><%= @selected_month_occurrences[source][day] %></td>
+            <% end%>
           </tr>
-        <% end %>
+        <% end%>
       </tbody>
     </table>
   </div>
