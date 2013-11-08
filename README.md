@@ -127,15 +127,15 @@ When you're running BestBoy for a long time, accessing and processing data in
 the backend can take awfully long.
 
 By changing to version 1.4.0, we modified BestBoy's data storage organization to
-reduce database queries. This leads to more convenient access times. To do
+reduce database queries. This leads to far more acceptable loading times. To do
 so, BestBoy creates daily and monthly reports, which are aggregations
 of the persisted events. When computing statistical data, BestBoy
 then uses the aggregated tables.
 
 If you're upgrading BestBoy from an older version, there
 is a rake task for 'recovering' these report structure for
-an existing set of events. Simply run 
-    
+an existing set of events. Simply run
+
     bundle exec rake best_boy:recover_report_history
 
 If you want to recover this report structure not for the whole lifetime,
@@ -161,6 +161,7 @@ Contributors in alphabetic order
 --------------------------------
 @cseydel
 @danscho
+@rneumann
 
 Thanks
 ------
