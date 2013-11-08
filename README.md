@@ -178,7 +178,7 @@ Contributors in alphabetic order
 --------------------------------
 @cseydel
 @danscho
-@rneumann
+@neumanrq
 
 Thanks
 ------
