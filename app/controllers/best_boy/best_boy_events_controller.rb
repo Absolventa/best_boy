@@ -162,9 +162,7 @@ module BestBoy
       labels = available_event_sources.to_a + ["All"]
       labels.each { |label| data_table.new_column('number', label.to_s) }
 
-      days_of(params[:month]).each do |day|
-        data_table.add_row( [day.strftime("%d")] + row_values_for(day) )
-      end
+      days_of(params[:month]).each { |day| data_table.add_row( [day.strftime("%d")] + row_values_for(day) ) }
       chart_for data_table
     end
 
