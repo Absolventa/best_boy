@@ -62,7 +62,18 @@ Run the migration
 Update in Version 2
 --------------------------------
 
-From Version 2.x on BestBoy uses aggregated tables for the admin panel. See section "Some thoughts about Performance"
+From Version 2.x on BestBoy uses aggregated tables for the admin panel. You need
+to copy the new migrations to your app by running
+
+    rails g best_boy --asset
+
+again. This generator will also ask you to overwrite your existing initializer - just 
+reject this pressing 'n' for not overwriting your settings. Don't forget to run 
+    
+    rake db:migrate
+
+in context of your mother app afterwards. See also section "Some thoughts about Performance" 
+for more details about new data organization.
 
 
 Update to fit the asset-pipeline
