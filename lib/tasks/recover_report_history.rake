@@ -1,16 +1,16 @@
 namespace :best_boy do
   desc "Creates consistent structure of DayReports and MonthReports for a given set of events"
-  task :recover_report_history, [:date]  => :environment do |t, args| 
+  task :recover_report_history, [:date]  => :environment do |t, args|
 
     # helper methods
     #
     #
 
-    def month_report_id_for(year, owner_type, source, event) 
+    def month_report_id_for(year, owner_type, source, event)
       date = Date.parse("#{year}-01-01")
-      BestBoy::MonthReport.where(created_at:   date.beginning_of_day..date.end_of_year.end_of_day, 
-                                 owner_type:   owner_type, 
-                                 event_source: source, 
+      BestBoy::MonthReport.where(created_at:   date.beginning_of_day..date.end_of_year.end_of_day,
+                                 owner_type:   owner_type,
+                                 event_source: source,
                                  event:        event).first.id
     end
 
@@ -24,7 +24,7 @@ namespace :best_boy do
     #
 
     start = args.date.present? ? Date.parse(args.date) : nil
-    
+
     puts ""
     puts "> Destroying all reports ..."
     puts ">... that where created after beginning of day #{start}" if start.present?
@@ -57,7 +57,7 @@ namespace :best_boy do
 
     start = BestBoyEvent.order('created_at ASC').first.created_at.to_date unless start.present?
     days  = (start..BestBoyEvent.order('created_at ASC').last.created_at.to_date)
-    
+
     puts ""
     puts "> Start creating new reports for #{days.count} days ..."
     puts ""
@@ -66,6 +66,8 @@ namespace :best_boy do
       owner_types.each do |owner_type|
         available_events[owner_type].each do |event|
           available_event_sources[owner_type].each do |source|
+
+            base_scope = BestBoyEvent.where(owner_type: owner_type, event: event, event_source: source).order('created_at DESC')
 
             # Create MonthReports when...
             # - diving into loop initially or
@@ -76,29 +78,26 @@ namespace :best_boy do
               # Check if Events occured during the whole month.
               # If any, create MonthReports.
 
-              month_scope = BestBoyEvent.where(created_at: day.beginning_of_month.beginning_of_day..day.end_of_month.end_of_day)
-                                        .where(owner_type: owner_type, event: event, event_source: source)
-                                        .order('created_at DESC')
-
+              month_scope         = base_scope.where(created_at: day.beginning_of_month.beginning_of_day..day.end_of_month.end_of_day)
               monthly_occurrences = month_scope.count
 
-              if monthly_occurrences > 0                
+              if monthly_occurrences > 0
                 artifical_created_at = month_scope.first.created_at
                 if source.present?
-                  month_report_with_source = BestBoy::MonthReport.create(
-                    owner_type:     owner_type, 
+                  month_report_with_source = BestBoy::MonthReport.new(
+                    owner_type:     owner_type,
                     event:          event,
                     event_source:   source,
-                    occurrences:    monthly_occurrences 
-                  ).tap { |r| r.created_at = artifical_created_at; r.save }
+                    occurrences:    monthly_occurrences
+                  ).tap { |r| r.created_at = artifical_created_at; r.save! }
                 end
 
-                month_report_without_source = BestBoy::MonthReport.create(
-                  owner_type:     owner_type, 
+                month_report_without_source = BestBoy::MonthReport.new(
+                  owner_type:     owner_type,
                   event:          event,
                   event_source:   nil,
-                  occurrences:    monthly_occurrences 
-                ).tap { |r| r.created_at = artifical_created_at; r.save }
+                  occurrences:    monthly_occurrences
+                ).tap { |r| r.created_at = artifical_created_at; r.save! }
               end
             end
 
@@ -106,29 +105,27 @@ namespace :best_boy do
             #
             #
 
-            day_scope       = BestBoyEvent.where(created_at: day.beginning_of_day..day.end_of_day)
-                                          .where(owner_type: owner_type, event: event, event_source: source)
-                                          .order('created_at DESC')
+            day_scope         = base_scope.where(created_at: day.beginning_of_day..day.end_of_day)
             daily_occurrences = day_scope.count
-            
+
             if daily_occurrences > 0
               if source.present?
-                day_report_with_source = BestBoy::DayReport.create(
-                  owner_type:      owner_type, 
-                  event:           event, 
+                day_report_with_source = BestBoy::DayReport.new(
+                  owner_type:      owner_type,
+                  event:           event,
                   event_source:    source,
                   occurrences:     daily_occurrences,
                   month_report_id: month_report_id_for(day.year, owner_type, source, event)
-                ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
+                ).tap { |r| r.created_at = day_scope.first.created_at; r.save! }
               end
 
-              day_report_without_source = BestBoy::DayReport.create(
-                owner_type:      owner_type, 
-                event:           event, 
+              day_report_without_source = BestBoy::DayReport.new(
+                owner_type:      owner_type,
+                event:           event,
                 event_source:    nil,
                 occurrences:     daily_occurrences,
                 month_report_id: month_report_id_for(day.year, owner_type, source, event)
-              ).tap { |r| r.created_at = day_scope.first.created_at; r.save }
+              ).tap { |r| r.created_at = day_scope.first.created_at; r.save! }
             end
           end
         end

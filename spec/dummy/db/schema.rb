@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104114025) do
+ActiveRecord::Schema.define(version: 20131108085915) do
 
   create_table "best_boy_day_reports", force: true do |t|
     t.string   "owner_type"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20131104114025) do
   end
 
   add_index "best_boy_day_reports", ["created_at"], name: "index_best_boy_day_reports_on_created_at"
-  add_index "best_boy_day_reports", ["event_source"], name: "index_best_boy_day_reports_on_event_source"
-  add_index "best_boy_day_reports", ["owner_type"], name: "index_best_boy_day_reports_on_owner_type"
+  add_index "best_boy_day_reports", ["month_report_id"], name: "index_best_boy_day_reports_on_month_report_id"
+  add_index "best_boy_day_reports", ["owner_type", "event", "event_source"], name: "index_best_boy_day_reports_aggregated_columns"
 
   create_table "best_boy_events", force: true do |t|
     t.integer  "owner_id"
@@ -51,8 +51,7 @@ ActiveRecord::Schema.define(version: 20131104114025) do
   end
 
   add_index "best_boy_month_reports", ["created_at"], name: "index_best_boy_month_reports_on_created_at"
-  add_index "best_boy_month_reports", ["event_source"], name: "index_best_boy_month_reports_on_event_source"
-  add_index "best_boy_month_reports", ["owner_type"], name: "index_best_boy_month_reports_on_owner_type"
+  add_index "best_boy_month_reports", ["owner_type", "event", "event_source"], name: "index_best_boy_month_reports_aggregated_columns"
 
   create_table "test_events", force: true do |t|
     t.datetime "created_at"
