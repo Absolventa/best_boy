@@ -128,12 +128,11 @@ module BestBoy
       # SQL-statement for performance boost, i.e. similar to
       # BestBoy::MonthReport.select("SUM(occurances) AS counter, DATE_PART('month', created_at) as month").where(:owner_type => current_owner_type, created_at: current_year.beginning_of_year..current_year.end_of_year).group("DATE_PART('month', created_at)")
       (1..12).each do |month|
-        date = Date.parse("#{current_year}-#{month}-1")
-        @selected_year_totals.merge!({
-          month => BestBoy::MonthReport
-          .where(owner_type: current_owner_type, event_source: nil)
-          .between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
-        })
+        date   = Date.parse("#{current_year}-#{month}-1")
+        branch = { month => BestBoy::MonthReport.where(owner_type: current_owner_type, event_source: nil)
+                                                .between(date.beginning_of_month, date.end_of_month)
+                                                .sum(:occurrences) }
+        @selected_year_totals.merge!(branch)
       end
     end
 
