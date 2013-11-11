@@ -42,12 +42,14 @@ module BestBoy
 
     def self.create_for(owner, type, source = nil)
       month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source)
-      BestBoy::DayReport.create(
-        owner_type:  owner,
-        event:      type,
-        month_report_id: month_report.to_param,
-        event_source:    source
-      )
+      day_report   = BestBoy::DayReport.new
+
+      day_report.owner_type      = owner
+      day_report.event           = type
+      day_report.month_report_id = month_report.id
+      day_report.event_source    = source
+
+      day_report.save ? day_report : nil
     end
 
     def self.for(owner, type, source = nil)

@@ -41,7 +41,11 @@ module BestBoy
     end
 
     def self.create_for(owner, type, source = nil)
-      BestBoy::MonthReport.create(owner_type: owner.to_s, event: type, event_source: source)
+      month_report = BestBoy::MonthReport.new
+      month_report.owner_type   = owner.to_s
+      month_report.event        = type
+      month_report.event_source = source
+      month_report.save ? month_report : nil
     end
 
     def self.for(owner, type, source = nil)
