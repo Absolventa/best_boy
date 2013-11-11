@@ -75,15 +75,14 @@ module BestBoy
 
     def collect_occurrences_for_month(month)
       @selected_month_occurrences = {}
-      if available_event_sources?
-        available_event_sources.each do |source|
-          days_of(month).each do |day|
-            @selected_month_occurrences.merge!({source => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, source, day)}}) { |k, v1, v2| v1.merge!(v2) }
-          end
+      sources = available_event_sources.to_a + ["All"]
+      sources.each do |source|
+        @selected_month_occurrences.merge!({source => {}})
+        days_of(month).each do |day|
+          query_source = source == "All" ? nil : source
+          branch       = {day =>  BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, query_source, day)}
+          @selected_month_occurrences[source].merge!(branch)
         end
-      end
-      days_of(month).each do |day|
-        @selected_month_occurrences.merge!({"All" => {day => BestBoy::DayReport.daily_occurrences_for(current_owner_type, current_event, nil, day)}}) { |k, v1, v2| v1.merge!(v2) }
       end
     end
 
