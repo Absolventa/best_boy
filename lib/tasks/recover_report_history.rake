@@ -35,11 +35,11 @@ namespace :best_boy do
     #
 
     if start.present?
-      BestBoy::MonthReport.between(start, Date.today).destroy_all
-      BestBoy::DayReport.where(created_at: start.beginning_of_day..Date.today.end_of_day).destroy_all
+      BestBoy::MonthReport.between(start, Date.today).delete_all
+      BestBoy::DayReport.where(created_at: start.beginning_of_day..Date.today.end_of_day).delete_all
     else
-      BestBoy::MonthReport.destroy_all
-      BestBoy::DayReport.destroy_all
+      BestBoy::MonthReport.delete_all
+      BestBoy::DayReport.delete_all
     end
 
     puts ""
