@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.description = %q{Hybrid action logging, consisting of standard and custom logging.}
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'kaminari', "~> 0.14.1"
