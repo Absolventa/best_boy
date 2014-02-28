@@ -5,13 +5,13 @@ module BestBoy
   mattr_accessor :precompile_assets, :orm, :base_controller, :before_filter,
                  :skip_before_filter, :skip_after_filter, :custom_redirect
 
-  @@precompile_assets = false
-  @@orm = :active_record
-  @@base_controller = "ApplicationController"
-  @@before_filter = nil
+  @@base_controller    = "ApplicationController"
+  @@before_filter      = nil
+  @@custom_redirect    = nil
+  @@orm                = :active_record
+  @@precompile_assets  = false
+  @@skip_after_filter  = nil
   @@skip_before_filter = nil
-  @@skip_after_filter = nil
-  @@custom_redirect = nil
 
   # Load configuration from initializer
   def self.setup
