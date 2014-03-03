@@ -12,7 +12,7 @@ describe BestBoy::MonthReport do
 
   subject { month_report }
 
-  describe "with associations" do
+  context 'with associations' do
     it { expect(subject).to have_many(:day_reports) }
   end
 
@@ -23,8 +23,8 @@ describe BestBoy::MonthReport do
     end
   end
 
-  context "with scopes" do
-    it "aggregates MonthReports of specific month" do
+  context 'with scopes' do
+    it 'aggregates MonthReports of specific month' do
       collection = BestBoy::MonthReport.order('created_at DESC')
       expect(collection.between(Time.now.beginning_of_month, Time.now)).to include(month_report)
       expect(collection.between(2.month.ago.beginning_of_month, 2.month.ago)).to_not include(month_report)
