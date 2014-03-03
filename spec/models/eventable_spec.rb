@@ -14,8 +14,8 @@ describe BestBoy::Eventable do
     BestBoyEvent.where(:owner_type => "User", :event => "destroy").should_not be_nil
   end
 
-  it "should be an eventable" do
-    @example.respond_to?("eventable?").should eql(true)
+  it 'is an eventable' do
+    expect(owner).to respond_to :eventable?
   end
 
   context "with reporting" do

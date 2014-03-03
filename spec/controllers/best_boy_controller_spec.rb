@@ -7,16 +7,17 @@ describe BestBoyController do
     @example = TestEvent.create
   end
 
-  it "should send valid custom event" do
+  it 'sends valid custom event' do
     best_boy_event @example, "testing"
-    BestBoyEvent.where(:owner_id => @example.id, :owner_type => @example.class.name.to_s, :event => "testing").first.should_not be_nil
+    best_boy = BestBoyEvent.where(owner_id: @example.id, owner_type: @example.class.name, event: 'testing').first
+    expect(best_boy).not_to be_nil
   end
 
-  it "should raise error on empty event_phrase" do
+  it 'raises error on empty event_phrase' do
     expect { best_boy_event(@example, "") }.to raise_error
   end
 
-  it "should raise error on class not beeing a eventable" do
+  it 'raises error on class not beeing a eventable' do
     klass = Object.new
     expect { best_boy_event(klass, "testing") }.to raise_error
   end
