@@ -5,7 +5,7 @@ require "google_visualr"
 module BestBoy
   class Engine < ::Rails::Engine
 
-    initializer 'best_boy.assets', :group => :all do |app|
+    initializer 'best_boy.assets', group: :all do |app|
       initializer_path = "#{Rails.root}/config/initializers/best_boy.rb"
       require initializer_path if File.exist? initializer_path
 
