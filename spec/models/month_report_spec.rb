@@ -92,10 +92,9 @@ describe BestBoy::MonthReport do
       end
     end
 
-    describe "#create_for" do
-      owner          = TestEvent.create
-      report             = BestBoy::MonthReport.create_for(owner.class, "create")
-      report_with_source = BestBoy::MonthReport.create_for(owner.class, "create", "api")
+    describe '.create_for' do
+      let(:report) { BestBoy::MonthReport.create_for(owner.class, 'create') }
+      let(:report_with_source) { BestBoy::MonthReport.create_for(owner.class, 'create', 'api') }
 
       it { expect(report).to be_valid }
       it { expect(report_with_source).to be_valid }
