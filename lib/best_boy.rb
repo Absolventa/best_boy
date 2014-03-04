@@ -19,16 +19,16 @@ module BestBoy
   end
 
   def self.in_test_mode(&block)
-    executute_with_test_mode_set_to(true, &block)
+    execute_with_test_mode_set_to(true, &block)
   end
 
   def self.in_real_mode(&block)
-    executute_with_test_mode_set_to(false, &block)
+    execute_with_test_mode_set_to(false, &block)
   end
 
   private
 
-  def self.executute_with_test_mode_set_to(test_mode, &block)
+  def self.execute_with_test_mode_set_to(test_mode, &block)
     Mutex.new.synchronize do
       test_mode_before = self.test_mode
       self.test_mode = test_mode
