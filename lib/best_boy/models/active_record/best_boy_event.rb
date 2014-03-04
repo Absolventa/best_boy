@@ -3,12 +3,12 @@ class BestBoyEvent < ActiveRecord::Base
   # associations
   #
   #
-  belongs_to :owner, :polymorphic => true
+  belongs_to :owner, polymorphic: true
 
   # validations
   #
   #
-  validates :event, :presence => true
+  validates :event, presence: true
 
   # scopes
   #

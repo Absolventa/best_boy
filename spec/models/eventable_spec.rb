@@ -1,51 +1,56 @@
 require "spec_helper"
 
 describe BestBoy::Eventable do
-  before(:each) do
-    @example = TestEvent.create
+  let(:owner) { TestEvent.new }
+
+  it 'sends a valid create event' do
+    expect { owner.save }.to change { BestBoyEvent.count }.by(1)
+    expect(owner.best_boy_events).to eq [BestBoyEvent.last]
   end
 
-  it "should send valid create event" do
-    best_boy_event = @example.best_boy_events.first.should_not be_nil
+  it 'sends a valid destroy event' do
+    owner.save
+    expect { owner.destroy }.to change { BestBoyEvent.count }.by(1)
+    best_boy_event = BestBoyEvent.where(event: 'destroy').last
+    expect(best_boy_event.owner_type).to eql owner.class.name
+    expect(best_boy_event.owner_id).to eql owner.id
   end
 
-  it "should send valid destroy event" do
-    @example.destroy
-    BestBoyEvent.where(:owner_type => "User", :event => "destroy").should_not be_nil
+  it 'is an eventable' do
+    expect(owner).to respond_to :eventable?
   end
 
-  it "should be an eventable" do
-    @example.respond_to?("eventable?").should eql(true)
-  end
-
-  context "with reporting" do
+  context 'with reporting' do
     let(:month_report) do
       BestBoy::MonthReport.where(
-        owner_type: @example.class,
+        owner_type: owner.class,
         event: 'create'
       ).first
     end
     let(:day_report) do
       BestBoy::DayReport.where(
-        owner_type: @example.class,
+        owner_type: owner.class,
         event: 'create'
       ).first
     end
-    it "loads reports" do
+
+    it 'loads reports' do
+      owner.save
       expect(month_report).to be_present
       expect(day_report).to be_present
     end
 
-    it "increases occurrence counter when a new instance is created" do
-      BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
-      BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
-      TestEvent.create
+    it 'increases occurrence counter when a new instance is created' do
+      expect_any_instance_of(BestBoy::MonthReport).to receive(:increment!)
+      expect_any_instance_of(BestBoy::DayReport).to receive(:increment!)
+      owner.save
     end
 
-    it "increases occurrence counter when an instance is destroyed" do
-      BestBoy::MonthReport.any_instance.should_receive(:increment!).and_return(true)
-      BestBoy::DayReport.any_instance.should_receive(:increment!).and_return(true)
-      TestEvent.first.destroy
+    it 'increases occurrence counter when an instance is destroyed' do
+      owner.save
+      expect_any_instance_of(BestBoy::MonthReport).to receive(:increment!)
+      expect_any_instance_of(BestBoy::DayReport).to receive(:increment!)
+      owner.destroy
     end
   end
 end
