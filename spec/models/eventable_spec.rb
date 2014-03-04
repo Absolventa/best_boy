@@ -35,6 +35,7 @@ describe BestBoy::Eventable do
     end
 
     it 'loads reports' do
+      owner.save
       expect(month_report).to be_present
       expect(day_report).to be_present
     end
