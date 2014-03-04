@@ -1,9 +1,8 @@
 require "best_boy/engine.rb"
 
 module BestBoy
-  # Define ORM
-  mattr_accessor :precompile_assets, :orm, :base_controller, :before_filter,
-                 :skip_before_filter, :skip_after_filter, :custom_redirect
+  mattr_accessor :base_controller, :before_filter, :custom_redirect, :orm,
+    :precompile_assets, :skip_after_filter, :skip_before_filter
 
   @@base_controller    = "ApplicationController"
   @@before_filter      = nil
