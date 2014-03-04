@@ -18,17 +18,20 @@ module BestBoy
     yield self
   end
 
-  def self.in_test_mode
-    test_mode_before = self.test_mode
-    self.test_mode = true
-    yield if block_given?
-    self.test_mode = test_mode_before
+  def self.in_test_mode(&block)
+    executute_with_test_mode_set_to(true, &block)
   end
 
-  def self.in_real_mode
+  def self.in_real_mode(&block)
+    executute_with_test_mode_set_to(false, &block)
+  end
+
+  private
+
+  def self.executute_with_test_mode_set_to(test_mode, &block)
     test_mode_before = self.test_mode
-    self.test_mode = false
-    yield if block_given?
+    self.test_mode = test_mode
+    block.call if block.present?
     self.test_mode = test_mode_before
   end
 
