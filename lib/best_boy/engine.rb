@@ -18,8 +18,8 @@ module BestBoy
       if BestBoy.orm == :active_record
         require "best_boy/models/active_record/best_boy_event.rb"
         require "best_boy/models/active_record/best_boy/eventable.rb"
-        require "best_boy/models/active_record/best_boy_day_report.rb"
-        require "best_boy/models/active_record/best_boy_month_report.rb"
+        require "best_boy/models/active_record/best_boy/day_report.rb"
+        require "best_boy/models/active_record/best_boy/month_report.rb"
         ActiveRecord::Base.send(:include, BestBoy::Eventable)
       else
         raise "Sorry, best_boy actually only supports ActiveRecord ORM."
