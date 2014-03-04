@@ -23,4 +23,10 @@ describe BestBoy do
         to yield_with_args BestBoy
     end
   end
+
+  describe 'its test mode' do
+    it 'defaults to false' do
+      expect(BestBoy.test_mode).to eql false
+    end
+  end
 end
