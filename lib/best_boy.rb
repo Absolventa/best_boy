@@ -17,4 +17,19 @@ module BestBoy
   def self.setup
     yield self
   end
+
+  def self.in_test_mode
+    test_mode_before = self.test_mode
+    self.test_mode = true
+    yield if block_given?
+    self.test_mode = test_mode_before
+  end
+
+  def self.in_real_mode
+    test_mode_before = self.test_mode
+    self.test_mode = false
+    yield if block_given?
+    self.test_mode = test_mode_before
+  end
+
 end
