@@ -10,7 +10,7 @@ A simple event driven logging for ActiveRecord models.
 What does this gem do?
 ----------------------
 
-best_boy logs "create" and "delete" events as well as custom events triggered in controller actions. It uses an own polimorphic database table to log each event.
+best_boy logs "create" and "delete" events as well as custom events triggered by controller actions. It uses its own polymorphic database table to log each event.
 At the moment, best_boy only provides support for ActiveRecord models.
 
 
@@ -165,25 +165,23 @@ beginning of Feb 1st, 2010 up to now.
 
 Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
-Used gems and resource
-----------------------
-[Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
-
-[Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
-
-[Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
+Used gems and resources
+-----------------------
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
+* [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
+* [Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
 
 
 Contributors in alphabetic order
 --------------------------------
-@cseydel
-@danscho
-@neumanrq
+* [carpodaster](https://github.com/carpodaster)
+* [cseydel](https://github.com/cseydel)
+* [danscho](https://github.com/danscho)
+* [neumannrq](https://github.com/neumannrq)
 
 Thanks
 ------
-We are extremely grateful to everyone contributing to this project.
-Big thanks to each contributor on Impressionist. This gem helped me a long way to get here in modelling and creating a gem.
+We ♥ PRs – thanks to everyone contributing to this project. Big thanks to each contributor on Impressionist. This gem helped me ([cseydel](https://github.com/cseydel)) a long way to get here in modelling and creating a gem.
 
 
-See LICENSE.txt for details on licenses.
+See [LICENSE.txt](https://raw.github.com/Absolventa/best_boy/master/LICENSE.txt) for usage and licensing details.
