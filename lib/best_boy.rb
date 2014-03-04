@@ -29,10 +29,12 @@ module BestBoy
   private
 
   def self.executute_with_test_mode_set_to(test_mode, &block)
-    test_mode_before = self.test_mode
-    self.test_mode = test_mode
-    block.call if block.present?
-    self.test_mode = test_mode_before
+    Mutex.new.synchronize do
+      test_mode_before = self.test_mode
+      self.test_mode = test_mode
+      block.call if block.present?
+      self.test_mode = test_mode_before
+    end
   end
 
 end
