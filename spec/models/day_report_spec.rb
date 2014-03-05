@@ -88,8 +88,8 @@ describe BestBoy::DayReport do
       end
     end
 
-    context "when no today's day_report is present" do
-      it 'creates a new month_report' do
+    context "when no today's day report is present" do
+      it 'creates a new day report' do
         BestBoy::DayReport.destroy_all
         scope = BestBoy::DayReport.where(owner_type: TestEvent.to_s, event: 'create')
         expect { BestBoy::DayReport.current_or_create_for(owner.class.to_s, 'create') }.
