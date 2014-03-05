@@ -36,10 +36,6 @@ describe BestBoy::Eventable do
 
   end
 
-  it 'is an eventable' do
-    expect(owner).to respond_to :eventable?
-  end
-
   describe '.best_boy_disable_callbacks' do
     it { expect(owner.class).to respond_to :best_boy_disable_callbacks }
     it { expect(owner.class).to respond_to :best_boy_disable_callbacks= }
