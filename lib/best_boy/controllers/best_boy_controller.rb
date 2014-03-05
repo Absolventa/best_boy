@@ -1,5 +1,6 @@
 module BestBoyController
   module InstanceMethods
+    protected
     def best_boy_event(obj, event, source = nil)
       if obj.respond_to?("eventable?")
         obj.trigger_best_boy_event(event, source)

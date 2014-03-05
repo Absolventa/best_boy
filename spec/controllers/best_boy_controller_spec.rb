@@ -6,6 +6,10 @@ describe BestBoyController do
   let(:test_event) { TestEvent.create }
 
   describe '#best_boy_event' do
+    it 'is a protected method' do
+      expect(self.protected_methods).to include :best_boy_event
+    end
+
     it 'sends valid custom event' do
       best_boy_event test_event, 'testing'
       best_boy = BestBoyEvent.where(owner_id: test_event.id, owner_type: test_event.class.name, event: 'testing').first
