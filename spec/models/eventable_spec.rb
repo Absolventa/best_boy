@@ -42,16 +42,16 @@ describe BestBoy::Eventable do
 
   describe '.best_boy_disable_callbacks' do
     it { expect(owner.class).to respond_to :best_boy_disable_callbacks }
-    it { expect(owner.class).to respond_to :disable_callbacks= }
+    it { expect(owner.class).to respond_to :best_boy_disable_callbacks= }
 
     it 'enables best boy callbacks by default' do
       klass.has_a_best_boy
-      expect(klass.disable_callbacks).to be_false
+      expect(klass.best_boy_disable_callbacks).to be_false
     end
 
     it 'sets callbacks to be disabled' do
       klass.has_a_best_boy disable_callbacks: true
-      expect(klass.disable_callbacks).to eql true
+      expect(klass.best_boy_disable_callbacks).to eql true
     end
 
     def klass
