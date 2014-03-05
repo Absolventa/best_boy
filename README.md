@@ -67,7 +67,7 @@ Changelog
 * Reduce public methods added by `BestBoy::Eventable` ([#4](https://github.com/Absolventa/best_boy/issues/4))
 * Remove mass-assignments that could cause problems with the protected_attributes gem [#8](https://github.com/Absolventa/best_boy/issues/8)
 * Do not expose mixed-in controller method ([#9](https://github.com/Absolventa/best_boy/issues/9)))
-* Avoid potential callbacks for callbacks switch ([#10](https://github.com/Absolventa/best_boy/issues/10))
+* Avoid potential name clashes for callbacks switch ([#10](https://github.com/Absolventa/best_boy/issues/10))
 
 
 Update in Version 2
