@@ -118,7 +118,7 @@ If no Object is given, it will raise an exception as well as if no event is prov
 
 BestBoy features a sandbox mode for your testing environment from version 2.1 onward. It will prevent the creation of BestBoy records. Activate it in your spec_helper.rb or test_helper.rb globally:
 
-	BestBoy.test_mode = true
+    BestBoy.test_mode = true
 
 If you want to test your BestBoy integration, you can run your code like this:
 
