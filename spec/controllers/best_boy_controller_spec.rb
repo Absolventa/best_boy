@@ -20,9 +20,9 @@ describe BestBoyController do
       expect { best_boy_event(test_event, '') }.to raise_error
     end
 
-    it 'raises error on class not beeing an eventable' do
+    it 'raises error if not a best boy eventable' do
       klass = Object.new
-      expect { best_boy_event(klass, 'testing') }.to raise_error
+      expect { best_boy_event(klass, 'testing') }.to raise_error(NoMethodError)
     end
   end
 end
