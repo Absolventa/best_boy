@@ -59,6 +59,13 @@ Run the migration
     rake db:migrate
 
 
+Changelog
+---------
+#### 2.1.0
+* Code cleanup
+* Support a "dry-run" test mode
+
+
 Update in Version 2
 --------------------------------
 
