@@ -59,6 +59,13 @@ Run the migration
     rake db:migrate
 
 
+Changelog
+---------
+#### 2.1.0
+* Code cleanup
+* Support a "dry-run" test mode
+
+
 Update in Version 2
 --------------------------------
 
@@ -106,6 +113,24 @@ In controller context:
 This will log custom events for a object and a event phrase. You can specify this event with a event_source parameter to log maybe seperate create actions.
 
 If no Object is given, it will raise an exception as well as if no event is provided.
+
+#### Test mode
+
+BestBoy features a sandbox mode for your testing environment from version 2.1 onward. It will prevent the creation of BestBoy records. Activate it in your spec_helper.rb or test_helper.rb globally:
+
+	BestBoy.test_mode = true
+
+If you want to test your BestBoy integration, you can run your code like this:
+
+    BestBoy.in_real_mode do
+      # your expectations / asserts
+    end
+
+Conversely, you can also sandbox a specific code block:
+
+    BestBoy.in_test_mode do
+      # database will be spared
+    end
 
 
 BestBoyEvent table

@@ -31,6 +31,8 @@ describe BestBoy::DayReport do
     it { expect(subject).to validate_presence_of(:event) }
   end
 
+  it_behaves_like 'Short-circuits saving in test mode'
+
   context 'with scopes' do
     it 'aggregates DayReports of specific day' do
       collection = BestBoy::DayReport.order('created_at DESC')
@@ -88,8 +90,8 @@ describe BestBoy::DayReport do
       end
     end
 
-    context "when no today's day_report is present" do
-      it 'creates a new month_report' do
+    context "when no today's day report is present" do
+      it 'creates a new day report' do
         BestBoy::DayReport.destroy_all
         scope = BestBoy::DayReport.where(owner_type: TestEvent.to_s, event: 'create')
         expect { BestBoy::DayReport.current_or_create_for(owner.class.to_s, 'create') }.

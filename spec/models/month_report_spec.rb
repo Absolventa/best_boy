@@ -21,6 +21,8 @@ describe BestBoy::MonthReport do
     it { expect(subject).to validate_presence_of(:event) }
   end
 
+  it_behaves_like 'Short-circuits saving in test mode'
+
   context 'with scopes' do
     it 'aggregates MonthReports of specific month' do
       collection = BestBoy::MonthReport.order('created_at DESC')

@@ -1,5 +1,7 @@
 class BestBoyEvent < ActiveRecord::Base
 
+  include BestBoy::ObeysTestMode
+
   # associations
   #
   #

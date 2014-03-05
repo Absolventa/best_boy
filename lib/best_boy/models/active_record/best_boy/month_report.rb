@@ -1,6 +1,8 @@
 module BestBoy
   class MonthReport < ActiveRecord::Base
 
+    include BestBoy::ObeysTestMode
+
     # db configuration
     #
     #

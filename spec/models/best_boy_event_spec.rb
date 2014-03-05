@@ -19,6 +19,8 @@ describe BestBoyEvent do
     expect(subject).to be_persisted
   end
 
+  it_behaves_like 'Short-circuits saving in test mode'
+
   describe ".per_day" do
     it 'includes event created right now' do
       brand_new = described_class.create(event: 'create')
