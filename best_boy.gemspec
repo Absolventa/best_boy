@@ -23,6 +23,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 2.14"
   s.add_development_dependency 'shoulda', "~> 3.5"
   s.add_development_dependency "haml"
-  s.add_development_dependency 'kaminari', "~> 0.14.1"
   s.add_development_dependency 'sass-rails', '~> 4.0.0'
 end
