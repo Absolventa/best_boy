@@ -3,14 +3,13 @@ module BestBoy
     extend ActiveSupport::Concern
 
     module ClassMethods
-      attr_accessor :disable_callbacks
-      @disable_callbacks = nil
+      attr_accessor :best_boy_disable_callbacks
 
       def has_a_best_boy(options={})
         # constants
         #
         #
-        @disable_callbacks = options[:disable_callbacks]
+        self.best_boy_disable_callbacks = options[:disable_callbacks]
 
         # associations
         #
@@ -22,10 +21,6 @@ module BestBoy
         #
         after_create :trigger_create_event
         after_destroy :trigger_destroy_event
-      end
-
-      def best_boy_disable_callbacks
-        @disable_callbacks
       end
     end
 
