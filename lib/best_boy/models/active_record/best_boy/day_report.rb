@@ -1,6 +1,8 @@
 module BestBoy
   class DayReport < ActiveRecord::Base
 
+    include BestBoy::ObeysTestMode
+
     # db configuration
     #
     #
