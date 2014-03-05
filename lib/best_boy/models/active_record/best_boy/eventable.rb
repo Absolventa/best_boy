@@ -24,6 +24,12 @@ module BestBoy
       end
     end
 
+    def trigger_best_boy_event type, source = nil
+      create_best_boy_event_with_type(type, source)
+    end
+
+    private
+
     def trigger_create_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
@@ -32,10 +38,6 @@ module BestBoy
     def trigger_destroy_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "destroy"
-    end
-
-    def trigger_best_boy_event type, source = nil
-      create_best_boy_event_with_type(type, source)
     end
 
     def create_best_boy_event_with_type type, source = nil
