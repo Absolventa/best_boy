@@ -24,10 +24,6 @@ module BestBoy
       end
     end
 
-    def eventable?
-      true
-    end
-
     def trigger_create_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
