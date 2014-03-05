@@ -3,17 +3,37 @@ require "spec_helper"
 describe BestBoy::Eventable do
   let(:owner) { TestEvent.new }
 
-  it 'sends a valid create event' do
-    expect { owner.save }.to change { BestBoyEvent.count }.by(1)
-    expect(owner.best_boy_events).to eq [BestBoyEvent.last]
-  end
+  context 'with callbacks' do
+    context 'within real mode' do
+      it 'sends a valid create event' do
+        expect { owner.save }.to change { BestBoyEvent.count }.by(1)
+        expect(owner.best_boy_events).to eq [BestBoyEvent.last]
+      end
 
-  it 'sends a valid destroy event' do
-    owner.save
-    expect { owner.destroy }.to change { BestBoyEvent.count }.by(1)
-    best_boy_event = BestBoyEvent.where(event: 'destroy').last
-    expect(best_boy_event.owner_type).to eql owner.class.name
-    expect(best_boy_event.owner_id).to eql owner.id
+      it 'sends a valid destroy event' do
+        owner.save
+        expect { owner.destroy }.to change { BestBoyEvent.count }.by(1)
+        best_boy_event = BestBoyEvent.where(event: 'destroy').last
+        expect(best_boy_event.owner_type).to eql owner.class.name
+        expect(best_boy_event.owner_id).to eql owner.id
+      end
+    end
+
+    context 'within test mode' do
+      it 'does not create a BestBoy create event' do
+        BestBoy.in_test_mode do
+          expect { owner.save }.not_to change { BestBoyEvent.count }
+        end
+      end
+
+      it 'does not create a BestBoy destroy event' do
+        owner.save
+        BestBoy.in_test_mode do
+          expect { owner.destroy }.not_to change { BestBoyEvent.count }
+        end
+      end
+    end
+
   end
 
   it 'is an eventable' do

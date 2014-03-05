@@ -16,4 +16,12 @@ class BestBoyEvent < ActiveRecord::Base
 
   scope :per_day, ->(date) { where(created_at: date.beginning_of_day..date.end_of_day ) }
 
+  def save(*args)
+    BestBoy.test_mode || super
+  end
+
+  def save!(*args)
+    BestBoy.test_mode || super
+  end
+
 end
