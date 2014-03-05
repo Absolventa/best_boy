@@ -40,6 +40,33 @@ describe BestBoy::Eventable do
     expect(owner).to respond_to :eventable?
   end
 
+  describe '.best_boy_disable_callbacks' do
+    it { expect(owner.class).to respond_to :best_boy_disable_callbacks }
+    it { expect(owner.class).to respond_to :disable_callbacks= }
+
+    it 'enables best boy callbacks by default' do
+      klass.has_a_best_boy
+      expect(klass.disable_callbacks).to be_false
+    end
+
+    it 'sets callbacks to be disabled' do
+      klass.has_a_best_boy disable_callbacks: true
+      expect(klass.disable_callbacks).to eql true
+    end
+
+    def klass
+      @klass ||= Class.new do
+        class << self
+          def has_many(*args); end
+          alias :after_create  :has_many
+          alias :after_destroy :has_many
+        end
+        include BestBoy::Eventable
+      end
+    end
+
+  end
+
   context 'with reporting' do
     let(:month_report) do
       BestBoy::MonthReport.where(
