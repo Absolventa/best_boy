@@ -5,18 +5,24 @@ describe BestBoyController do
 
   let(:test_event) { TestEvent.create }
 
-  it 'sends valid custom event' do
-    best_boy_event test_event, 'testing'
-    best_boy = BestBoyEvent.where(owner_id: test_event.id, owner_type: test_event.class.name, event: 'testing').first
-    expect(best_boy).not_to be_nil
-  end
+  describe '#best_boy_event' do
+    it 'is a protected method' do
+      expect(self.protected_methods).to include :best_boy_event
+    end
 
-  it 'raises error on empty event_phrase' do
-    expect { best_boy_event(test_event, '') }.to raise_error
-  end
+    it 'sends valid custom event' do
+      best_boy_event test_event, 'testing'
+      best_boy = BestBoyEvent.where(owner_id: test_event.id, owner_type: test_event.class.name, event: 'testing').first
+      expect(best_boy).not_to be_nil
+    end
 
-  it 'raises error on class not beeing an eventable' do
-    klass = Object.new
-    expect { best_boy_event(klass, 'testing') }.to raise_error
+    it 'raises error on empty event_phrase' do
+      expect { best_boy_event(test_event, '') }.to raise_error
+    end
+
+    it 'raises error on class not beeing an eventable' do
+      klass = Object.new
+      expect { best_boy_event(klass, 'testing') }.to raise_error
+    end
   end
 end
