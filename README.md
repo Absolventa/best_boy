@@ -61,8 +61,9 @@ Run the migration
 
 Changelog
 ---------
-#### 2.1.1
+#### 2.1.3
 * Compatible with Rails 4.1
+* Loosened kaminari dependency requirements
 
 #### 2.1.0
 * Code cleanup - now compatible with RSpec 3 syntax
