@@ -61,6 +61,9 @@ Run the migration
 
 Changelog
 ---------
+#### 2.1.1
+* Compatible with Rails 4.1
+
 #### 2.1.0
 * Code cleanup - now compatible with RSpec 3 syntax
 * Support a "dry-run" test mode
@@ -78,12 +81,12 @@ to copy the new migrations to your app by running
 
     rails g best_boy --asset
 
-again. This generator will also ask you to overwrite your existing initializer - just 
-reject this pressing 'n' for not overwriting your settings. Don't forget to run 
-    
+again. This generator will also ask you to overwrite your existing initializer - just
+reject this pressing 'n' for not overwriting your settings. Don't forget to run
+
     rake db:migrate
 
-in context of your mother app afterwards. See also section "Some thoughts about Performance" 
+in context of your mother app afterwards. See also section "Some thoughts about Performance"
 for more details about new data organization.
 
 
