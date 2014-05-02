@@ -61,6 +61,9 @@ Run the migration
 
 Changelog
 ---------
+#### 2.1.4
+* Bugfix for report recovery rake task 
+
 #### 2.1.3
 * Compatible with Rails 4.1
 * Loosened kaminari dependency requirements
@@ -210,7 +213,7 @@ Contributors in alphabetic order
 * [carpodaster](https://github.com/carpodaster)
 * [cseydel](https://github.com/cseydel)
 * [danscho](https://github.com/danscho)
-* [neumannrq](https://github.com/neumannrq)
+* [neumanrq](https://github.com/neumannrq)
 
 Thanks
 ------
