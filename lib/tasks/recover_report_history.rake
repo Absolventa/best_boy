@@ -6,8 +6,8 @@ namespace :best_boy do
     #
     #
 
-    def month_report_id_for(year, owner_type, source, event)
-      date = Date.parse("#{year}-01-01")
+    def month_report_id_for(year, month, owner_type, source, event)
+      date = Date.parse("#{year}-#{month}-01")
       BestBoy::MonthReport.where(created_at:   date.beginning_of_day..date.end_of_year.end_of_day,
                                  owner_type:   owner_type,
                                  event_source: source,
@@ -118,7 +118,7 @@ namespace :best_boy do
                 day_report_with_source.event_source = source
                 day_report_with_source.occurrences = daily_occurrences
                 day_report_with_source.created_at = day_scope.first.created_at
-                day_report_with_source.month_report_id = month_report_id_for(day.year, owner_type, source, event)
+                day_report_with_source.month_report_id = month_report_id_for(day.year, day.month, owner_type, source, event)
                 day_report_with_source.save!
               end
 
@@ -128,7 +128,7 @@ namespace :best_boy do
               day_report_without_source.event_source = nil
               day_report_without_source.occurrences = daily_occurrences
               day_report_without_source.created_at = day_scope.first.created_at
-              day_report_without_source.month_report_id = month_report_id_for(day.year, owner_type, nil, event)
+              day_report_without_source.month_report_id = month_report_id_for(day.year, day.month, owner_type, nil, event)
               day_report_without_source.save!
             end
           end
