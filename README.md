@@ -61,8 +61,11 @@ Run the migration
 
 Changelog
 ---------
+#### Master
+* Make recover_report_history rake task a noop for no previously tracked BestBoyEvents
+
 #### 2.1.4
-* Bugfix for report recovery rake task 
+* Bugfix for report recovery rake task
 
 #### 2.1.3
 * Compatible with Rails 4.1
