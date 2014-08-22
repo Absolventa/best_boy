@@ -64,8 +64,6 @@ Changelog
 #### 2.2.0
 * Updated dependencies for rspec and kaminari
 * Make recover_report_history rake task a noop for no previously tracked BestBoyEvents
-
-#### 2.1.4
 * Bugfix for report recovery rake task
 
 #### 2.1.3
