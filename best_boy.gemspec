@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
 
   s.add_dependency 'rails', '>= 4.0.0', '< 5.0'
-  s.add_dependency 'kaminari', '>= 0.14.1', '< 0.16'
+  s.add_dependency 'kaminari', '>= 0.14.1', '< 0.16.1'
   s.add_dependency 'google_visualr'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency "rspec-rails", "~> 2.14"
+  s.add_development_dependency "rspec-rails", "~> 3.0.2"
   s.add_development_dependency 'shoulda', "~> 3.5"
   s.add_development_dependency "haml"
   s.add_development_dependency 'sass-rails', '~> 4.0.0'
