@@ -61,7 +61,8 @@ Run the migration
 
 Changelog
 ---------
-#### Master
+#### 2.2.0
+* Updated dependencies for rspec and kaminari
 * Make recover_report_history rake task a noop for no previously tracked BestBoyEvents
 
 #### 2.1.4
@@ -220,7 +221,7 @@ Contributors in alphabetic order
 * [carpodaster](https://github.com/carpodaster)
 * [cseydel](https://github.com/cseydel)
 * [danscho](https://github.com/danscho)
-* [neumanrq](https://github.com/neumannrq)
+* [neumanrq](https://github.com/neumanrq)
 
 Thanks
 ------
