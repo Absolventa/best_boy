@@ -61,6 +61,9 @@ Run the migration
 
 Changelog
 ---------
+#### 2.1.5
+* updated dependencies for rspec and kaminari
+
 #### 2.1.4
 * Bugfix for report recovery rake task 
 
@@ -213,7 +216,7 @@ Contributors in alphabetic order
 * [carpodaster](https://github.com/carpodaster)
 * [cseydel](https://github.com/cseydel)
 * [danscho](https://github.com/danscho)
-* [neumanrq](https://github.com/neumannrq)
+* [neumanrq](https://github.com/neumanrq)
 
 Thanks
 ------
