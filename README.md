@@ -63,9 +63,10 @@ Changelog
 ---------
 #### 2.1.5
 * updated dependencies for rspec and kaminari
+* Make recover_report_history rake task a noop for no previously tracked BestBoyEvents
 
 #### 2.1.4
-* Bugfix for report recovery rake task 
+* Bugfix for report recovery rake task
 
 #### 2.1.3
 * Compatible with Rails 4.1
@@ -80,10 +81,10 @@ Changelog
 * Avoid potential name clashes for callbacks switch ([#10](https://github.com/Absolventa/best_boy/issues/10))
 
 
-Update in Version 2
+Upgrading to Version 2
 --------------------------------
 
-From Version 2.x on BestBoy uses aggregated tables for the admin panel. You need
+From v2.x, BestBoy uses aggregated tables for the admin panel. You need
 to copy the new migrations to your app by running
 
     rails g best_boy --asset
@@ -93,7 +94,11 @@ reject this pressing 'n' for not overwriting your settings. Don't forget to run
 
     rake db:migrate
 
-in context of your mother app afterwards. See also section "Some thoughts about Performance"
+and
+
+    rake best_boy:recover_report_history
+
+in the context of your mother app afterwards. See also section "Some thoughts about Performance"
 for more details about new data organization.
 
 

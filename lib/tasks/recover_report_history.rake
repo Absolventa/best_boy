@@ -2,6 +2,8 @@ namespace :best_boy do
   desc "Creates consistent structure of DayReports and MonthReports for a given set of events"
   task :recover_report_history, [:date]  => :environment do |t, args|
 
+    next unless BestBoyEvent.any?
+
     # helper methods
     #
     #
