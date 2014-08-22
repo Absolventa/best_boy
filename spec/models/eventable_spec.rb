@@ -42,7 +42,7 @@ describe BestBoy::Eventable do
 
     it 'enables best boy callbacks by default' do
       klass.has_a_best_boy
-      expect(klass.best_boy_disable_callbacks).to be_false
+      expect(klass.best_boy_disable_callbacks).to be_falsey
     end
 
     it 'sets callbacks to be disabled' do
