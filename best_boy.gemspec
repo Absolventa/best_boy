@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = BestBoy::VERSION
   s.platform    = Gem::Platform::RUBY
   s.licenses     =["MIT"]
-  s.authors     = ["Christoph Seydel, Robin Neumann, Daniel Schoppmann"]
+  s.authors     = ["Christoph Seydel, Carsten Zimmermann, Robin Neumann, Daniel Schoppmann"]
   s.email       = ["christoph.seydel@me.com, daniel.schoppmann@gmail.com"]
   s.homepage    = "https://github.com/absolventa/best_boy"
   s.summary     = %q{a simple event driven logging for models}
