@@ -2,6 +2,7 @@ module BestBoy
   class DayReport < ActiveRecord::Base
 
     include BestBoy::ObeysTestMode
+    include BestBoy::Reporting
 
     # db configuration
     #
@@ -35,15 +36,6 @@ module BestBoy
 
     class << self
 
-      def current_for(date, owner, type, source = nil)
-        DayReport.for(owner, type, source).created_on(date)
-      end
-
-      def current_or_create_for(owner, type, source = nil, date = Time.zone.now)
-        day_report = current_for(date, owner, type, source).last
-        day_report.present? ? day_report : create_for(owner, type, source, date)
-      end
-
       def create_for(owner, type, source = nil, date = Time.zone.now)
         month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source, date)
         day_report   = BestBoy::DayReport.new
@@ -55,10 +47,6 @@ module BestBoy
         day_report.created_at      = date
 
         day_report.save ? day_report : nil
-      end
-
-      def for(owner, type, source = nil)
-        where(owner_type: owner, event: type, event_source: source)
       end
 
       def daily_occurrences_for(owner, type, source = nil, date)

@@ -2,6 +2,7 @@ module BestBoy
   class MonthReport < ActiveRecord::Base
 
     include BestBoy::ObeysTestMode
+    include BestBoy::Reporting
 
     # db configuration
     #
@@ -35,17 +36,8 @@ module BestBoy
 
     class << self
 
-      def current_for(date, owner, type, source = nil)
-        MonthReport.for(owner, type, source).between(date.beginning_of_month, date)
-      end
-
-      def current_or_create_for(owner, type, source = nil, date = Time.zone.now)
-        month_report = current_for(Time.zone.now, owner, type, source).last
-        month_report.present? ? month_report : create_for(owner, type, source)
-      end
-
       def create_for(owner, type, source = nil, date = Time.zone.now)
-        month_report = BestBoy::MonthReport.new
+        month_report              = BestBoy::MonthReport.new
         month_report.owner_type   = owner.to_s
         month_report.event        = type
         month_report.event_source = source
@@ -54,19 +46,15 @@ module BestBoy
         month_report.save ? month_report : nil
       end
 
-      def for(owner, type, source = nil)
-        where(owner_type: owner, event: type, event_source: source)
-      end
-
       def monthly_occurrences_for(owner, type, source = nil, date)
         MonthReport.for(owner, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
       end
 
-      def self.yearly_occurrences_for(owner, type, source = nil, date)
+      def yearly_occurrences_for(owner, type, source = nil, date)
         MonthReport.for(owner, type, source).between(date.beginning_of_year, date).sum(:occurrences)
       end
 
-      def self.overall_occurrences_for(owner, type, source = nil)
+      def overall_occurrences_for(owner, type, source = nil)
         MonthReport.for(owner, type, source).sum(:occurrences)
       end
     end

@@ -17,6 +17,7 @@ module BestBoy
     initializer 'best_boy.model' do |app|
       if BestBoy.orm == :active_record
         require "best_boy/models/active_record/best_boy/obeys_test_mode.rb"
+        require "best_boy/models/active_record/best_boy/reporting.rb"
         require "best_boy/models/active_record/best_boy_event.rb"
         require "best_boy/models/active_record/best_boy/eventable.rb"
         require "best_boy/models/active_record/best_boy/day_report.rb"
