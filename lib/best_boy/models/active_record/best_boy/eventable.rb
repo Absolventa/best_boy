@@ -28,6 +28,11 @@ module BestBoy
       create_best_boy_event_with_type(type, source)
     end
 
+    def report(klass: self.class.to_s, type: '', source: nil, date: Time.zone.now)
+      BestBoy::MonthReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
+      BestBoy::DayReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
+    end
+
     private
 
     def trigger_create_event
@@ -53,9 +58,5 @@ module BestBoy
       report(type: type, source: nil)
     end
 
-    def report(type: '', source: nil, date: Time.zone.now, klass: self.class.to_s)
-      BestBoy::MonthReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
-      BestBoy::DayReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
-    end
   end
 end
