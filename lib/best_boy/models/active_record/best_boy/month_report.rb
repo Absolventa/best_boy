@@ -37,16 +37,18 @@ module BestBoy
       self.for(owner, type, source).between(date.beginning_of_month, date)
     end
 
-    def self.current_or_create_for(owner, type, source = nil)
+    def self.current_or_create_for(owner, type, source = nil, date = Time.zone.now)
       month_report = self.current_for(Time.zone.now, owner, type, source).last
       month_report.present? ? month_report : self.create_for(owner, type, source)
     end
 
-    def self.create_for(owner, type, source = nil)
+    def self.create_for(owner, type, source = nil, date = Time.zone.now)
       month_report = BestBoy::MonthReport.new
       month_report.owner_type   = owner.to_s
       month_report.event        = type
       month_report.event_source = source
+      month_report.created_at   = date || Time.zone.now
+
       month_report.save ? month_report : nil
     end
 

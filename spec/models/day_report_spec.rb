@@ -95,7 +95,7 @@ describe BestBoy::DayReport do
         BestBoy::DayReport.destroy_all
         scope = BestBoy::DayReport.where(owner_type: TestEvent.to_s, event: 'create')
         expect { BestBoy::DayReport.current_or_create_for(owner.class.to_s, 'create') }.
-          to change { scope.created_on(Time.now).count }.by(1)
+          to change { scope.created_on(Time.now).reload.count }.by(1)
       end
     end
   end

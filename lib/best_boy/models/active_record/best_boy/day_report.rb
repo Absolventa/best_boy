@@ -37,19 +37,20 @@ module BestBoy
       self.for(owner, type, source).created_on(date)
     end
 
-    def self.current_or_create_for(owner, type, source = nil)
-      day_report = self.current_for(Time.zone.now, owner, type, source).last
-      day_report.present? ? day_report : self.create_for(owner, type, source)
+    def self.current_or_create_for(owner, type, source = nil, date = Time.zone.now)
+      day_report = self.current_for(date, owner, type, source).last
+      day_report.present? ? day_report : self.create_for(owner, type, source, date)
     end
 
-    def self.create_for(owner, type, source = nil)
-      month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source)
+    def self.create_for(owner, type, source = nil, date = Time.zone.now)
+      month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source, date)
       day_report   = BestBoy::DayReport.new
 
       day_report.owner_type      = owner
       day_report.event           = type
       day_report.month_report_id = month_report.id
       day_report.event_source    = source
+      day_report.created_at      = date
 
       day_report.save ? day_report : nil
     end
