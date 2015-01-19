@@ -66,7 +66,7 @@ Changelog
 * Updated dependencies for rspec and kaminari
 * Make recover_report_history rake task a noop for no previously tracked BestBoyEvents
 * Bugfix for report recovery rake task
-* use appraisal for testing against different gemsets andRRuby versions
+* use appraisal for testing against different gemsets and Ruby versions
 
 #### 2.1.3
 * Compatible with Rails 4.1
