@@ -28,6 +28,11 @@ module BestBoy
       create_best_boy_event_with_type(type, source)
     end
 
+    def report(klass: self.class.to_s, type: '', source: nil, date: Time.zone.now)
+      BestBoy::MonthReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
+      BestBoy::DayReport.current_or_create_for(klass, type, source, date).increment!(:occurrences)
+    end
+
     private
 
     def trigger_create_event
@@ -40,7 +45,7 @@ module BestBoy
       create_best_boy_event_with_type "destroy"
     end
 
-    def create_best_boy_event_with_type type, source = nil
+    def create_best_boy_event_with_type(type, source = nil)
       raise "nil event is not allowed" if type.blank?
       best_boy_event = BestBoyEvent.new do |bbe|
         bbe.event        = type
@@ -48,25 +53,10 @@ module BestBoy
         bbe.owner        = self
       end
       best_boy_event.save
-      report type, source
+
+      report(type: type, source: source) if source.present?
+      report(type: type, source: nil)
     end
 
-    def report type, source = nil
-      month_report             = BestBoy::MonthReport.current_or_create_for(self.class.to_s, type)
-      month_report_with_source = BestBoy::MonthReport.current_or_create_for(self.class.to_s, type, source) if source.present?
-
-      day_report             = BestBoy::DayReport.current_or_create_for(self.class.to_s, type)
-      day_report_with_source = BestBoy::DayReport.current_or_create_for(self.class.to_s, type, source) if source.present?
-
-      increment_occurrences_in_reports month_report, month_report_with_source, day_report, day_report_with_source
-    end
-
-    def increment_occurrences_in_reports(month_report, month_report_with_source, day_report, day_report_with_source)
-      day_report_with_source.increment!(:occurrences) if day_report_with_source.present?
-      month_report_with_source.increment!(:occurrences) if month_report_with_source.present?
-
-      day_report.increment!(:occurrences)
-      month_report.increment!(:occurrences)
-    end
   end
 end
