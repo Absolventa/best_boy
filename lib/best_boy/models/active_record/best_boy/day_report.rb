@@ -33,38 +33,41 @@ module BestBoy
     #
     #
 
-    def self.current_for(date, owner, type, source = nil)
-      self.for(owner, type, source).created_on(date)
-    end
+    class << self
 
-    def self.current_or_create_for(owner, type, source = nil, date = Time.zone.now)
-      day_report = self.current_for(date, owner, type, source).last
-      day_report.present? ? day_report : self.create_for(owner, type, source, date)
-    end
+      def current_for(date, owner, type, source = nil)
+        DayReport.for(owner, type, source).created_on(date)
+      end
 
-    def self.create_for(owner, type, source = nil, date = Time.zone.now)
-      month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source, date)
-      day_report   = BestBoy::DayReport.new
+      def current_or_create_for(owner, type, source = nil, date = Time.zone.now)
+        day_report = current_for(date, owner, type, source).last
+        day_report.present? ? day_report : create_for(owner, type, source, date)
+      end
 
-      day_report.owner_type      = owner
-      day_report.event           = type
-      day_report.month_report_id = month_report.id
-      day_report.event_source    = source
-      day_report.created_at      = date
+      def create_for(owner, type, source = nil, date = Time.zone.now)
+        month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source, date)
+        day_report   = BestBoy::DayReport.new
 
-      day_report.save ? day_report : nil
-    end
+        day_report.owner_type      = owner
+        day_report.event           = type
+        day_report.month_report_id = month_report.id
+        day_report.event_source    = source
+        day_report.created_at      = date
 
-    def self.for(owner, type, source = nil)
-      self.where(owner_type: owner, event: type, event_source: source)
-    end
+        day_report.save ? day_report : nil
+      end
 
-    def self.daily_occurrences_for(owner, type, source = nil, date)
-      self.created_on(date).for(owner, type, source).sum(:occurrences)
-    end
+      def for(owner, type, source = nil)
+        where(owner_type: owner, event: type, event_source: source)
+      end
 
-    def self.weekly_occurrences_for(owner, type, source = nil)
-      self.week.for(owner, type, source).sum(:occurrences)
+      def daily_occurrences_for(owner, type, source = nil, date)
+        created_on(date).for(owner, type, source).sum(:occurrences)
+      end
+
+      def weekly_occurrences_for(owner, type, source = nil)
+        week.for(owner, type, source).sum(:occurrences)
+      end
     end
   end
 end

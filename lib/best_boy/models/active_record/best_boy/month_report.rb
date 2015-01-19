@@ -33,39 +33,42 @@ module BestBoy
     #
     #
 
-    def self.current_for(date, owner, type, source = nil)
-      self.for(owner, type, source).between(date.beginning_of_month, date)
-    end
+    class << self
 
-    def self.current_or_create_for(owner, type, source = nil, date = Time.zone.now)
-      month_report = self.current_for(Time.zone.now, owner, type, source).last
-      month_report.present? ? month_report : self.create_for(owner, type, source)
-    end
+      def current_for(date, owner, type, source = nil)
+        MonthReport.for(owner, type, source).between(date.beginning_of_month, date)
+      end
 
-    def self.create_for(owner, type, source = nil, date = Time.zone.now)
-      month_report = BestBoy::MonthReport.new
-      month_report.owner_type   = owner.to_s
-      month_report.event        = type
-      month_report.event_source = source
-      month_report.created_at   = date || Time.zone.now
+      def current_or_create_for(owner, type, source = nil, date = Time.zone.now)
+        month_report = current_for(Time.zone.now, owner, type, source).last
+        month_report.present? ? month_report : create_for(owner, type, source)
+      end
 
-      month_report.save ? month_report : nil
-    end
+      def create_for(owner, type, source = nil, date = Time.zone.now)
+        month_report = BestBoy::MonthReport.new
+        month_report.owner_type   = owner.to_s
+        month_report.event        = type
+        month_report.event_source = source
+        month_report.created_at   = date || Time.zone.now
 
-    def self.for(owner, type, source = nil)
-      self.where(owner_type: owner, event: type, event_source: source)
-    end
+        month_report.save ? month_report : nil
+      end
 
-    def self.monthly_occurrences_for(owner, type, source = nil, date)
-      self.for(owner, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
-    end
+      def for(owner, type, source = nil)
+        where(owner_type: owner, event: type, event_source: source)
+      end
 
-    def self.yearly_occurrences_for(owner, type, source = nil, date)
-      self.for(owner, type, source).between(date.beginning_of_year, date).sum(:occurrences)
-    end
+      def monthly_occurrences_for(owner, type, source = nil, date)
+        MonthReport.for(owner, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
+      end
 
-    def self.overall_occurrences_for(owner, type, source = nil)
-      self.for(owner, type, source).sum(:occurrences)
+      def self.yearly_occurrences_for(owner, type, source = nil, date)
+        MonthReport.for(owner, type, source).between(date.beginning_of_year, date).sum(:occurrences)
+      end
+
+      def self.overall_occurrences_for(owner, type, source = nil)
+        MonthReport.for(owner, type, source).sum(:occurrences)
+      end
     end
   end
 end
