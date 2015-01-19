@@ -40,7 +40,7 @@ module BestBoy
       create_best_boy_event_with_type "destroy"
     end
 
-    def create_best_boy_event_with_type type, source = nil
+    def create_best_boy_event_with_type(type, source = nil)
       raise "nil event is not allowed" if type.blank?
       best_boy_event = BestBoyEvent.new do |bbe|
         bbe.event        = type
