@@ -64,6 +64,7 @@ Changelog
 ---------
 #### 2.2.1
 * flexibilized report creation method to create reports for a specific date
+* no compatibility with Ruby 1.9.3
 
 #### 2.2.0
 * Updated dependencies for rspec and kaminari
