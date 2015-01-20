@@ -1,7 +1,7 @@
 PATH
   remote: ../
   specs:
-    best_boy (2.2.0)
+    best_boy (2.2.1)
       google_visualr
       kaminari (~> 0.16.1, >= 0.14.1)
       rails (>= 4.0.0, < 5.0)
@@ -41,7 +41,7 @@ GEM
     builder (3.1.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    google_visualr (2.3.0)
+    google_visualr (2.4.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
