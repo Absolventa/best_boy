@@ -62,6 +62,12 @@ Run the migration
 
 Changelog
 ---------
+#### 2.2.3
+* Rename ``report``method to a more best_boy specific ``trigger_best_boy_event_report`
+
+#### 2.2.2
+* Fix dependency bug with kaminari
+
 #### 2.2.1
 * flexibilized report creation method to create reports for a specific date
 * no compatibility with Ruby 1.9.3
