@@ -1,9 +1,9 @@
 PATH
   remote: ../
   specs:
-    best_boy (2.2.1)
+    best_boy (2.2.2)
       google_visualr
-      kaminari (~> 0.16.1, >= 0.14.1)
+      kaminari (>= 0.14.1)
       rails (>= 4.0.0, < 5.0)
 
 GEM
@@ -46,7 +46,7 @@ GEM
       tilt
     hike (1.2.3)
     i18n (0.6.11)
-    kaminari (0.16.1)
+    kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     mail (2.5.4)
