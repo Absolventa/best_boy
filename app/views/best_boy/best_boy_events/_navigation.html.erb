@@ -1,8 +1,8 @@
-<div class="span12">
+<div class="col-md-12">
   <ul class="nav nav-tabs">
     <% available_owner_types.each do |owner_type| %>
       <li class="<%= (current_owner_type == owner_type) ? 'active' : nil %>">
-        <%= link_to owner_type, send("best_boy_admin_#{referrer}_path", :owner_type => owner_type) %>
+        <%= link_to owner_type, send("best_boy_admin_#{referrer}_path", owner_type: owner_type) %>
       </li>
     <% end %>
   </ul>

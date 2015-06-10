@@ -19,7 +19,7 @@
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navigation-header">
-          <%= link_to "BBAC", best_boy_admin_path, class: "brand" %>
+          <%= link_to "BBAC", best_boy_admin_path, class: "navbar-brand" %>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -37,9 +37,7 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
   </body>
 </html>
