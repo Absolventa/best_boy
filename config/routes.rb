@@ -1,8 +1,8 @@
 BestBoy::Engine.routes.draw do
 
-  root to: "best_boy_events#index"
+  root to: "events#index"
 
-  resources :best_boy_events, only: [:index] do
+  resources :events, only: [:index] do
     collection do
       get :stats
       get :list

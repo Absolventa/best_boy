@@ -1,5 +1,5 @@
 module BestBoy
-  class BestBoyEventsController < BestBoy.base_controller.constantize
+  class EventsController < BestBoy.base_controller.constantize
 
     before_action BestBoy.before_filter if BestBoy.before_filter.present?
 
