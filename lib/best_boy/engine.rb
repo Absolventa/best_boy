@@ -14,9 +14,6 @@ module BestBoy
 
     initializer 'best_boy.controller' do
       require "best_boy/controller.rb"
-      ActiveSupport.on_load(:action_controller) do
-        include BestBoy::Controller
-      end
     end
   end
 end

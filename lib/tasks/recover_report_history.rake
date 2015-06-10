@@ -2,7 +2,7 @@ namespace :best_boy do
   desc "Creates consistent structure of DayReports and MonthReports for a given set of events"
   task :recover_report_history, [:date]  => :environment do |t, args|
 
-    next unless BestBoyEvent.any?
+    next unless BestBoy::Event.any?
 
     # helper methods
     #
@@ -48,17 +48,17 @@ namespace :best_boy do
     puts "> Selected report data has been destroyed."
     puts ""
 
-    owner_types             = BestBoyEvent.order(:owner_type).uniq.pluck(:owner_type)
+    owner_types             = BestBoy::Event.order(:owner_type).uniq.pluck(:owner_type)
     available_events        = {}
     available_event_sources = {}
 
     owner_types.each do |owner_type|
-      available_events.merge!(        { owner_type => BestBoyEvent.where(owner_type: owner_type).order(:event).uniq.pluck(:event) } )
-      available_event_sources.merge!( { owner_type => BestBoyEvent.where(owner_type: owner_type).order(:event_source).uniq.pluck(:event_source) } ) # explicitly including nil
+      available_events.merge!(        { owner_type => BestBoy::Event.where(owner_type: owner_type).order(:event).uniq.pluck(:event) } )
+      available_event_sources.merge!( { owner_type => BestBoy::Event.where(owner_type: owner_type).order(:event_source).uniq.pluck(:event_source) } ) # explicitly including nil
     end
 
-    start = BestBoyEvent.order('created_at ASC').first.created_at.to_date unless start.present?
-    days  = (start..BestBoyEvent.order('created_at ASC').last.created_at.to_date)
+    start = BestBoy::Event.order('created_at ASC').first.created_at.to_date unless start.present?
+    days  = (start..BestBoy::Event.order('created_at ASC').last.created_at.to_date)
 
     puts ""
     puts "> Start creating new reports for #{days.count} days ..."
@@ -69,7 +69,7 @@ namespace :best_boy do
         available_events[owner_type].each do |event|
           available_event_sources[owner_type].each do |source|
 
-            base_scope = BestBoyEvent.where(owner_type: owner_type, event: event, event_source: source).order('created_at DESC')
+            base_scope = BestBoy::Event.where(owner_type: owner_type, event: event, event_source: source).order('created_at DESC')
 
             # Create MonthReports when...
             # - diving into loop initially or

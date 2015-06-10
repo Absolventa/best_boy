@@ -285,7 +285,7 @@ module BestBoy
         instance_variable_set(instance_var, value)
       end
 
-      scope = BestBoyEvent
+      scope = BestBoy::Event
       scope = scope.where(owner_type: @owner_type) if @owner_type.present?
       scope = scope.where(event: @event) if @event.present?
       scope = scope.where(event_source: @event_source) if @event_source.present?

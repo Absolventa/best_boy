@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BestBoyController do
-  include BestBoyController::InstanceMethods
+  include BestBoy::Controller
 
   let(:test_event) { TestEvent.create }
 
@@ -12,7 +12,7 @@ describe BestBoyController do
 
     it 'sends valid custom event' do
       best_boy_event test_event, 'testing'
-      best_boy = BestBoyEvent.where(owner_id: test_event.id, owner_type: test_event.class.name, event: 'testing').first
+      best_boy = BestBoy::Event.where(owner_id: test_event.id, owner_type: test_event.class.name, event: 'testing').first
       expect(best_boy).not_to be_nil
     end
 

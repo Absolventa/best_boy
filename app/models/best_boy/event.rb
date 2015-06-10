@@ -3,6 +3,12 @@ module BestBoy
 
     include BestBoy::ObeysTestMode
 
+    # db configuration
+    #
+    #
+
+    self.table_name = "best_boy_events"
+
     # associations
     #
     #
