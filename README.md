@@ -51,7 +51,7 @@ Mount the best boy backend in your routes.rb
 
 Run the generator to create your best_boy config file:
 
-    rails g best_boy
+    rails g best_boy:install
 
 
 
