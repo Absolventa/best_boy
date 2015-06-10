@@ -19,10 +19,10 @@ BestBoy 3 and above only supports Rails >= 4.
 Changes in version 3
 ----------------------
 
-Best Boy version 3 comes with some incompatible backwards changes. However, it's totally worth it because BestBoy now follows best practices of a rails eninge.
+Best Boy version 3 comes with some incompatible backwards changes. However, it's totally worth it because BestBoy now follows best practices of a rails engine.
 This and additional changes of version 3 includes
 
-* Uses rails routing convention instead of named routes
+* Uses rails engine naming convention with and isolated BestBoy-namespace
 * serving the necessary migrations from the engines migration folder
 * serving all assets via the asset pipeline (used to be a opt-in before)
 * removes unnecessary generator boilerplate and config options
