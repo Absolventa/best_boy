@@ -10,13 +10,12 @@ module BestBoy
       require "best_boy/obeys_test_mode.rb"
       require "best_boy/reporting.rb"
       require "best_boy/eventable.rb"
-      ActiveRecord::Base.send(:include, BestBoy::Eventable)
     end
 
     initializer 'best_boy.controller' do
-      require "best_boy/controllers/best_boy_controller.rb"
+      require "best_boy/controller.rb"
       ActiveSupport.on_load(:action_controller) do
-        include BestBoyController::InstanceMethods
+        include BestBoy::Controller
       end
     end
   end

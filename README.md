@@ -27,6 +27,7 @@ This and additional changes of version 3 includes
 * serving all assets via the asset pipeline (used to be a opt-in before)
 * removes unnecessary generator boilerplate and config options
 * using the newest Bootstrap version (3)
+* allows per class extending instead of polluting the whole app
 
 
 Installation
@@ -60,16 +61,22 @@ Usage
 
 In model context:
 
+    include BestBoy::Eventable
     has_a_best_boy
 
 This will log "create" and "delete" event for each instance.
 
 If you do not want to selflog create and delete events, maybe because you will sort it semantically with a create source, just deactivate the callback logging by setting the parameter :disable_callbacks to true.
 
+    include BestBoy::Eventable
     has_a_best_boy :disable_callbacks => true
 
 In controller context:
 
+    # in application_controller.rb or the relevant controller
+    include BestBoy::Controller
+
+    # in a resource specific controller
     best_boy_event object, event, event_source = nil
 
 This will log custom events for a object and a event phrase. You can specify this event with a event_source parameter to log maybe seperate create actions.
