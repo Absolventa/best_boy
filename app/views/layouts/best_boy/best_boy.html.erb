@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>BBAC - BestBoy Administration Center</title>
+    <%= csrf_meta_tag %>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"></link>
+
+    <%= yield :stylesheets %>
+    <%= yield :javascripts %>
+
+    <%= stylesheet_link_tag "best_boy/best_boy", media: "all" %>
+    <%= javascript_include_tag "best_boy/best_boy" %>
+
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navigation-header">
+          <%= link_to "BBAC", best_boy_admin_path, class: "brand" %>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="<%= action_name == 'stats' ? 'active' : nil %>"><%= link_to "Statistics", best_boy_admin_stats_path %></li>
+            <li class="<%= action_name == 'lists' ? 'active' : nil %>"><%= link_to "List & Logs", best_boy_admin_lists_path %></li>
+            <li class="<%= action_name == 'charts' ? 'active' : nil %>"><%= link_to "Charts", best_boy_admin_charts_path %></li>
+          </ul>
+          <% if BestBoy.custom_redirect.present? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Back to application", BestBoy.custom_redirect %></li>
+          </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
