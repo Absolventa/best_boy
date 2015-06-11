@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BestBoyEvent do
+describe BestBoy::Event do
   let(:owner) { TestEvent.create }
 
   context 'with associations' do
