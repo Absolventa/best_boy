@@ -14,7 +14,8 @@ module BestBoy
         # associations
         #
         #
-        has_many :best_boy_events, as: :owner, dependent: :nullify
+        has_many :best_boy_events, as: :owner, class_name: "BestBoy::Event", dependent: :nullify
+
 
         # callbacks
         #
