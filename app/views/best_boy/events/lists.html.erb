@@ -1,5 +1,9 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" %>
+<% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js" %>
   <script type="text/javascript">
     $(function(){$('#dp1').datepicker().on('changeDate', function(){$('#list-form').submit();})});
   </script>
