@@ -1,3 +1,4 @@
+# This migration comes from best_boy (originally 20150610155251)
 class CreateBestBoyReports < ActiveRecord::Migration
   def change
     create_table :best_boy_day_reports do |t|

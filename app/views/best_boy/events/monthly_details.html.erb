@@ -4,7 +4,7 @@
 
 <div class="col-md-12">
   <div class="well">
-    <%= link_to "<< back to stats", best_boy_admin_stats_path(owner_type: current_owner_type) %>
+    <%= link_to "<< back to stats", stats_events_path(owner_type: current_owner_type) %>
   </div>
 </div>
 
@@ -12,7 +12,7 @@
   <div class="well">
     <h3 class="pull-left">Detailed Statistics for <%= current_month %> <%= current_year %></h3>
     <div class="pull-right">
-      <%= form_tag best_boy_admin_monthly_details_path, method: :get do %>
+      <%= form_tag monthly_details_events_path, method: :get do %>
         <%= hidden_field_tag :owner_type, current_owner_type %>
         <%= hidden_field_tag :event, current_event %>
         <%= hidden_field_tag :time_interval, "month" %>
@@ -46,6 +46,6 @@
 <div class="col-md-12">
   <div class="well">
     <div id='chart'></div>
-    <%= render_chart(@chart, 'chart') %>
+    <%= render_chart @chart, 'chart' %>
   </div>
 </div>

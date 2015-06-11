@@ -12,7 +12,7 @@
     <div class="well">
       <h3 class="pull-left">Log</h3>
       <div class="pull-right">
-        <%= form_tag best_boy_admin_lists_path, :method => :get, :id => "list-form" do %>
+        <%= form_tag lists_events_path, :method => :get, :id => "list-form" do %>
           <div class="input-append date pull-left span3" id="dp1" data-date="<%= params[:date].present? ? params[:date] : l(Time.zone.now, :format => "%d-%m-%Y") %>" data-date-format="dd-mm-yyyy">
             <input name="date" class="span2" size="16" type="text" value="<%= params[:date] %>" readonly="readonly">
             <span class="add-on"><i class="icon-th"></i></span>
