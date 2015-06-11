@@ -1,4 +1,5 @@
 require "google_visualr"
+require 'kaminari'
 require "best_boy/engine"
 require "best_boy/eventable"
 require "best_boy/obeys_test_mode"

@@ -146,7 +146,7 @@ module BestBoy
     end
 
     def chart_for(data)
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 900, height: 240, title: "" })
+      @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 1100, height: 300, title: "" })
     end
 
     def row_values_for(day)

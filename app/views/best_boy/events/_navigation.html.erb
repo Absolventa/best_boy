@@ -1,9 +1,11 @@
-<div class="col-md-12">
-  <ul class="nav nav-tabs">
-    <% available_owner_types.each do |owner_type| %>
-      <li class="<%= (current_owner_type == owner_type) ? 'active' : nil %>">
-        <%= link_to owner_type, send("#{referrer}_events_path", owner_type: owner_type) %>
-      </li>
-    <% end %>
-  </ul>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <% available_owner_types.each do |owner_type| %>
+        <li class="<%= (current_owner_type == owner_type) ? 'active' : nil %>">
+          <%= link_to owner_type, send("#{referrer}_events_path", owner_type: owner_type) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
