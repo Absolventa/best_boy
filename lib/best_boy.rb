@@ -1,3 +1,4 @@
+require 'haml'
 require "google_visualr"
 require 'kaminari'
 require "best_boy/engine"

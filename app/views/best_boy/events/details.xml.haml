@@ -1,0 +1,22 @@
+!!! XML
+%details
+  %events
+    %owner_type= current_owner_type
+    %name= current_event
+    %year= current_year
+    - if available_event_sources?
+      %event_sources
+        - @event_selected_year_occurrences.keys.reject { |k| k == "All" }.each do |source|
+          %event_source
+            %name= source
+            %months
+              - @event_selected_year_occurrences[source].keys.reject.each do |month|
+                %month
+                  %number= month
+                  %count= @event_selected_year_occurrences[source][month]
+  %totals
+    %months
+      - @event_selected_year_occurrences["All"].keys.each do |month|
+        %month
+          %number= month
+          %count= @event_selected_year_occurrences["All"][month]

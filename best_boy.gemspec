@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.1.0', '< 5.0'
   s.add_dependency 'kaminari', '>= 0.14.1'
   s.add_dependency 'google_visualr'
+  s.add_dependency 'haml'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency "rspec-rails", "~> 3.3.1"
