@@ -13,7 +13,7 @@ It uses its own polymorphic database table to log each event.
 Rails version support
 ----------------------
 
-BestBoy 3 and above only supports Rails >= 4.
+BestBoy 3 and above only supports Rails >= 4.1
 
 
 Changes in version 3
