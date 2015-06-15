@@ -20,7 +20,7 @@ Changes in version 3
 ----------------------
 
 Best Boy version 3 comes with some backward incompatible changes. However, it's totally worth it because BestBoy now follows all the best practices of a rails engine.
-This and additional changes of version 3 includes
+This and additional changes of version 3 include
 
 * Uses rails engine naming conventions with an isolated ``BestBoy`` namespace
 * serving the necessary migrations from the engines migration folder
@@ -111,7 +111,6 @@ BestBoy comes with an admin interface, largely configurable to fit right into yo
 
 Following configurations can be done:
 
-    config.precompile_assets    "boolean"                   # default: false                        # if you need best_boy to precompile its assets for the asset-pipeline
     config.base_controller      "String"                    # default: "ApplicationController"      # declare with Controller should be inherited
     config.before_filter        "comma separated symbols"   # default: nil                          # declare before_filter to use inherited before_filters in admin section
     config.skip_before_filter   "comma separated symbols"   # default: nil                          # declare skip_before_filter to skip inherited before_filters in admin section
