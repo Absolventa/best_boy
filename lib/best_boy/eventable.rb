@@ -20,8 +20,8 @@ module BestBoy
         # callbacks
         #
         #
-        after_create :trigger_create_event
-        after_destroy :trigger_destroy_event
+        after_create :trigger_best_boy_create_event
+        after_destroy :trigger_best_boy_destroy_event
       end
     end
 
@@ -36,12 +36,12 @@ module BestBoy
 
     private
 
-    def trigger_create_event
+    def trigger_best_boy_create_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "create"
     end
 
-    def trigger_destroy_event
+    def trigger_best_boy_destroy_event
       return if self.class.best_boy_disable_callbacks
       create_best_boy_event_with_type "destroy"
     end
