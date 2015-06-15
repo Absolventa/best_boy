@@ -22,5 +22,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 3.3.1"
   s.add_development_dependency 'shoulda', "~> 3.5"
   s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'sass-rails', '~> 4.0.0'
 end

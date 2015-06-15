@@ -3,8 +3,8 @@ rvm:
 - 2.0.0
 - 2.2.2
 gemfile:
-- gemfiles/rails_4.0.gemfile
 - gemfiles/rails_4.1.gemfile
+- gemfiles/rails_4.2.gemfile
 notifications:
   webhooks:
     secure: QFW4WHH8A/ht3EKFbUNc7u03Ca+P6qm7ypIiXU+y8fO8fEps2/f7fTrWIUGkohShFyaaZw1/NjDWUx86LYBFfs4dYduHy8U3BSbWrS4ot4+oO9TsKdatKydTXpbvRqjgPITECmMWDoz4e7gMdZ5fGuBBdO1LQGVRr9mUXl13QU4=
