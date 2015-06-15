@@ -19,14 +19,14 @@ BestBoy 3 and above only supports Rails >= 4.1
 Changes in version 3
 ----------------------
 
-Best Boy version 3 comes with some incompatible backwards changes. However, it's totally worth it because BestBoy now follows best practices of a rails engine.
+Best Boy version 3 comes with some backward incompatible changes. However, it's totally worth it because BestBoy now follows all the best practices of a rails engine.
 This and additional changes of version 3 includes
 
-* Uses rails engine naming convention with and isolated BestBoy-namespace
+* Uses rails engine naming conventions with an isolated ``BestBoy`` namespace
 * serving the necessary migrations from the engines migration folder
 * serving all assets via the asset pipeline (used to be a opt-in before)
 * removes unnecessary generator boilerplate and config options
-* using the newest Bootstrap version (3)
+* uses the newest Bootstrap version (3)
 * allows per class extending instead of polluting the whole app
 
 
@@ -55,7 +55,6 @@ Run the generator to create your best_boy config file:
 
 
 
-
 Usage
 -----
 
@@ -64,12 +63,12 @@ In model context:
     include BestBoy::Eventable
     has_a_best_boy
 
-This will log "create" and "delete" event for each instance.
+This will log "create" and "delete" events for each instance.
 
-If you do not want to selflog create and delete events, maybe because you will sort it semantically with a create source, just deactivate the callback logging by setting the parameter :disable_callbacks to true.
+If you do not want to selflog those events, maybe because you will sort it semantically with a create source, just deactivate the callback logging by setting the parameter :disable_callbacks to true.
 
     include BestBoy::Eventable
-    has_a_best_boy :disable_callbacks => true
+    has_a_best_boy disable_callbacks: true
 
 In controller context:
 
@@ -79,9 +78,9 @@ In controller context:
     # in a resource specific controller
     best_boy_event object, event, event_source = nil
 
-This will log custom events for a object and a event phrase. You can specify this event with a event_source parameter to log maybe seperate create actions.
+This will log custom events for an object and an event phrase. You can specify this event with an event_source parameter to log maybe seperate create actions.
 
-If no object is given, it will raise an exception as well as if no event is provided.
+If no object or event is given an exception will be raised.
 
 
 #### Test mode
@@ -151,11 +150,11 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### 3.0.0
-* Major engine cleanup. Aims Rails >= 4 from now on.
-* Incompatible backwards changes. See above hint for more information.
+* Major engine cleanup. Aims Rails >= 4.1 from now on.
+* Includes backward incompatible changes. See above hint for more information.
 
 #### 2.2.3
-* Rename ``report``method to a more best_boy specific ``trigger_best_boy_event_report`
+* Rename ``report`` method to a more best_boy specific ``trigger_best_boy_event_report`
 
 #### 2.2.2
 * Fix dependency bug with kaminari
@@ -186,7 +185,7 @@ Changelog
 
 Used gems and resources
 -----------------------
-* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 2.0.4
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 3
 * [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
 * [Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
 
