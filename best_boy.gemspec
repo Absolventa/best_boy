@@ -1,4 +1,3 @@
-# encoding: utf-8
 $:.push File.expand_path("../lib", __FILE__)
 require "best_boy/version"
 
@@ -23,6 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 3.0.2"
   s.add_development_dependency 'shoulda', "~> 3.5"
   s.add_development_dependency 'appraisal'
-  s.add_development_dependency "haml"
   s.add_development_dependency 'sass-rails', '~> 4.0.0'
 end
