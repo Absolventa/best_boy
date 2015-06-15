@@ -1,0 +1,18 @@
+!!! XML
+%statistics
+  %overall
+    - @occurrences.each do |event, count|
+      %events
+        %event
+          %name= event
+          %overall= @occurrences[event][:overall]
+          %yearly= @occurrences[event][:yearly]
+          %monthly= @occurrences[event][:monthly]
+          %weekly= @occurrences[event][:weekly]
+          %daily= @occurrences[event][:daily]
+    %totals
+      %overall= @this_year_totals[:overall]
+      %yearly= @this_year_totals[:yearly]
+      %monthly= @this_year_totals[:monthly]
+      %weekly= @this_year_totals[:weekly]
+      %daily= @this_year_totals[:daily]

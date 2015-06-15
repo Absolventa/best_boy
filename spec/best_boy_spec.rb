@@ -4,10 +4,6 @@ describe BestBoy do
   after { BestBoy.test_mode = false }
 
   describe 'its configuration interface' do
-    it 'defaults or :active_record as ORM' do
-      expect(BestBoy.orm).to eql :active_record
-    end
-
     it 'defaults to ApplicationController as base controller' do
       expect(BestBoy.base_controller).to eql 'ApplicationController'
     end

@@ -1,0 +1,8 @@
+!!! XML
+%events
+  - collection.each do |event|
+    %event
+      %owner_type event.owner_type
+      %event event.event
+      %event_source event.event_source
+      %created_at event.created_at.utc

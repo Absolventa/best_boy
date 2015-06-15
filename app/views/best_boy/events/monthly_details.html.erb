@@ -1,0 +1,67 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "https://www.google.com/jsapi" %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <%= link_to "<< back to stats", stats_events_path(owner_type: current_owner_type) %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <div class="row">
+        <div class="col-md-8">
+          <h3>Detailed Statistics for <%= current_month %> <%= current_year %></h3>
+        </div>
+        <div class="col-md-4">
+          <%= form_tag monthly_details_events_path, method: :get do %>
+            <div class="form-group">
+              <%= hidden_field_tag :owner_type, current_owner_type %>
+              <%= hidden_field_tag :event, current_event %>
+              <%= hidden_field_tag :time_interval, "month" %>
+              <div class="col-md-6">
+                <%= select_tag :month, options_for_select(%w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec), selected: current_month), onchange: "submit();", class: "form-control" %>
+              </div>
+              <div class="col-md-6">
+                <%= select_tag :year, options_for_select(available_years, selected: current_year), onchange: "submit();", class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <table class="table table-striped table-bordered small-font">
+        <thead>
+          <tr>
+            <th>Event Source</th>
+            <% days_of(current_month).each do |day| %>
+              <td><%= day.strftime("%d") %></td>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @selected_month_occurrences.keys.each do |source| %>
+            <tr>
+              <td><%= source %></td>
+              <% @selected_month_occurrences[source].keys.each do |day| %>
+                <td><%= @selected_month_occurrences[source][day] %></td>
+              <% end%>
+            </tr>
+          <% end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <div id='chart'></div>
+      <%= render_chart @chart, 'chart' %>
+    </div>
+  </div>
+</div>

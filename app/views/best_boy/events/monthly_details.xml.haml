@@ -1,0 +1,15 @@
+!!! XML
+%monthly_details
+  %events
+    %owner_type= current_owner_type
+    %name= current_event
+    %month= current_year
+    %year= current_year
+    %event_sources
+      - @selected_month_occurrences.keys.each do |source|
+        %event= source
+        %days
+          - @selected_month_occurrences[source].keys.each do |day|
+            %day
+              %number= day
+              %count= @selected_month_occurrences[source][day]
