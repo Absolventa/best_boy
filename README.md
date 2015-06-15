@@ -28,6 +28,7 @@ This and additional changes of version 3 includes
 * removes unnecessary generator boilerplate and config options
 * uses the newest Bootstrap version (3)
 * allows per class extending instead of polluting the whole app
+* answers to xml requests for easy EXCEL integration
 
 
 Installation
