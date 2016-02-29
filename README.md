@@ -13,7 +13,7 @@ It uses its own polymorphic database table to log each event.
 Rails version support
 ----------------------
 
-BestBoy 3 and above only supports Rails >= 4.1
+BestBoy 3 and above only supports Rails >= 4.2
 
 
 Changes in version 3
@@ -149,6 +149,9 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 
 Changelog
 ---------
+#### HEAD (not released yet)
+* Drop support for Rails 4.1
+
 #### 3.0.0
 * Major engine cleanup. Aims Rails >= 4.1 from now on.
 * Includes backward incompatible changes. See above hint for more information.
