@@ -135,6 +135,8 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+
+#### 3.1.0
 * Drop support for Rails 4.1
 * Add support for Rails 5.0
 

@@ -1,7 +1,7 @@
 PATH
   remote: ../
   specs:
-    best_boy (3.0.0)
+    best_boy (3.1.0)
       google_visualr
       haml
       kaminari (>= 0.14.1)
