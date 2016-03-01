@@ -16,21 +16,6 @@ Rails version support
 BestBoy 3 and above only supports Rails >= 4.2
 
 
-Changes in version 3
-----------------------
-
-Best Boy version 3 comes with some backward incompatible changes. However, it's totally worth it because BestBoy now follows all the best practices of a rails engine.
-This and additional changes of version 3 include
-
-* Uses rails engine naming conventions with an isolated ``BestBoy`` namespace
-* serving the necessary migrations from the engines migration folder
-* serving all assets via the asset pipeline (used to be a opt-in before)
-* removes unnecessary generator boilerplate and config options
-* uses the newest Bootstrap version (3)
-* allows per class extending instead of polluting the whole app
-* answers to xml requests for easy EXCEL integration
-
-
 Installation
 ------------
 
@@ -151,10 +136,19 @@ Changelog
 ---------
 #### HEAD (not released yet)
 * Drop support for Rails 4.1
+* Add support for Rails 5.0
 
 #### 3.0.0
 * Major engine cleanup. Aims Rails >= 4.1 from now on.
 * Includes backward incompatible changes. See above hint for more information.
+* Uses rails engine naming conventions with an isolated ``BestBoy`` namespace
+* serving the necessary migrations from the engines migration folder
+* serving all assets via the asset pipeline (used to be an opt-in before)
+* removes unnecessary generator boilerplate and config options
+* uses Bootstrap 3
+* allows per class extending instead of polluting the whole app
+* answers to xml requests for easy EXCEL integration
+
 
 #### 2.2.3
 * Rename ``report`` method to a more best_boy specific ``trigger_best_boy_event_report`
