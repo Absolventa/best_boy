@@ -1,10 +1,15 @@
 language: ruby
 rvm:
-- 2.0.0
 - 2.2.2
 - 2.3.0
 gemfile:
 - gemfiles/rails_4.2.gemfile
+- gemfiles/rails_5.0.gemfile
+cache:
+  bundler: true
+script:
+- cd spec/dummy ; bundle exec rake db:create db:migrate ; cd ../.. # Running app:db:* commands causes sqlite to fail on Rails 5
+- bundle exec rspec spec
 notifications:
   webhooks:
     secure: QFW4WHH8A/ht3EKFbUNc7u03Ca+P6qm7ypIiXU+y8fO8fEps2/f7fTrWIUGkohShFyaaZw1/NjDWUx86LYBFfs4dYduHy8U3BSbWrS4ot4+oO9TsKdatKydTXpbvRqjgPITECmMWDoz4e7gMdZ5fGuBBdO1LQGVRr9mUXl13QU4=
