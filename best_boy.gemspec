@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
 
+  s.required_ruby_version = '>= 2.2'
+
   s.add_dependency 'rails', '>= 4.2.0', '< 5.1'
   s.add_dependency 'kaminari', '>= 0.14.1'
   s.add_dependency 'google_visualr'
