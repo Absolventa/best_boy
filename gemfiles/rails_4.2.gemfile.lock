@@ -156,6 +156,3 @@ DEPENDENCIES
   sass-rails
   shoulda (>= 3.5)
   sqlite3
-
-BUNDLED WITH
-   1.11.2
