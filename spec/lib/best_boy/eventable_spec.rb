@@ -3,23 +3,35 @@ require "spec_helper"
 describe BestBoy::Eventable do
   let(:owner) { TestEvent.new }
 
+  # RSpec suppresses after_commit hooks, but
+  # we rely on them. That's why we need to
+  # trigger them manually
+  before do
+    allow_any_instance_of(TestEvent).to receive(:save).and_wrap_original { |method, _| method.call && method.receiver.run_callbacks(:commit) }
+  end
+
+
   context 'with callbacks' do
-    context 'within real mode' do
-      it 'sends a valid create event' do
-        expect { owner.save }.to change { BestBoy::Event.count }.by(1)
-        expect(owner.best_boy_events).to eq [BestBoy::Event.last]
+    context 'in real mode' do
+      context 'on successful creation' do
+        it 'stores a new BestBoy create event' do
+          expect { owner.save }.to change { BestBoy::Event.count }.by(1)
+          expect(owner.best_boy_events).to eq [BestBoy::Event.last]
+        end
       end
 
-      it 'sends a valid destroy event' do
-        owner.save
-        expect { owner.destroy }.to change { BestBoy::Event.count }.by(1)
-        best_boy_event = BestBoy::Event.where(event: 'destroy').last
-        expect(best_boy_event.owner_type).to eql owner.class.name
-        expect(best_boy_event.owner_id).to eql owner.id
+      context 'on successful destruction' do
+        it 'creates a BestBoy destroy event' do
+          owner.save
+          expect { owner.destroy }.to change { BestBoy::Event.count }.by(1)
+          best_boy_event = BestBoy::Event.where(event: 'destroy').last
+          expect(best_boy_event.owner_type).to eql owner.class.name
+          expect(best_boy_event.owner_id).to eql owner.id
+        end
       end
     end
 
-    context 'within test mode' do
+    context 'in test mode' do
       it 'does not create a BestBoy create event' do
         BestBoy.in_test_mode do
           expect { owner.save }.not_to change { BestBoy::Event.count }
@@ -54,7 +66,7 @@ describe BestBoy::Eventable do
       @klass ||= Class.new do
         class << self
           def has_many(*args); end
-          alias :after_create  :has_many
+          alias :after_commit  :has_many
           alias :after_destroy :has_many
         end
         include BestBoy::Eventable
