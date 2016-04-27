@@ -135,6 +135,7 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+* Only create BestBoy create events when creation has been written to the database sucessfully
 
 #### 3.1.0
 * Drop support for Rails 4.1
