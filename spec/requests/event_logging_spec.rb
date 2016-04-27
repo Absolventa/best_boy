@@ -5,11 +5,6 @@ describe "Testing Event Logging", type: :request do
   include_context 'ensure commit hooks'
 
   describe "events calling" do
-    before do
-      # Manually trigger after_commit hook
-      allow_any_instance_of(TestEvent).to receive(:save).and_wrap_original { |method, _| method.call; method.receiver.run_callbacks(:commit) }
-    end
-
     it "creates 3 test events" do
       expect{ get root_path }.to change { BestBoy::Event.count }.by(3)
     end
