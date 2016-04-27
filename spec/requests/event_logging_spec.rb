@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Testing Event Logging", type: :request do
 
+  include_context 'ensure commit hooks on save'
+
   describe "events calling" do
     before do
       # Manually trigger after_commit hook

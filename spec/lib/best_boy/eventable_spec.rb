@@ -3,13 +3,7 @@ require "spec_helper"
 describe BestBoy::Eventable do
   let(:owner) { TestEvent.new }
 
-  # RSpec suppresses after_commit hooks, but
-  # we rely on them. That's why we need to
-  # trigger them manually
-  before do
-    allow_any_instance_of(TestEvent).to receive(:save).and_wrap_original { |method, _| method.call && method.receiver.run_callbacks(:commit) }
-  end
-
+  include_context 'ensure commit hooks on save'
 
   context 'with callbacks' do
     context 'in real mode' do
