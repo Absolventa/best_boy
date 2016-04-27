@@ -20,8 +20,8 @@ module BestBoy
         # callbacks
         #
         #
-        after_commit :trigger_best_boy_create_event, on: [:create]
-        after_destroy :trigger_best_boy_destroy_event
+        after_commit :trigger_best_boy_create_event, on: :create
+        after_commit :trigger_best_boy_destroy_event, on: :destroy
       end
     end
 

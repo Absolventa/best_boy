@@ -3,7 +3,7 @@ require "spec_helper"
 describe BestBoy::Eventable do
   let(:owner) { TestEvent.new }
 
-  include_context 'ensure commit hooks on save'
+  include_context 'ensure commit hooks'
 
   context 'with callbacks' do
     context 'in real mode' do

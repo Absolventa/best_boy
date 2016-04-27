@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Testing Event Logging", type: :request do
 
-  include_context 'ensure commit hooks on save'
+  include_context 'ensure commit hooks'
 
   describe "events calling" do
     before do
