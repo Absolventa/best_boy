@@ -136,6 +136,10 @@ Changelog
 ---------
 #### HEAD (not released yet)
 
+#### 3.2.0
+* Fix date-parsing issue
+* Add frozen_string_literal magic comments
+
 #### 3.1.0
 * Drop support for Rails 4.1
 * Add support for Rails 5.0
