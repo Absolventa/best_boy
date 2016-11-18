@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module BestBoy
   module Controller
     extend ActiveSupport::Concern

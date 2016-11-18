@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module BestBoy
   class EventsController < BestBoy.base_controller.constantize
 

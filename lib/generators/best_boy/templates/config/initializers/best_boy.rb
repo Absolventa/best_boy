@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 BestBoy.setup do |config|
   # Define base Controller (default ApplicationController)
   #config.base_controller = "ApplicationController"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module BestBoy
   class Engine < ::Rails::Engine
     isolate_namespace BestBoy
