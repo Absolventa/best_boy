@@ -4,8 +4,8 @@ module BestBoy
 
     before_action BestBoy.before_filter if BestBoy.before_filter.present?
 
-    skip_before_filter BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
-    skip_after_filter BestBoy.skip_after_filter if BestBoy.skip_after_filter.present?
+    skip_before_action BestBoy.skip_before_filter if BestBoy.skip_before_filter.present?
+    skip_after_action BestBoy.skip_after_filter if BestBoy.skip_after_filter.present?
 
     layout 'best_boy/best_boy'
 
