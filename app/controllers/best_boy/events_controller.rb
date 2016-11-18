@@ -137,7 +137,7 @@ module BestBoy
     end
 
     def days_of(month)
-      reference = Date.parse("#{current_year}#{month}-1")
+      reference = Date.parse("#{current_year}-#{month}-01")
       (reference.beginning_of_month..reference.end_of_month)
     end
 
