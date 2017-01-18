@@ -12,3 +12,4 @@ spec/dummy/tmp/*
 spec/dummy/.sass-cache
 db/*.db
 .DS_Store
+gemfiles/*.lock
