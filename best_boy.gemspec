@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency "rspec-rails", "~> 3.5.0.beta1"
+  s.add_development_dependency "rspec-rails", "~> 3.5.0"
   s.add_development_dependency 'shoulda', ">= 3.5"
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'sass-rails'

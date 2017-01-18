@@ -161,7 +161,7 @@ DEPENDENCIES
   appraisal
   best_boy!
   rails (~> 4.2.0)
-  rspec-rails (~> 3.5.0.beta1)
+  rspec-rails (~> 3.5.0)
   sass-rails
   shoulda (>= 3.5)
   sqlite3

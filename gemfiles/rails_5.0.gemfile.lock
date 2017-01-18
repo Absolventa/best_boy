@@ -171,7 +171,7 @@ DEPENDENCIES
   best_boy!
   rails (~> 5.0.0.rc1)
   rails-controller-testing
-  rspec-rails (~> 3.5.0.beta1)
+  rspec-rails (~> 3.5.0)
   sass-rails
   shoulda (>= 3.5)
   sqlite3
