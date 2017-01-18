@@ -6,7 +6,6 @@ BestBoy::Engine.routes.draw do
     collection do
       get :stats
       get :lists
-      get :charts
       get :details
       get :monthly_details
     end
