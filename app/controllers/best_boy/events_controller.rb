@@ -13,7 +13,7 @@ module BestBoy
     helper BestBoy::BestBoyViewHelper
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_event_sources?, :available_years,
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
-                  :days_of, :render_chart, :month_name_array, :detail_count
+                  :days_of, :month_name_array, :detail_count
 
     def stats
       collect_occurrences
@@ -32,10 +32,6 @@ module BestBoy
     def monthly_details
       collect_occurrences_for_month current_month
       monthly_details_chart
-    end
-
-    def charts
-      build_chart
     end
 
     private
@@ -142,10 +138,6 @@ module BestBoy
       (reference.beginning_of_month..reference.end_of_month)
     end
 
-    def render_chart(chart, dom)
-      chart.to_js(dom).html_safe
-    end
-
     def chart_for(data)
       @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 1100, height: 300, title: "" })
     end
@@ -212,17 +204,6 @@ module BestBoy
         Time.zone.now.beginning_of_week + periode.days
       else
         Time.zone.now.beginning_of_year + periode.month
-      end
-    end
-
-    def chart_legend_time_name(periode)
-      case current_time_interval
-      when "year"
-        month_name_array[periode]
-      when "week"
-        week_name_array[periode]
-      else
-        (periode + 1).to_s
       end
     end
 
