@@ -135,6 +135,7 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+* Remove google_visualizr charts
 
 #### 3.2.0
 * Fix date-parsing issue
@@ -190,7 +191,6 @@ Used gems and resources
 -----------------------
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) in its version 3
 * [Stefan Petre](http://www.eyecon.ro/bootstrap-datepicker) for Datepicker in Twitter Bootstrap style
-* [Winston Teo Yong Wei](https://github.com/winston/google_visualr) Google_Visualr in its version 2.1.2
 
 
 Contributors in alphabetic order
