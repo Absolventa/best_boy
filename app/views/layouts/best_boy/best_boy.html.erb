@@ -25,7 +25,6 @@
           <ul class="nav navbar-nav">
             <li class="<%= action_name == 'stats' ? 'active' : nil %>"><%= link_to "Statistics", stats_events_path %></li>
             <li class="<%= action_name == 'lists' ? 'active' : nil %>"><%= link_to "List & Logs", lists_events_path %></li>
-            <li class="<%= action_name == 'charts' ? 'active' : nil %>"><%= link_to "Charts", charts_events_path %></li>
           </ul>
           <% if BestBoy.custom_redirect.present? %>
           <ul class="nav navbar-nav navbar-right">

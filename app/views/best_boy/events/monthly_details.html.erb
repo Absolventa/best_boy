@@ -1,7 +1,3 @@
-<% content_for :javascripts do %>
-  <%= javascript_include_tag "https://www.google.com/jsapi" %>
-<% end %>
-
 <div class="row">
   <div class="col-md-12">
     <div class="well">
@@ -53,15 +49,6 @@
           <% end%>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="well">
-      <div id='chart'></div>
-      <%= render_chart @chart, 'chart' %>
     </div>
   </div>
 </div>

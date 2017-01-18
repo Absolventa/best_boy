@@ -62,10 +62,4 @@ describe BestBoy::EventsController, type: :controller do
     end
   end
 
-  describe 'GET charts' do
-    it "renders the template" do
-      get :charts
-      expect(response).to render_template :charts
-    end
-  end
 end

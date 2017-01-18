@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'haml'
-require "google_visualr"
 require 'kaminari'
 require "best_boy/engine"
 require "best_boy/eventable"

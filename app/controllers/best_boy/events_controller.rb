@@ -13,7 +13,7 @@ module BestBoy
     helper BestBoy::BestBoyViewHelper
     helper_method :available_owner_types, :available_events, :available_event_sources, :available_event_sources?, :available_years,
                   :current_owner_type, :current_event, :current_event_source, :current_month, :current_year, :collection,
-                  :days_of, :render_chart, :month_name_array, :detail_count
+                  :days_of, :month_name_array, :detail_count
 
     def stats
       collect_occurrences
@@ -31,11 +31,6 @@ module BestBoy
 
     def monthly_details
       collect_occurrences_for_month current_month
-      monthly_details_chart
-    end
-
-    def charts
-      build_chart
     end
 
     private
@@ -142,38 +137,8 @@ module BestBoy
       (reference.beginning_of_month..reference.end_of_month)
     end
 
-    def render_chart(chart, dom)
-      chart.to_js(dom).html_safe
-    end
-
-    def chart_for(data)
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data, { width: 1100, height: 300, title: "" })
-    end
-
     def row_values_for(day)
       available_event_sources.collect{ |event_source| @selected_month_occurrences[event_source][day] } + [@selected_month_occurrences["All"][day]]
-    end
-
-    def monthly_details_chart
-      data_table = GoogleVisualr::DataTable.new
-      data_table.new_column('string', 'time')
-
-      labels = available_event_sources.to_a + ["All"]
-      labels.each { |label| data_table.new_column('number', label.to_s) }
-
-      days_of(params[:month]).each { |day| data_table.add_row( [day.strftime("%d")] + row_values_for(day) ) }
-      chart_for data_table
-    end
-
-    def build_chart
-      data_table = GoogleVisualr::DataTable.new
-      data_table.new_column('string', 'time')
-      data_table.new_column('number', current_owner_type.to_s)
-
-      time_periode_range.each do |periode|
-        data_table.add_row([chart_legend_time_name(periode), custom_data_count(current_event_source, calculated_point_in_time(periode))])
-      end
-      chart_for data_table
     end
 
     def week_name_array
@@ -212,17 +177,6 @@ module BestBoy
         Time.zone.now.beginning_of_week + periode.days
       else
         Time.zone.now.beginning_of_year + periode.month
-      end
-    end
-
-    def chart_legend_time_name(periode)
-      case current_time_interval
-      when "year"
-        month_name_array[periode]
-      when "week"
-        week_name_array[periode]
-      else
-        (periode + 1).to_s
       end
     end
 
