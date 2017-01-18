@@ -135,6 +135,8 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+
+#### 3.3.0
 * Remove google_visualizr charts
 
 #### 3.2.0
