@@ -17,7 +17,7 @@ describe BestBoy::EventsController, type: :controller do
     end
 
     it "renders the xml template if requested" do
-      get :stats, format: :xml
+      get :stats, params: { format: :xml }
       expect(response.content_type).to eq('application/xml')
       expect(response).to render_template :stats
     end
@@ -30,7 +30,7 @@ describe BestBoy::EventsController, type: :controller do
     end
 
     it "renders the xml template if requested" do
-      get :lists, format: :xml
+      get :lists, params: { format: :xml }
       expect(response.content_type).to eq('application/xml')
       expect(response).to render_template :lists
     end
@@ -43,7 +43,7 @@ describe BestBoy::EventsController, type: :controller do
     end
 
     it "renders the xml template if requested" do
-      get :details, format: :xml
+      get :details, params: { format: :xml }
       expect(response.content_type).to eq('application/xml')
       expect(response).to render_template :details
     end
@@ -51,12 +51,12 @@ describe BestBoy::EventsController, type: :controller do
 
   describe 'GET monthly_details' do
     it "renders the template" do
-      get :monthly_details, {year: Time.zone.now.year, month: Time.zone.now.month }
+      get :monthly_details, params: { year: Time.zone.now.year, month: Time.zone.now.month }
       expect(response).to render_template :monthly_details
     end
 
     it "renders the xml template if requested" do
-      get :monthly_details, {year: Time.zone.now.year, month: Time.zone.now.month, format: :xml}
+      get :monthly_details, params: { year: Time.zone.now.year, month: Time.zone.now.month, format: :xml }
       expect(response.content_type).to eq('application/xml')
       expect(response).to render_template :monthly_details
     end
