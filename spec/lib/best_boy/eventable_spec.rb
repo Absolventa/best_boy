@@ -66,13 +66,13 @@ describe BestBoy::Eventable do
   context 'with reporting' do
     let(:month_report) do
       BestBoy::MonthReport.where(
-        owner_type: owner.class,
+        owner_type: owner.class.to_s,
         event: 'create'
       ).first
     end
     let(:day_report) do
       BestBoy::DayReport.where(
-        owner_type: owner.class,
+        owner_type: owner.class.to_s,
         event: 'create'
       ).first
     end
