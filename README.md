@@ -136,6 +136,10 @@ Changelog
 ---------
 #### HEAD (not released yet)
 
+#### 3.4.0
+* Drop support for Rails below v5.0
+* Add support for Rails 5.1
+
 #### 3.3.0
 * Remove google_visualizr charts
 
