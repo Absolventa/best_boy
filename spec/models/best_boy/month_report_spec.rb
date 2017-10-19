@@ -99,7 +99,7 @@ describe BestBoy::MonthReport do
           BestBoy::MonthReport.destroy_all
           scope = BestBoy::MonthReport.where(owner_type: TestEvent.to_s, event: 'create')
           expect(scope.between(Time.now.beginning_of_month, Time.now)).to be_empty
-          expect { BestBoy::MonthReport.current_or_create_for(owner.class, 'create') }.
+          expect { BestBoy::MonthReport.current_or_create_for(owner.class.to_s, 'create') }.
             to change(scope.between(Time.now.beginning_of_month, Time.now), :count).by(1)
         end
       end
@@ -107,7 +107,7 @@ describe BestBoy::MonthReport do
 
     describe '.create_for' do
       let(:report) { BestBoy::MonthReport.create_for(owner.class, 'create') }
-      let(:report_with_source) { BestBoy::MonthReport.create_for(owner.class, 'create', 'api') }
+      let(:report_with_source) { BestBoy::MonthReport.create_for(owner.class.to_s, 'create', 'api') }
 
       it { expect(report).to be_valid }
       it { expect(report_with_source).to be_valid }
