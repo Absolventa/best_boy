@@ -1,22 +1,14 @@
-best_boy
-========
+# best_boy
+
 [![Build Status](https://secure.travis-ci.org/Absolventa/best_boy.png?branch=master)](https://secure.travis-ci.org/Absolventa/best_boy)
 [![Dependency Status](https://gemnasium.com/Absolventa/best_boy.png)](https://gemnasium.com/Absolventa/best_boy)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/Absolventa/best_boy)
 
-A simple event driven logging for ActiveRecord models.
-BestBoy is able to log model-based "create", "update" and "delete" events as well as custom events triggered in controller actions.
-It uses its own polymorphic database table to log each event.
+A simple event logging system for `ActiveRecord` models. `BestBoy` logs actions during the life cycle of a record. For example, you
+can track creations, updates, deletions or other events with customized names triggered during controller actions. It uses its own polymorphic
+database table to log each event.
 
-
-Rails version support
-----------------------
-
-BestBoy 3 and above only supports Rails >= 4.2
-
-
-Installation
-------------
+### Installation
 
 Add it to your gemfile
 
@@ -32,43 +24,53 @@ Install the migrations
 
 Mount the best boy backend in your routes.rb
 
-    mount BestBoy::Engine => "/best_boy"
+    mount BestBoy::Engine, at: '/best_boy'
 
 Run the generator to create your best_boy config file:
 
     rails g best_boy:install
 
+### Usage
 
+You need to extend your model:
 
-Usage
------
+```Ruby
+class Monkey < ActiveRecord::Base
+  include BestBoy::Eventable
+  has_a_best_boy
+end
+```
 
-In model context:
+By this, `BestBoy` will automatically log two type of events for all instantiated records: Every time `monkey = Monkey.create(…)` has been invoked,
+it will create an event of type `create` and every time you call `monkey.destroy` for a record it will create a `BestBoy::Event` of type `destroy`.
 
-    include BestBoy::Eventable
-    has_a_best_boy
+If you want to skip this auto-logging, i.e. you only want to track customized events, just deactivate the callback
+logging by setting the parameter :disable_callbacks to true.
 
-This will log "create" and "delete" events for each instance.
+```Ruby
+class Monkey < ActiveRecord::Base
+  include BestBoy::Eventable
+  has_a_best_boy disable_callbacks: true
+end
+```
 
-If you do not want to selflog those events, maybe because you will sort it semantically with a create source, just deactivate the callback logging by setting the parameter :disable_callbacks to true.
+If you want to track custom events, you need to prepare your controller:
 
-    include BestBoy::Eventable
-    has_a_best_boy disable_callbacks: true
+```Ruby
+class MonkeysController < ApplicationController
+  include BestBoy::Controller
 
-In controller context:
+  def feed
+    if (monkey = Monkey.find_by(id: params[:id]))
+      monkey.feed_with("banana", "apple")
+      best_boy_event monkey, "feed", "special_event_source"
+    end
+    head :ok
+  end
+end
+```
 
-    # in application_controller.rb or the relevant controller
-    include BestBoy::Controller
-
-    # in a resource specific controller
-    best_boy_event object, event, event_source = nil
-
-This will log custom events for an object and an event phrase. You can specify this event with an event_source parameter to log maybe seperate create actions.
-
-If no object or event is given an exception will be raised.
-
-
-#### Test mode
+### Test mode
 
 BestBoy features a sandbox mode for your testing environment from version 2.1 onward. It will prevent the creation of BestBoy records. Activate it in your spec_helper.rb or test_helper.rb globally:
 
@@ -87,30 +89,29 @@ Conversely, you can also sandbox a specific code block:
     end
 
 
+### Requesting BestBoy::Event data
 
-Getting BestBoyEvents
----------------------
+`BestBoy` ships with an admin interface, largely configurable to fit right into your existing application. To configure
+to your needs, create an initializer, i.e. within `config/initializers/best_boy.rb`:
 
-BestBoy comes with an admin interface, largely configurable to fit right into your existing application.
+```Ruby
+BestBoy.setup do |config|
+  config.base_controller      "MyBaseController"          # default: "ApplicationController"      # declare with Controller should be inherited
+  config.before_filter        "comma separated symbols"   # default: nil                          # declare before_filter to use inherited before_filters in admin section
+  config.skip_before_filter   "comma separated symbols"   # default: nil                          # declare skip_before_filter to skip inherited before_filters in admin section
+  config.skip_after_filter    "comma separated symbols"   # default: nil                          # declare skip_after_filter to skip inherited after_filters in admin section
+  config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
+end
+```
 
-Following configurations can be done:
-
-    config.base_controller      "String"                    # default: "ApplicationController"      # declare with Controller should be inherited
-    config.before_filter        "comma separated symbols"   # default: nil                          # declare before_filter to use inherited before_filters in admin section
-    config.skip_before_filter   "comma separated symbols"   # default: nil                          # declare skip_before_filter to skip inherited before_filters in admin section
-    config.skip_after_filter    "comma separated symbols"   # default: nil                          # declare skip_after_filter to skip inherited after_filters in admin section
-    config.custom_redirect      "relative path as String"   # default: nil                          # set a path to return back to your existing backend
-
-
-Some thoughts about Performance
--------------------------------
+### Some thoughts about Performance
 
 When you're running BestBoy for a long time, accessing and processing data in
 the backend can take awfully long.
 
 By changing to version 1.4.0, we modified BestBoy's data storage organization to
 reduce database queries. This leads to far more acceptable loading times. To do
-so, BestBoy creates daily and monthly reports, which are aggregations
+so, BestBoy creates daily reports, which are aggregations
 of the persisted events. When computing statistical data, BestBoy
 then uses the aggregated tables.
 
@@ -130,9 +131,8 @@ beginning of Feb 1st, 2010 up to now.
 
 Budget some time for this task, since it can take long if your BestBoyEvent table has grown very big.
 
+### Changelog
 
-Changelog
----------
 #### HEAD (not released yet)
 * Create all BestBoy events within after_commit-hooks
 * Drop data structure `BestBoy::MonthReport` and always rely on daily reporting
