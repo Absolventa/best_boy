@@ -59,6 +59,13 @@ module BestBoy
         self.for(owner, type, source).between(date.beginning_of_month, date.end_of_month).sum(:occurrences)
       end
 
+      def yearly_occurrences_for(owner, type, source = nil, date)
+        self.for(owner, type, source).between(date.beginning_of_year, date).sum(:occurrences)
+      end
+
+      def overall_occurrences_for(owner, type, source = nil)
+        self.for(owner, type, source).sum(:occurrences)
+      end
     end
   end
 end
