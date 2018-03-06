@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BestBoy::MonthReport do
 
-  let(:owner) { TestEvent.create }
+  let(:owner) { TestResource.create }
   let(:month_report) do
     BestBoy::MonthReport.create(
       owner_type: owner.class.to_s,
@@ -31,8 +31,8 @@ describe BestBoy::MonthReport do
     end
 
     it 'aggregates MonthReports of specific month period' do
-      report_from_first_month = BestBoy::MonthReport.create(owner_type: 'TestEvent', event: 'create').tap { |e| e.created_at = 2.month.ago; e.save }
-      report_from_last_month  = BestBoy::MonthReport.create(owner_type: 'TestEvent', event: 'create').tap { |e| e.created_at = 1.month.ago }
+      report_from_first_month = BestBoy::MonthReport.create(owner_type: 'TestResource', event: 'create').tap { |e| e.created_at = 2.month.ago; e.save }
+      report_from_last_month  = BestBoy::MonthReport.create(owner_type: 'TestResource', event: 'create').tap { |e| e.created_at = 1.month.ago }
 
       collection = BestBoy::MonthReport.order('created_at DESC')
       expect(collection.between(3.month.ago, Time.now)).to include(report_from_first_month)
@@ -53,14 +53,14 @@ describe BestBoy::MonthReport do
     describe '.current_for' do
       context 'when day_report exists' do
         it 'returns existing day report without source' do
-          existing_report = BestBoy::MonthReport.create_for('TestEventClass', 'create')
-          demanded        = BestBoy::MonthReport.current_for(Time.now, 'TestEventClass', 'create').last
+          existing_report = BestBoy::MonthReport.create_for('TestResourceClass', 'create')
+          demanded        = BestBoy::MonthReport.current_for(Time.now, 'TestResourceClass', 'create').last
           expect(demanded).to eql existing_report
         end
 
         it 'returns existing day report with source' do
-          existing_report = BestBoy::MonthReport.create_for('TestEventClass', 'create', 'api')
-          demanded        = BestBoy::MonthReport.current_for(Time.now, 'TestEventClass', 'create', 'api').last
+          existing_report = BestBoy::MonthReport.create_for('TestResourceClass', 'create', 'api')
+          demanded        = BestBoy::MonthReport.current_for(Time.now, 'TestResourceClass', 'create', 'api').last
           expect(demanded).to eql existing_report
         end
 
@@ -97,7 +97,7 @@ describe BestBoy::MonthReport do
 
         it 'creates a new month_report' do
           BestBoy::MonthReport.destroy_all
-          scope = BestBoy::MonthReport.where(owner_type: TestEvent.to_s, event: 'create')
+          scope = BestBoy::MonthReport.where(owner_type: TestResource.to_s, event: 'create')
           expect(scope.between(Time.now.beginning_of_month, Time.now)).to be_empty
           expect { BestBoy::MonthReport.current_or_create_for(owner.class.to_s, 'create') }.
             to change(scope.between(Time.now.beginning_of_month, Time.now), :count).by(1)

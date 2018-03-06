@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe BestBoy::Eventable do
-  let(:owner) { TestEvent.new }
+  let(:owner) { TestResource.new }
 
   context 'with callbacks' do
     context 'within real mode' do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BestBoy::Event do
-  let(:owner) { TestEvent.create }
+  let(:owner) { TestResource.create }
 
   context 'with associations' do
     it { expect(subject).to belong_to(:owner) }

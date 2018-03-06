@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BestBoy::DayReport do
 
-  let(:owner) { TestEvent.create }
+  let(:owner) { TestResource.create }
 
   let(:month_report) do
     BestBoy::MonthReport.create({
@@ -43,8 +43,8 @@ describe BestBoy::DayReport do
     it 'aggregates DayReports of last week' do
       Time.zone = "Berlin"
 
-      report_from_last_week = BestBoy::DayReport.create({owner_type: 'TestEvent', event: 'create'}).tap { |e| e.created_at = 8.days.ago; e.save }
-      report_from_this_week = BestBoy::DayReport.create({owner_type: 'TestEvent', event: 'create', month_report_id: month_report.id })
+      report_from_last_week = BestBoy::DayReport.create({owner_type: 'TestResource', event: 'create'}).tap { |e| e.created_at = 8.days.ago; e.save }
+      report_from_this_week = BestBoy::DayReport.create({owner_type: 'TestResource', event: 'create', month_report_id: month_report.id })
 
       collection = BestBoy::DayReport.order('created_at DESC')
       expect(collection.week).to include report_from_this_week
@@ -93,7 +93,7 @@ describe BestBoy::DayReport do
     context "when no today's day report is present" do
       it 'creates a new day report' do
         BestBoy::DayReport.destroy_all
-        scope = BestBoy::DayReport.where(owner_type: TestEvent.to_s, event: 'create')
+        scope = BestBoy::DayReport.where(owner_type: TestResource.to_s, event: 'create')
         expect { BestBoy::DayReport.current_or_create_for(owner.class.to_s, 'create') }.
           to change { scope.created_on(Time.now).reload.count }.by(1)
       end
