@@ -136,6 +136,7 @@ Changelog
 ---------
 #### HEAD (not released yet)
 * Create all BestBoy events within after_commit-hooks
+* Drop data structure `BestBoy::MonthReport` and always rely on daily reporting
 
 #### 3.4.0
 * Drop support for Rails below v5.0
