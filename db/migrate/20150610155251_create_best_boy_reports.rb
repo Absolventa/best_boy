@@ -1,4 +1,4 @@
-class CreateBestBoyReports < ActiveRecord::Migration
+class CreateBestBoyReports < ActiveRecord::Migration[5.1]
   def change
     create_table :best_boy_day_reports do |t|
       t.string   :owner_type

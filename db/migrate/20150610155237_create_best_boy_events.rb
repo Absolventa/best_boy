@@ -1,4 +1,4 @@
-class CreateBestBoyEvents < ActiveRecord::Migration
+class CreateBestBoyEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :best_boy_events do |t|
       t.integer  :owner_id
