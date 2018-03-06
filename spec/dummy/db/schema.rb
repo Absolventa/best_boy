@@ -16,12 +16,10 @@ ActiveRecord::Schema.define(version: 20150610155251) do
     t.string "owner_type"
     t.string "event"
     t.string "event_source"
-    t.integer "month_report_id"
     t.integer "occurrences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_best_boy_day_reports_on_created_at"
-    t.index ["month_report_id"], name: "index_best_boy_day_reports_on_month_report_id"
     t.index ["owner_type", "event", "event_source"], name: "index_best_boy_day_reports_aggregated_columns"
   end
 
@@ -37,17 +35,6 @@ ActiveRecord::Schema.define(version: 20150610155251) do
     t.index ["owner_id", "owner_type"], name: "index_best_boy_events_on_owner_id_and_owner_type"
     t.index ["owner_id"], name: "index_best_boy_events_on_owner_id"
     t.index ["owner_type"], name: "index_best_boy_events_on_owner_type"
-  end
-
-  create_table "best_boy_month_reports", force: :cascade do |t|
-    t.string "owner_type"
-    t.string "event"
-    t.string "event_source"
-    t.integer "occurrences", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["created_at"], name: "index_best_boy_month_reports_on_created_at"
-    t.index ["owner_type", "event", "event_source"], name: "index_best_boy_month_reports_aggregated_columns"
   end
 
   create_table "test_resources", force: :cascade do |t|

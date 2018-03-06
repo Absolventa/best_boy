@@ -16,13 +16,12 @@ module BestBoy
     #
 
     belongs_to :owner, polymorphic: true
-    belongs_to :month_report
 
     # validations
     #
     #
 
-    validates :month_report_id, :owner_type, :event, presence: true
+    validates :owner_type, :event, presence: true
 
     # scopes
     #
@@ -38,12 +37,9 @@ module BestBoy
     class << self
 
       def create_for(owner, type, source = nil, date = Time.zone.now)
-        month_report = BestBoy::MonthReport.current_or_create_for(owner, type, source, date)
-        day_report   = BestBoy::DayReport.new
-
+        day_report                 = BestBoy::DayReport.new
         day_report.owner_type      = owner
         day_report.event           = type
-        day_report.month_report_id = month_report.id
         day_report.event_source    = source
         day_report.created_at      = date
 

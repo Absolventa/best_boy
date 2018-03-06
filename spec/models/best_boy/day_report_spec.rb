@@ -4,29 +4,16 @@ describe BestBoy::DayReport do
 
   let(:owner) { TestResource.create }
 
-  let(:month_report) do
-    BestBoy::MonthReport.create({
-      owner_type: owner.class.to_param,
-      event:     'create'
-    })
-  end
-
   let(:day_report) do
     BestBoy::DayReport.create({
-      owner_type:  owner.class.to_param,
+      owner_type: owner.class.to_param,
       event:      'create',
-      month_report_id: month_report.to_param
     })
   end
 
   subject { day_report }
 
-  context 'with associations' do
-    it { expect(subject).to belong_to(:month_report) }
-  end
-
   context 'with validations' do
-    it { expect(subject).to validate_presence_of(:month_report_id) }
     it { expect(subject).to validate_presence_of(:owner_type) }
     it { expect(subject).to validate_presence_of(:event) }
   end
@@ -44,7 +31,7 @@ describe BestBoy::DayReport do
       Time.zone = "Berlin"
 
       report_from_last_week = BestBoy::DayReport.create({owner_type: 'TestResource', event: 'create'}).tap { |e| e.created_at = 8.days.ago; e.save }
-      report_from_this_week = BestBoy::DayReport.create({owner_type: 'TestResource', event: 'create', month_report_id: month_report.id })
+      report_from_this_week = BestBoy::DayReport.create({owner_type: 'TestResource', event: 'create' })
 
       collection = BestBoy::DayReport.order('created_at DESC')
       expect(collection.week).to include report_from_this_week
