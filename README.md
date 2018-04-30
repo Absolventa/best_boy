@@ -9,13 +9,6 @@ A simple event driven logging for ActiveRecord models.
 BestBoy is able to log model-based "create", "update" and "delete" events as well as custom events triggered in controller actions.
 It uses its own polymorphic database table to log each event.
 
-
-Rails version support
-----------------------
-
-BestBoy 3 and above only supports Rails >= 4.2
-
-
 Installation
 ------------
 
@@ -38,8 +31,6 @@ Mount the best boy backend in your routes.rb
 Run the generator to create your best_boy config file:
 
     rails g best_boy:install
-
-
 
 Usage
 -----
