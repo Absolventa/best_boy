@@ -136,6 +136,9 @@ Changelog
 ---------
 #### HEAD (not released yet)
 
+#### 3.4.1
+* Fix display awkward display of event sources (they occurred multiple times) and its impact on summed values in admin area
+
 #### 3.4.0
 * Drop support for Rails below v5.0
 * Add support for Rails 5.1
