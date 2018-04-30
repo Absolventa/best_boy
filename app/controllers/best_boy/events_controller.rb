@@ -209,12 +209,12 @@ module BestBoy
     end
 
     def available_events
-      @available_events ||= BestBoy::MonthReport.where(owner_type: current_owner_type).order(:event).uniq.pluck(:event)
+      @available_events ||= BestBoy::MonthReport.where(owner_type: current_owner_type).order(:event).distinct.pluck(:event)
     end
 
     def available_event_sources
       @available_event_sources ||= (
-        BestBoy::MonthReport.where(owner_type: current_owner_type).where('event_source IS NOT NULL').order(:event_source).uniq.pluck(:event_source)
+        BestBoy::MonthReport.where(owner_type: current_owner_type).where('event_source IS NOT NULL').order(:event_source).distinct.pluck(:event_source)
       )
     end
 
@@ -227,7 +227,7 @@ module BestBoy
     end
 
     def available_owner_types
-      @available_owner_types ||= BestBoy::MonthReport.where(event_source: nil).order(:owner_type).uniq.pluck(:owner_type)
+      @available_owner_types ||= BestBoy::MonthReport.where(event_source: nil).order(:owner_type).distinct.pluck(:owner_type)
     end
 
     def detail_count
