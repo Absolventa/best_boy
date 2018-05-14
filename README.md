@@ -126,6 +126,8 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+
+#### 3.5.0
 * Add support for Rails 5.2 and all versions below Rails 6.0
 
 #### 3.4.1
