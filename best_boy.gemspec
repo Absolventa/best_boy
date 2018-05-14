@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2'
 
-  s.add_dependency 'rails', '>= 5.0', '< 5.2'
+  s.add_dependency 'rails', '>= 5.0', '< 6.0'
   s.add_dependency 'kaminari', '>= 0.14.1'
   s.add_dependency 'haml'
 

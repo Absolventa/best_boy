@@ -126,6 +126,7 @@ Budget some time for this task, since it can take long if your BestBoyEvent tabl
 Changelog
 ---------
 #### HEAD (not released yet)
+* Add support for Rails 5.2 and all versions below Rails 6.0
 
 #### 3.4.1
 * Fix display awkward display of event sources (they occurred multiple times) and its impact on summed values in admin area
